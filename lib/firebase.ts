@@ -1,11 +1,8 @@
 import Firebase from "firebase/compat/app";
-import "Firebase/auth";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
-
 
 const FirebaseCredentials = {
 	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
