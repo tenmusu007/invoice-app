@@ -22,7 +22,6 @@ const SignUp = () => {
 					const errorCode = error.code;
 					return errorCode;
 				});
-      console.log("response",response);
 			// router.push("/");
 		} catch (err) {
 			alert(err);

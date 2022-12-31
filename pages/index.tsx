@@ -14,7 +14,7 @@ export default function Home(props: any) {
 	const { data: session } = useSession();
 	
 	const authContext = useContext(useAuthContext);
-	console.log("INDEX", authContext);
+	console.log("user data", authContext);
 	const [value, setValue] = useState<Dayjs | null>(dayjs());
 	const [start, setStart] = useState<Dayjs | null>();
 	const [end, setEnd] = useState<Dayjs | null>();
@@ -60,20 +60,4 @@ export default function Home(props: any) {
 	);
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-// 	const auth = await getAuth();
-// 	const user = await auth.currentUser;
-// 	console.log("test",user);
 
-// 	onAuthStateChanged(auth, async(user) => {
-// 		if (!user) return console.log("logout");
-// 		const test = await user.providerData[0];
-// 		console.log(test);
-
-// 	});
-// 	return {
-// 		props: {
-// 			data : user
-// 		}
-// 	};
-// };

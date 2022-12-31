@@ -11,8 +11,6 @@ const Header = () => {
     const auth = getAuth();
 		signOut(auth)
       .then(() => {
-        console.log("signup");
-        
 			})
 			.catch((error) => {
 				// An error happened.

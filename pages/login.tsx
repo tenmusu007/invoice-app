@@ -16,7 +16,6 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			const provider = new GoogleAuthProvider();
-			console.log(provider);
 			const response = await signInWithPopup(auth, provider)
 				.then((result) => {
 					const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -26,7 +25,6 @@ const Login = () => {
 					const errorCode = error.code;
 					return errorCode;
 				});
-				console.log("response", response);
 				router.push("/");
 
 		} catch (err) {
