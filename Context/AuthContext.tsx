@@ -1,21 +1,23 @@
-import {
-	createContext,
-	useState,
-	useEffect,
-	useContext,
-	ReactNode,
-} from "react";
+import { useRouter } from "next/router";
+import { createContext, useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { auth } from "../lib/firebase";
-import { Auth, Children } from "../types/auth";
+import { Auth } from "../types/authContext";
+import { Children } from "../types/children";
+import { useSession } from "next-auth/react";
+
 export const useAuthContext = createContext<Auth | null>(null);
 const AuthContext = ({ children }: Children) => {
-	const [currentInfo, setCurrentInfo] = useState<any>("");
-	const user = auth.currentUser;
-	console.log(user);
+	const { data: session } = useSession();
+
+	const router = useRouter();
+	useEffect(() => {
+		() => {
+			if (!session) return router.push("/login");
+		};
+	}, [router, session]);
 
 	return (
-		<useAuthContext.Provider value={currentInfo}>
+		<useAuthContext.Provider value={{}}>
 			<Layout>{children}</Layout>
 		</useAuthContext.Provider>
 	);
