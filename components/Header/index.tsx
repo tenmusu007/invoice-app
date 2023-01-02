@@ -1,28 +1,18 @@
 import { Button } from "@mui/material";
-import { getAuth, signOut } from "firebase/auth";
 import { useContext } from "react";
 import { useAuthContext } from "../../Context/AuthContext";
-
+import { signOut } from "next-auth/react";
 
 const Header = () => {
 	const authContext = useContext(useAuthContext);
-
-  const logOut = () => {
-    const auth = getAuth();
-		signOut(auth)
-      .then(() => {
-			})
-			.catch((error) => {
-				// An error happened.
-        console.log(error);
-        
-			});
-  }
-  return (
-    <div>
-      <Button onClick={logOut}>Google Logout</Button>
-    </div>
-  );
-}
+	const nextAuthLogout = () => {
+		signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}` });
+	};
+	return (
+		<div>
+			<Button onClick={nextAuthLogout}> Logout</Button>
+		</div>
+	);
+};
 
 export default Header;

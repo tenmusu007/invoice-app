@@ -1,7 +1,6 @@
 
 export type Auth = {
-	currentInfo: Array;
-	setCurrentInfo: (data: UserInfo) => void;
+	
 };
 export type UserInfo = {
 	displayName: string | null;

@@ -5,16 +5,23 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import { useAuthContext } from "../Context/AuthContext";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { ApiInstance } from "../helper/ApiInstance";
 
 export default function Home(props: any) {
+	//login user data 
 	const { data: session } = useSession();
-	
-	const authContext = useContext(useAuthContext);
-	console.log("user data", authContext);
+
+	useEffect(() => {
+		const fetch = async () => {
+			// this is test api
+			const res = await ApiInstance({url:"/api/test",method:"get"})
+			console.log("res",res);
+		}
+		fetch()
+	},[])
 	const [value, setValue] = useState<Dayjs | null>(dayjs());
 	const [start, setStart] = useState<Dayjs | null>();
 	const [end, setEnd] = useState<Dayjs | null>();
@@ -23,7 +30,6 @@ export default function Home(props: any) {
 	};
 	return (
 		<>
-			{/* <Container maxWidth='md' fixed> */}
 			<LocalizationProvider dateAdapter={AdapterDayjs}>
 				<Stack spacing={4}>
 					<Grid container>
@@ -55,7 +61,6 @@ export default function Home(props: any) {
 					</Grid>
 				</Stack>
 			</LocalizationProvider>
-			{/* </Container> */}
 		</>
 	);
 }
