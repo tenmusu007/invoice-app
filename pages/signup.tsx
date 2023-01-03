@@ -1,18 +1,16 @@
 import React from "react";
-import { Button, Typography } from "@mui/material";
-import { signIn} from "next-auth/react";
-
-const Login = () => {
+import { Button } from "@mui/material";
+import { useSession, signIn, signOut } from "next-auth/react";
+const SignUp = () => {
+  const { data: session } = useSession();
 	const handleGoggle = () => {
 		signIn("google", { callbackUrl: process.env.NEXT_PUBLIC_BASE_URL });
-	}
+	};
 	return (
 		<>
-			<Typography variant='h2'>Login</Typography>
 			<Button onClick={handleGoggle}>Next Google</Button>
-
 		</>
 	);
 };
 
-export default Login;
+export default SignUp;
