@@ -1,24 +1,24 @@
 import mongoose, { Schema, model, models } from "mongoose";
 const BillsSchema = new mongoose.Schema({
-	User_Id: {
+	user_id: {
 		type: String,
 		required: true,
 	},
-	Compnay_Name: {
+	compnay_name: {
 		type: String,
 	},
-	Address: {
+	address: {
 		type: String,
 	},
-	City: {
+	city: {
 		type: String,
 	},
-	Province: {
+	province: {
 		type: String,
 	},
-	Postal: {
+	postal: {
 		type: String,
 	},
 });
-const Bills = model("bill", BillsSchema);
+const Bills = models.Bills || model("Bills", BillsSchema);
 export default Bills;

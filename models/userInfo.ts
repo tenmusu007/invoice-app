@@ -1,30 +1,30 @@
 import mongoose, { Schema, model, models } from "mongoose";
 const UserInfoSchema = new mongoose.Schema({
-	User_Id: {
+	user_id: {
 		type: String,
 		required: true,
 	},
-	Compnay_Name: {
+	compnay_name: {
 		type: String,
 	},
-	Address: {
+	address: {
 		type: String,
 	},
-	City: {
+	city: {
 		type: String,
 	},
-	Province: {
+	province: {
 		type: String,
 	},
-	Postal: {
+	postal: {
 		type: String,
 	},
-	Phone: {
+	phone: {
 		type: String,
 	},
-	Email: {
+	email: {
 		type: String,
 	},
 });
-const UsersInfo = model("userinfo", UserInfoSchema);
+const UsersInfo = models.UsersInfo || model("UsersInfo", UserInfoSchema);
 export default UsersInfo;
