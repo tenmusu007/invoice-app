@@ -1,19 +1,17 @@
-import mongoose, { Schema, model, models } from "mongoose"
+import { Schema, model, models } from "mongoose"
 const UsersSchema = new Schema({
-  Email: {
+  email: {
     type: String,
-    required: true,
   },
-  Username: {
+  username: {
     type: String,
-    required: true,
   },
-  Bill_To: {
+  bill_To: {
     type: Array,
   },
-  User_Info: {
+  user_Info: {
     type:Array
   }
 })
-const Users = model("users", UsersSchema);
+const Users = models.Users || model("Users", UsersSchema);
 export default Users

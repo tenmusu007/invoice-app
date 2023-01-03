@@ -5,23 +5,29 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { ApiInstance } from "../helper/ApiInstance";
+import { useAuthContext } from "../Context/AuthContext";
 
 export default function Home(props: any) {
 	//login user data 
 	const { data: session } = useSession();
-
+	const fetch = async () => {
+		// this is test api
+		// const res = await ApiInstance({url:"/api/test",method:"get"})
+		if(!session) return 
+		const res = await ApiInstance({
+			url: "/api/user/create",
+			method: "post",
+			data: { username: session?.user?.name, email: session?.user?.email},
+		});
+		console.log("res", res);
+	}
 	useEffect(() => {
-		const fetch = async () => {
-			// this is test api
-			const res = await ApiInstance({url:"/api/test",method:"get"})
-			console.log("res",res);
-		}
 		fetch()
-	},[])
+	},[session])
 	const [value, setValue] = useState<Dayjs | null>(dayjs());
 	const [start, setStart] = useState<Dayjs | null>();
 	const [end, setEnd] = useState<Dayjs | null>();

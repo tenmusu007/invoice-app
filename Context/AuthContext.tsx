@@ -10,11 +10,6 @@ const AuthContext = ({ children }: Children) => {
 	const { data: session } = useSession();
 
 	const router = useRouter();
-	useEffect(() => {
-		() => {
-			if (!session) return router.push("/login");
-		};
-	}, [router, session]);
 
 	return (
 		<useAuthContext.Provider value={{}}>
