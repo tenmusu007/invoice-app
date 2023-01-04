@@ -1,0 +1,19 @@
+{
+  "en":{
+    "title":"Invocier",
+    "header":{
+      "create":"create",
+      "Mylist":"MyList",
+      "Setting":"Setting"
+    },
+    "setting":{
+      "name":"Name",
+      "language":"Language",
+      "bill":"Create Bill To Template",
+      "info":"Create Your Info Template "
+    },
+    "home":{
+      "title":"Create your own invoice so that you’ll never miss your income."
+    }
+  }
+}
