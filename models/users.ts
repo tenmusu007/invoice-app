@@ -6,6 +6,9 @@ const UsersSchema = new Schema({
   username: {
     type: String,
   },
+  image: {
+    type:String
+  },
   bill_To: {
     type: Array,
   },
