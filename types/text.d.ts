@@ -4,5 +4,6 @@ export type TypographyType = {
 	label?: TypographyTypeMap["props"]["variant"];
 	labelText?: String;
 	variant?: TypographyTypeMap["props"]["variant"];
-	text?: String;
+  text?: String;
+  style?: any;
 };

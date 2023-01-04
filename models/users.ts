@@ -9,6 +9,9 @@ const UsersSchema = new Schema({
   image: {
     type:String
   },
+  invoice: {
+    type:Array
+  },
   bill_To: {
     type: Array,
   },
