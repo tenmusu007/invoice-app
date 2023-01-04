@@ -21,7 +21,11 @@ export default function Home(props: any) {
 		const res = await ApiInstance({
 			url: "/api/user/create",
 			method: "post",
-			data: { username: session?.user?.name, email: session?.user?.email},
+			data: {
+				username: session?.user?.name,
+				email: session?.user?.email,
+				image: session?.user?.image,
+			},
 		});
 		console.log("res", res);
 	}
