@@ -1,5 +1,5 @@
 import { Schema, model, models } from "mongoose";
-const UserInfoSchema = new Schema({
+const BusinessInfoSchema = new Schema({
 	user_id: {
 		type: String,
 		required: true,
@@ -26,5 +26,6 @@ const UserInfoSchema = new Schema({
 		type: String,
 	},
 });
-const UsersInfo = models.UsersInfo || model("UsersInfo", UserInfoSchema);
-export default UsersInfo;
+const BusinessInfo =
+	models.BusinessInfo || model("BusinessInfo", BusinessInfoSchema);
+export default BusinessInfo;

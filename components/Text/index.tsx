@@ -16,7 +16,7 @@ const Text = (props: TypographyType) => {
 						{text}
 					</Typography>
 				)}
-			</Box>
+			</Box> 
 		</>
 	);
 };

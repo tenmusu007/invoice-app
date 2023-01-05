@@ -1,3 +1,4 @@
+import Button from "@components/Button/button";
 import Text from "@components/Text";
 import translations from "../components/Text/text.json";
 
