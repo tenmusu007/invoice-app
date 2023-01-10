@@ -1,17 +1,21 @@
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import { useAuthContext } from "../../Context/AuthContext";
-import { signOut } from "next-auth/react";
-
+import { signOut, useSession } from "next-auth/react";
+import Text from "@components/Text";
 const Header = () => {
 	const authContext = useContext(useAuthContext);
+	const { data: session } = useSession();
+
 	const nextAuthLogout = () => {
 		signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/login` });
 	};
 	return (
-		<div>
+		<>
 			<Button onClick={nextAuthLogout}> Logout</Button>
-		</div>
+			<Text label={"h3"} labelText={"user"} />
+			<Text variant={"h4"} text={session?.user?.name} />
+		</>
 	);
 };
 
