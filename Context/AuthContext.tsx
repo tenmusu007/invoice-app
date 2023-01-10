@@ -11,12 +11,11 @@ const AuthContext = ({ children }: Children) => {
 
 	const router = useRouter();
 	useEffect(() => {
-		// console.log(session);
-		// const isLogin = async () => {
-		// 	if (!session) return router.push("/login");
-		// }
-		// isLogin()
-	}, [router, session]);
+		const isLogin = async () => {
+			if (!session) return router.push("/login");
+		}
+		isLogin()
+	}, []);
 
 	return (
 		<useAuthContext.Provider value={{}}>
