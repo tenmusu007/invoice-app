@@ -11,10 +11,14 @@ const AuthContext = ({ children }: Children) => {
 
 	const router = useRouter();
 	useEffect(() => {
-		const isLogin = async () => {
-			if (!session) return router.push("/login");
-		}
-		isLogin()
+		// const isLogin = async () => {
+
+		// 	if (!session) {
+		// 		return router.push("/login");				
+		// 	}
+		// 	return router.push("/")
+		// }
+		// isLogin()
 	}, []);
 
 	return (

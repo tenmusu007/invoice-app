@@ -10,14 +10,17 @@ import { Grid } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { ApiInstance } from "../helper/ApiInstance";
 import { useAuthContext } from "../Context/AuthContext";
+import { useRouter } from "next/router";
 
 export default function Home(props: any) {
-	//login user data 
+	//login user data
 	const { data: session } = useSession();
+	const router = useRouter();
+
 	const fetch = async () => {
 		// this is test api
 		// const res = await ApiInstance({url:"/api/test",method:"get"})
-		if(!session) return 
+		if (!session) return;
 		const res = await ApiInstance({
 			url: "/api/user/create",
 			method: "post",
@@ -28,10 +31,17 @@ export default function Home(props: any) {
 			},
 		});
 		console.log("res", res);
-	}
+	};
+	const isLogin = async () => {
+		if (!session) {
+			return router.push("/login");
+		}
+		return router.push("/");
+	};
 	useEffect(() => {
-		fetch()
-	},[session])
+		fetch();
+		isLogin();
+	}, [session]);
 	const [value, setValue] = useState<Dayjs | null>(dayjs());
 	const [start, setStart] = useState<Dayjs | null>();
 	const [end, setEnd] = useState<Dayjs | null>();
@@ -74,5 +84,3 @@ export default function Home(props: any) {
 		</>
 	);
 }
-
-

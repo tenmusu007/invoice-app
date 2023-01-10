@@ -9,6 +9,9 @@
     "setting":{
       "name":"Name",
       "language":"Language",
+      "langchoice":[ "日本語" ,"English" ],
+      "jpn":"日本語",
+      "en":"English",
       "bill":"Create Bill To Template",
       "info":"Create Your Info Template "
     },

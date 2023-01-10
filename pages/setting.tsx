@@ -1,11 +1,14 @@
 import Button from "@components/Button/button";
+import SelectInput from "@components/Select";
 import Text from "@components/Text";
+import { useState } from "react";
 import translations from "../components/Text/text.json";
 
 const Setting = () => {
 	const textAline = { textAlign: "center" };
+	const [defLanguage, setDefLanguage] = useState(["日本語", "English"]);
+	const [language, setLanguage] = useState(defLanguage[0]);
 	const { setting } = translations.en;
-
 	return (
 		<>
 			<Text
@@ -34,6 +37,7 @@ const Setting = () => {
 					marginY: "30px",
 				}}
 			/>
+			<SelectInput items={setting.langchoice} name={"language"} />
 			<Text variant={"h6"} text={setting.bill} style={textAline} />
 			<Text variant={"h6"} text={setting.info} style={textAline} />
 		</>
