@@ -1,0 +1,64 @@
+import React from "react";
+import Input from "@components/Input";
+import {
+  useFormContext,
+  UseFormRegisterReturn,
+  Validate,
+  ValidationRule,
+} from "react-hook-form";
+
+import { BusinessInfo as BusinessInfoType } from "types/businessInfo";
+
+const BusinessInfoForm = () => {
+  const { register } = useFormContext<BusinessInfoType>();
+  return (
+    <>
+      <h3>Business Info</h3>
+      <Input
+        name="user.BusinessName"
+        type="text"
+        placeholder="Your/Business Name"
+        register={register}
+      />
+      <Input
+        name="user.AddressLine1"
+        type="text"
+        placeholder="Address line 1"
+        register={register}
+      />
+      <Input name="user.City" type="text" placeholder="City" register={register} />
+      <Input
+        name="user.Province"
+        type="text"
+        placeholder="Province"
+        register={register}
+      />
+      <Input
+        name="user.Country"
+        type="text"
+        placeholder="Country"
+        register={register}
+      />
+      <Input
+        name="user.PostalCode"
+        type="text"
+        placeholder="Postal Code"
+        register={register}
+      />
+      <Input
+        name="user.PhoneNumber"
+        type="text"
+        placeholder="Phone number"
+        register={register}
+      />
+      <Input
+        name="user.Email"
+        type="text"
+        placeholder="Email"
+        register={register}
+      />
+    </>
+  );
+};
+
+export default BusinessInfoForm;
