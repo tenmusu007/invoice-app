@@ -15,44 +15,44 @@ const BusinessInfoForm = () => {
     <>
       <h3>Business Info</h3>
       <Input
-        name="user.BusinessName"
+        name="user.businessName"
         type="text"
         placeholder="Your/Business Name"
         register={register}
       />
       <Input
-        name="user.AddressLine1"
+        name="user.addressLine1"
         type="text"
         placeholder="Address line 1"
         register={register}
       />
-      <Input name="user.City" type="text" placeholder="City" register={register} />
+      <Input name="user.city" type="text" placeholder="City" register={register} />
       <Input
-        name="user.Province"
+        name="user.province"
         type="text"
         placeholder="Province"
         register={register}
       />
       <Input
-        name="user.Country"
+        name="user.country"
         type="text"
         placeholder="Country"
         register={register}
       />
       <Input
-        name="user.PostalCode"
+        name="user.postalCode"
         type="text"
         placeholder="Postal Code"
         register={register}
       />
       <Input
-        name="user.PhoneNumber"
+        name="user.phoneNumber"
         type="text"
         placeholder="Phone number"
         register={register}
       />
       <Input
-        name="user.Email"
+        name="user.email"
         type="text"
         placeholder="Email"
         register={register}

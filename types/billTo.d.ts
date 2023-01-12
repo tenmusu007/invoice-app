@@ -1,8 +1,8 @@
 export type BillTo = {
-  CompanyName?: String;
-  AddressLine1?: String;
-  City?: String;
-  Province?: String;
-  Country?: String;
-  PostalCode?: String;
+  companyName?: String;
+  addressLine1?: String;
+  city?: String;
+  province?: String;
+  country?: String;
+  postalCode?: String;
 };
