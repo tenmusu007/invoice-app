@@ -1,17 +1,18 @@
 import { Schema, model, models } from "mongoose";
 const InvoiceSchema = new Schema({
-	user_id: {
+	userId: {
 		type: String,
 		required: true,
 	},
 	number: {
 		type: Number,
+		required: true,
 	},
 	bill_to: {
 		type: String,
 		required: true,
 	},
-	business_info: {
+	businessInfo: {
 		type: String,
 		required: true,
 	},

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
 import connectMopngo from "@db/connectMongo";
 import Bills from "@models/bills";
-import UsersInfo from "@models/userInfo";
+import UsersInfo from "@models/businessInfo";
 import Users from "@models/users";
 
 export default async function create(

@@ -3,7 +3,7 @@ const UsersSchema = new Schema({
   email: {
     type: String,
   },
-  username: {
+  userName: {
     type: String,
   },
   image: {
@@ -17,6 +17,9 @@ const UsersSchema = new Schema({
   },
   user_Info: {
     type:Array
+  },
+  language: {
+    type:String
   }
 })
 const Users = models.Users || model("Users", UsersSchema);

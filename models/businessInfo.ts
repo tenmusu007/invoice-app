@@ -1,10 +1,10 @@
 import { Schema, model, models } from "mongoose";
 const BusinessInfoSchema = new Schema({
-	user_id: {
+	userId: {
 		type: String,
 		required: true,
 	},
-	compnay_name: {
+	compnayName: {
 		type: String,
 	},
 	address: {
