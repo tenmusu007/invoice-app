@@ -1,4 +1,3 @@
-import Button from "@components/Button/button";
 import SelectInput from "@components/Select";
 import Text from "@components/atoms/Text";
 import { useState } from "react";

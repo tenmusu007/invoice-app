@@ -14,7 +14,7 @@ const ItemSchema = new Schema({
 		type: Number,
 		reqired: true,
 	},
-	unitPric: {
+	unitPrice: {
 		type: Number,
 		required: true,
 	},

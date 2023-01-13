@@ -4,11 +4,11 @@ const InvoiceSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	number: {
+	invocieNumber: {
 		type: Number,
 		required: true,
 	},
-	bill_to: {
+	billTo: {
 		type: String,
 		required: true,
 	},

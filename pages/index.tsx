@@ -9,15 +9,12 @@ import { useContext, useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { ApiInstance } from "../helper/ApiInstance";
-import { useAuthContext } from "../Context/AuthContext";
 import { useRouter } from "next/router";
-import Text from "@components/atoms/Text";
 
 export default function Home(props: any) {
 	//login user data
 	const { data: session, status } = useSession();
 	const router = useRouter();
-	const [isLoad, setIsLoad] = useState<boolean>(false);
 	const fetch = async () => {
 		const res = await ApiInstance({
 			url: "/api/user/create",
@@ -49,9 +46,7 @@ export default function Home(props: any) {
 	};
 	return (
 		<>
-			{isLoad ? (
-				<Text variant='h2' text={"sushi"} />
-			) : (
+
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<Stack spacing={4}>
 						<Grid container>
@@ -83,7 +78,6 @@ export default function Home(props: any) {
 						</Grid>
 					</Stack>
 				</LocalizationProvider>
-			)}
 		</>
 	);
 }

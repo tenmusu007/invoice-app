@@ -4,7 +4,7 @@ const BillsSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	compnayName: {
+	companyName: {
 		type: String,
 	},
 	address: {
@@ -15,6 +15,9 @@ const BillsSchema = new Schema({
 	},
 	province: {
 		type: String,
+	},
+	country: {
+		type: String
 	},
 	postal: {
 		type: String,
