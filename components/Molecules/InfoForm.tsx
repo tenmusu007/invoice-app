@@ -9,19 +9,19 @@ const InfoForm = () => {
     <>
       <h3>InfoForm</h3>
       <Input
-        name="info.InvoiceNumber"
+        name="info.invoiceNumber"
         type="number"
         placeholder="i.g. 1234"
         register={register}
       />
       <Input
-        name="info.IssuedDate"
+        name="info.issuedDate"
         type="string"
         placeholder="MM/DD/YY"
         register={register}
       />
       <Input
-        name="info.DueDate"
+        name="info.dueDate"
         type="string"
         placeholder="MM/DD/YY"
         register={register}

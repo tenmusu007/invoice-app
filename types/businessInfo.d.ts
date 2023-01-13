@@ -1,10 +1,10 @@
 export type BusinessInfo = {
-  BusinessName?: String;
-  AddressLine1?: String;
-  City?: String;
-  Province?: String;
-  Country?: String;
-  PostalCode?: String;
-  PhoneNumber?: String;
-  Email?: String;
+  businessName?: String;
+  addressLine1?: String;
+  city?: String;
+  province?: String;
+  country?: String;
+  postalCode?: String;
+  phoneNumber?: String;
+  email?: String;
 };

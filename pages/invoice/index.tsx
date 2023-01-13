@@ -1,4 +1,3 @@
-import Input from "@components/Input";
 import React from "react";
 import {
   SubmitHandler,
@@ -15,6 +14,7 @@ import BusinessInfoForm from "@components/Molecules/BusinessInfoForm";
 import DescriptionForm from "@components/Molecules/DescriptionForm";
 import InfoForm from "@components/Molecules/InfoForm";
 import { Invoice as InvoiceType } from "types/inputValue";
+import BankInfoForm from "@components/Molecules/BankInfoForm ";
 
 const InvoiceForm = () => {
   const methods = useForm<InvoiceType>()
@@ -30,6 +30,7 @@ const InvoiceForm = () => {
         <BillToForm />
         <BusinessInfoForm />
         <DescriptionForm />
+        <BankInfoForm />
       <Button text={"Submit"} type="submit" />
     </Stack>
     </FormProvider>

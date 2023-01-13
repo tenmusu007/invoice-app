@@ -1,5 +1,5 @@
 export type InvoiceInfo = {
-  InvoiceNumber?: Number;
-  IssuedDate?: String;
-  DueDate?: String;
+  invoiceNumber?: Number;
+  issuedDate?: String;
+  dueDate?: String;
 };

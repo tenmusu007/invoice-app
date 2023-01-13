@@ -10,32 +10,32 @@ const BillToForm = () => {
     <>
       <h3>Bill to</h3>
       <Input
-        name="billTo.CompanyName"
+        name="billTo.companyName"
         register={register}
         placeholder="Company/Client Name"
         type="text"
       />
       <Input
-        name="billTo.AddressLine1"
+        name="billTo.addressLine1"
         register={register}
         placeholder="Address Line 1"
         type="text"
       />
-      <Input name="billTo.City" register={register} placeholder="City" type="text" />
+      <Input name="billTo.city" register={register} placeholder="City" type="text" />
       <Input
-        name="billTo.Province"
+        name="billTo.province"
         register={register}
         placeholder="Province"
         type="text"
       />
       <Input
-        name="billTo.Country"
+        name="billTo.country"
         register={register}
         placeholder="Country"
         type="text"
       />
       <Input
-        name="billTo.PostalCode"
+        name="billTo.postalCode"
         register={register}
         placeholder="Postal Code"
         type="text"
