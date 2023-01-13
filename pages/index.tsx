@@ -11,16 +11,14 @@ import { useSession } from "next-auth/react";
 import { ApiInstance } from "../helper/ApiInstance";
 import { useAuthContext } from "../Context/AuthContext";
 import { useRouter } from "next/router";
+import Text from "@components/Text";
 
 export default function Home(props: any) {
 	//login user data
-	const { data: session } = useSession();
+	const { data: session, status } = useSession();
 	const router = useRouter();
-
+const [isLoad, setIsLoad]=useState<boolean>(false)
 	const fetch = async () => {
-		// this is test api
-		// const res = await ApiInstance({url:"/api/test",method:"get"})
-		if (!session) return;
 		const res = await ApiInstance({
 			url: "/api/user/create",
 			method: "post",
@@ -32,15 +30,16 @@ export default function Home(props: any) {
 		});
 		console.log("res", res);
 	};
-	const isLogin = async () => {
-		if (!session) {
-			return router.push("/login");
-		}
-		return router.push("/");
-	};
+
 	useEffect(() => {
-		fetch();
-		isLogin();
+		(() => {
+			if (status === 'loading') {
+				return router.push('/load')
+			} else if (status === 'authenticated') { 
+				fetch();
+				return router.push('/')
+			}
+		})
 	}, [session]);
 	const [value, setValue] = useState<Dayjs | null>(dayjs());
 	const [start, setStart] = useState<Dayjs | null>();
@@ -50,37 +49,38 @@ export default function Home(props: any) {
 	};
 	return (
 		<>
-			<LocalizationProvider dateAdapter={AdapterDayjs}>
-				<Stack spacing={4}>
-					<Grid container>
-						<Grid item xs={4}>
-							<MobileDatePicker
-								label='Date mobile'
-								inputFormat='MM/DD/YYYY'
-								value={value}
-								onChange={handleChange}
-								renderInput={(params) => <TextField {...params} />}
-							/>
+			{isLoad ? <Text variant="h2" text={'sushi'} /> :
+				<LocalizationProvider dateAdapter={AdapterDayjs}>
+					<Stack spacing={4}>
+						<Grid container>
+							<Grid item xs={4}>
+								<MobileDatePicker
+									label='Date mobile'
+									inputFormat='MM/DD/YYYY'
+									value={value}
+									onChange={handleChange}
+									renderInput={(params) => <TextField {...params} />}
+								/>
+							</Grid>
+							<Grid item xs={4}>
+								<TimePicker
+									label='From'
+									value={start}
+									onChange={handleChange}
+									renderInput={(params) => <TextField {...params} />}
+								/>
+							</Grid>
+							<Grid item xs={4}>
+								<TimePicker
+									label='End'
+									value={end}
+									onChange={handleChange}
+									renderInput={(params) => <TextField {...params} />}
+								/>
+							</Grid>
 						</Grid>
-						<Grid item xs={4}>
-							<TimePicker
-								label='From'
-								value={start}
-								onChange={handleChange}
-								renderInput={(params) => <TextField {...params} />}
-							/>
-						</Grid>
-						<Grid item xs={4}>
-							<TimePicker
-								label='End'
-								value={end}
-								onChange={handleChange}
-								renderInput={(params) => <TextField {...params} />}
-							/>
-						</Grid>
-					</Grid>
-				</Stack>
-			</LocalizationProvider>
+					</Stack>
+				</LocalizationProvider>}
 		</>
 	);
 }
