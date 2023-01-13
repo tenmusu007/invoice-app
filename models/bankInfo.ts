@@ -1,24 +1,24 @@
 import { Schema, model, models } from "mongoose";
 const BankInfoSchema = new Schema({
-	bank_name: {
+	bankName: {
 		type: String,
 	},
-	transit_number: {
+	transitNumber: {
 		type: Number,
 	},
-	branch_number: {
-		type: Number,
-		required: true,
-	},
-	account_number: {
+	branchNumber: {
 		type: Number,
 		required: true,
 	},
-	account_type: {
+	accountNumber: {
+		type: Number,
+		required: true,
+	},
+	accountType: {
 		type: String,
 		required: true,
 	},
-	account_name: {
+	holderName: {
 		type: String,
 		required: true,
 	},
