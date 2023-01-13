@@ -1,5 +1,5 @@
-import Link from "@components/Link";
-import Text from "@components/Text";
+import Link from "@components/atoms/Link";
+import Text from "@components/atoms/Text";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";

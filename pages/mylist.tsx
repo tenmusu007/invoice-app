@@ -1,6 +1,6 @@
-import InvoiceCard from "@components/InvoiceCard";
+import InvoiceCard from "@components/Molecules/InvoiceCard";
 import { Grid } from "@mui/material";
-import dummyData from "@components/InvoiceCard/dummy.json";
+import dummyData from "@components/Molecules/InvoiceCard/dummy.json";
 const mylist = () => {
 	const { list } = dummyData.data;
 	return (

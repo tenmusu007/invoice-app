@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { useContext } from "react";
 import { useAuthContext } from "../../Context/AuthContext";
 import { signOut, useSession } from "next-auth/react";
-import Text from "@components/Text";
+import Text from "@components/atoms/Text";
 const Header = () => {
 	const authContext = useContext(useAuthContext);
 	const { data: session } = useSession();

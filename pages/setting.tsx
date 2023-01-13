@@ -1,8 +1,8 @@
 import Button from "@components/Button/button";
 import SelectInput from "@components/Select";
-import Text from "@components/Text";
+import Text from "@components/atoms/Text";
 import { useState } from "react";
-import translations from "../components/Text/text.json";
+import translations from "../components/atoms/Text/text.json";
 
 const Setting = () => {
 	const textAline = { textAlign: "center" };

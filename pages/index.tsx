@@ -11,13 +11,13 @@ import { useSession } from "next-auth/react";
 import { ApiInstance } from "../helper/ApiInstance";
 import { useAuthContext } from "../Context/AuthContext";
 import { useRouter } from "next/router";
-import Text from "@components/Text";
+import Text from "@components/atoms/Text";
 
 export default function Home(props: any) {
 	//login user data
 	const { data: session, status } = useSession();
 	const router = useRouter();
-const [isLoad, setIsLoad]=useState<boolean>(false)
+	const [isLoad, setIsLoad] = useState<boolean>(false);
 	const fetch = async () => {
 		const res = await ApiInstance({
 			url: "/api/user/create",
@@ -32,14 +32,14 @@ const [isLoad, setIsLoad]=useState<boolean>(false)
 	};
 
 	useEffect(() => {
-		(() => {
-			if (status === 'loading') {
-				return router.push('/load')
-			} else if (status === 'authenticated') { 
+		() => {
+			if (status === "loading") {
+				return router.push("/load");
+			} else if (status === "authenticated") {
 				fetch();
-				return router.push('/')
+				return router.push("/");
 			}
-		})
+		};
 	}, [session]);
 	const [value, setValue] = useState<Dayjs | null>(dayjs());
 	const [start, setStart] = useState<Dayjs | null>();
@@ -49,7 +49,9 @@ const [isLoad, setIsLoad]=useState<boolean>(false)
 	};
 	return (
 		<>
-			{isLoad ? <Text variant="h2" text={'sushi'} /> :
+			{isLoad ? (
+				<Text variant='h2' text={"sushi"} />
+			) : (
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<Stack spacing={4}>
 						<Grid container>
@@ -80,7 +82,8 @@ const [isLoad, setIsLoad]=useState<boolean>(false)
 							</Grid>
 						</Grid>
 					</Stack>
-				</LocalizationProvider>}
+				</LocalizationProvider>
+			)}
 		</>
 	);
 }

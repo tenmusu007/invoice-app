@@ -1,4 +1,4 @@
-import Text from "@components/Text";
+import Text from "@components/atoms/Text";
 
 const Load = () => {
 	return <Text variant='h2' text='sushi' />;
