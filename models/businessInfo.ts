@@ -4,7 +4,7 @@ const BusinessInfoSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	companyName: {
+	name: {
 		type: String,
 	},
 	address: {

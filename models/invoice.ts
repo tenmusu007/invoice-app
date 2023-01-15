@@ -8,6 +8,14 @@ const InvoiceSchema = new Schema({
 		type: Number,
 		required: true,
 	},
+	issued: {
+		type: String,
+		required: true,
+	},
+	due: {
+		type: String,
+		required: true,
+	},
 	billTo: {
 		type: String,
 		required: true,
@@ -16,12 +24,8 @@ const InvoiceSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	issued: {
-		type: String,
-		required: true,
-	},
-	due: {
-		type: String,
+	items: {
+		type: Array,
 		required: true,
 	},
 });
