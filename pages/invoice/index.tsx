@@ -9,12 +9,12 @@ import {
 } from "react-hook-form";
 import Button from "@components/Button";
 import { Stack } from "@mui/material";
-import BillToForm from "@components/Molecules/BillToForm";
-import BusinessInfoForm from "@components/Molecules/BusinessInfoForm";
-import DescriptionForm from "@components/Molecules/DescriptionForm";
-import InfoForm from "@components/Molecules/InfoForm";
+import BillToForm from "@components/Molecules/billToForm";
+import BusinessInfoForm from "@components/Molecules/businessInfoForm";
+import DescriptionForm from "@components/Molecules/descriptionForm";
+import InfoForm from "@components/Molecules/infoForm";
 import { Invoice as InvoiceType } from "types/inputValue";
-import BankInfoForm from "@components/Molecules/BankInfoForm ";
+import BankInfoForm from "@components/Molecules/bankInfoForm";
 
 const InvoiceForm = () => {
   const methods = useForm<InvoiceType>()
