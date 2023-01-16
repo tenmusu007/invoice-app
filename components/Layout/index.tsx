@@ -3,11 +3,13 @@ import { Children } from "../../types/children";
 import Header from "../Header";
 const Layout = ({ children }: Children) => {
 	return (
-		<Container component='main' fixed>
-			{" "}
-			<Header/>
-			{children}
-		</Container>
+		<>
+			<Header />
+			<Container component='main' fixed>
+				{" "}
+				{children}
+			</Container>
+		</>
 	);
 };
 
