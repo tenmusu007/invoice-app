@@ -10,7 +10,7 @@ const LinkTag = (props: LinkType) => {
 				</Link>
 			) : (
 				<Link
-					href={`/invoice/${encodeURIComponent(path as string)}`}
+					href={path}
 					style={{ textDecoration: "none", color: "black" }}
 				>
 					{children}
