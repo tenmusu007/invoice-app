@@ -4,7 +4,7 @@ const InvoiceSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	invocieNumber: {
+	invoiceNumber: {
 		type: Number,
 		required: true,
 	},
