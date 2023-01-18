@@ -5,7 +5,7 @@ import {
   UseFormRegisterReturn,
   Validate,
   ValidationRule,
-  FormProvider
+  FormProvider,
 } from "react-hook-form";
 import Button from "@components/Button";
 import { Stack } from "@mui/material";
@@ -17,8 +17,12 @@ import { Invoice as InvoiceType } from "types/inputValue";
 import BankInfoForm from "@components/Molecules/bankInfoForm";
 
 const InvoiceForm = () => {
-  const methods = useForm<InvoiceType>()
-  const { handleSubmit, register, reset, } = methods;
+  const defaultValues = {
+    name: "",
+    items: [{ name: "", quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
+  };
+  const methods = useForm<InvoiceType>({defaultValues});
+  const { handleSubmit, register, reset } = methods;
   const onSubmit: SubmitHandler<InvoiceType> = async (data: InvoiceType) => {
     console.log(`Submit`, data);
     reset();
@@ -31,8 +35,8 @@ const InvoiceForm = () => {
         <BusinessInfoForm />
         <DescriptionForm />
         <BankInfoForm />
-      <Button text={"Submit"} type="submit" />
-    </Stack>
+        <Button text={"Submit"} type="submit" />
+      </Stack>
     </FormProvider>
   );
 };

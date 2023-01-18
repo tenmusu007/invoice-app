@@ -8,4 +8,14 @@ export type Invoice = {
     BillTo?: BillTo;
     BusinessInfo?: BusinessInfo;
     Description?: Description;
+
+    name?: string;
+    // item?: String;
+    items?: {
+      name: string;
+      quantity: number;
+      unitPrice: number;
+      tax: number;
+      amount: number;
+    }[];
 }
