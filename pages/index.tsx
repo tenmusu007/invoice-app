@@ -25,7 +25,6 @@ export default function Home(props: any) {
 				image: session?.user?.image,
 			},
 		});
-		console.log("res", res);
 	};
 
 	useEffect(() => {

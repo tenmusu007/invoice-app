@@ -1,13 +1,22 @@
 import SelectInput from "@components/Select";
 import Text from "@components/atoms/Text";
-import { useState } from "react";
-import translations from "../components/atoms/Text/text.json";
+import { use, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { GetServerSideProps } from "next/types";
+import { useLocale } from "helper/useLocale";
 
-const Setting = () => {
+const Setting = (props: any) => {
+	const { data } = props;
+	const router = useRouter();
 	const textAline = { textAlign: "center" };
-	const [defLanguage, setDefLanguage] = useState(["日本語", "English"]);
-	const [language, setLanguage] = useState(defLanguage[0]);
-	const { setting } = translations.en;
+	const [language, setLanguage] = useState("");
+	const Locale = useLocale();
+	const { t } = useLocale();
+	useEffect(() => {
+		setSetting(t);
+	}, [Locale.t, data, language]);
+	const [setting, setSetting] = useState<any>(t);
+
 	return (
 		<>
 			<Text
@@ -35,8 +44,14 @@ const Setting = () => {
 					marginX: "auto",
 					marginY: "30px",
 				}}
-			/>
-			<SelectInput items={setting.langchoice} name={"language"} />
+			>
+				<SelectInput
+					items={setting.langchoice}
+					name={"language"}
+					language={language}
+					setLanguage={setLanguage}
+				/>
+			</Text>
 			<Text variant={"h6"} text={setting.bill} style={textAline} />
 			<Text variant={"h6"} text={setting.info} style={textAline} />
 		</>
@@ -44,3 +59,11 @@ const Setting = () => {
 };
 
 export default Setting;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	return {
+		props: {
+			data: context.locale,
+		},
+	};
+};
