@@ -1,11 +1,17 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { TypographyType } from "types/text";
-const Text = (props: TypographyType) => {
-	const { label, labelText, variant, text, style } = props;
+const Text = (props: Partial<TypographyType>) => {
+	const { label, labelText, variant, text, style,children } = props;
 	return (
 		<>
 			<Box sx={style}>
+				{children ? (
+					<>
+						<Typography variant={label}>{labelText}</Typography>
+						{children}
+					</>
+				) : (<>
 				{label ? (
 					<>
 						<Typography variant={label}>{labelText}</Typography>
@@ -16,7 +22,9 @@ const Text = (props: TypographyType) => {
 						{text}
 					</Typography>
 				)}
-			</Box> 
+				</>)}
+				
+			</Box>
 		</>
 	);
 };
