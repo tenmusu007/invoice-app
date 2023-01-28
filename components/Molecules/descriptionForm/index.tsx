@@ -1,10 +1,14 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import Input from "@components/Input";
 import { useFormContext, useFieldArray } from "react-hook-form";
 import { Description as DescriptionType } from "types/description";
-import { Grid } from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 import Button from "@components/Button";
 import TotalAmount from "./totalAmount";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AddIcon from '@mui/icons-material/Add';
+
+
 
 const DescriptionForm = () => {
   const { register, control } = useFormContext<DescriptionType>();
@@ -15,14 +19,14 @@ const DescriptionForm = () => {
     control,
   });
 
-  console.log('fields', fields);
 
   return (
     <>
+      <h3>Description</h3>
       {fields.map((field, index) => {
         return (
           <React.Fragment key={field.id}>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} justifyContent="center" alignItems="center">
               <Grid item xs={4}>
                 <Input
                   name={`description.${index}.name`}
@@ -55,7 +59,7 @@ const DescriptionForm = () => {
                   register={register}
                 />
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={1}>
                 <Input
                   name={`description.${index}.amount`}
                   type="number"
@@ -63,12 +67,18 @@ const DescriptionForm = () => {
                   register={register}
                 />
               </Grid>
+              <Grid item xs={1}>
+                <IconButton aria-label="delete" onClick={() => remove(index)}>
+                  <DeleteForeverIcon />
+                </IconButton>
+              </Grid>
             </Grid>
           </React.Fragment>
         );
       })}
       <Button
         text={"Add row"}
+        icon={ <AddIcon /> }
         onClick={() => {
           append({
             name: "",
