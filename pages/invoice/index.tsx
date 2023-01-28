@@ -17,11 +17,14 @@ import { Invoice as InvoiceType } from "types/inputValue";
 import BankInfoForm from "@components/Molecules/bankInfoForm";
 
 const InvoiceForm = () => {
-  const defaultValues = {
+  // const defaultValues = {
+  //   name: "",
+  //   items: [{ name: "", quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
+  // };
+  const methods = useForm<InvoiceType>({ defaultValues:{
     name: "",
-    items: [{ name: "", quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
-  };
-  const methods = useForm<InvoiceType>({defaultValues});
+    description: [{ name: "", quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
+  } });
   const { handleSubmit, reset } = methods;
 
   const onSubmit: SubmitHandler<InvoiceType> = async (data: InvoiceType) => {
