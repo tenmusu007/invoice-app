@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { Auth } from "../types/authContext";
-import { Children } from "../types/children";
+import { Auth } from "types/authContext";
+import { Children } from "types/children";
 import { useSession } from "next-auth/react";
 
 export const useAuthContext = createContext<Auth | null>(null);
