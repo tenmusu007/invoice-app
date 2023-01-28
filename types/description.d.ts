@@ -1,7 +1,15 @@
 export type Description = {
-  item?: String;
-  quantity?: Number;
-  unitPrice?: Number;
-  tax?: Number;
-  amount?: Number;
+  name?: string;
+  // item?: String;
+  items?: {
+    name: string;
+    quantity: number;
+    unitPrice: number;
+    tax: number;
+    amount: number;
+  }[];
+  // quantity?: number;
+  // unitPrice?: number;
+  // tax?: number;
+  // amount?: number;
 };

@@ -1,3 +1,4 @@
+
 import{ TypographyTypeMap } from "@mui/material/Typography";
 import { ReactNode } from "react";
 
@@ -8,4 +9,5 @@ export type TypographyType = {
   text: String | null;
 	style: any;
 	children:ReactNode
+
 };
