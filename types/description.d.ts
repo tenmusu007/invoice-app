@@ -8,8 +8,8 @@ export type Description = {
     tax: number;
     amount: number;
   }[];
-  quantity?: number;
-  unitPrice?: number;
-  tax?: number;
-  amount?: number;
+  // quantity?: number;
+  // unitPrice?: number;
+  // tax?: number;
+  // amount?: number;
 };
