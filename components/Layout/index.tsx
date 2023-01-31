@@ -4,8 +4,8 @@ import Header from "../Header";
 const Layout = ({ children }: Children) => {
 	return (
 		<>
-			<Header />
 			<Container component='main' fixed>
+			<Header />
 				{" "}
 				{children}
 			</Container>
