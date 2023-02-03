@@ -12,7 +12,7 @@ const TotalAmount = ({ control }: Props) => {
   const totalContext = useContext(useTotalContext);
 
   const formValues = useWatch({
-    name: "items",
+    name: "description",
     control,
   });
 

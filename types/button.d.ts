@@ -7,4 +7,5 @@ export type Button = {
   sx?: SxProps<Theme> | undefined;
   variant?: "text" | "outlined" | "contained" | undefined;
   type?: "submit" | undefined;
+  icon?: React.ReactNode;
 };
