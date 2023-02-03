@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Control, useWatch } from "react-hook-form";
 import { Description as DescriptionType } from "types/description";
 import TotalContext, { useTotalContext } from "Context/TotalContext";
+import { Grid, Typography } from "@mui/material";
 
 type Props = {
   control: Control<DescriptionType>;
@@ -32,11 +33,16 @@ const TotalAmount = ({ control }: Props) => {
     totalContext?.setSubTotal(subTotal);
   }, [subTotal, total, totalContext]);
 
-
   return (
     <>
-      Sub Total: {totalContext?.subTotal}
-      Total:{totalContext?.total}
+      <Grid container direction="column" alignItems="flex-end">
+        <Grid item xs={6}>
+          <Typography>Sub Total: {totalContext?.subTotal}</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography>Total:{totalContext?.total}</Typography>
+        </Grid>
+      </Grid>
     </>
   );
 };
