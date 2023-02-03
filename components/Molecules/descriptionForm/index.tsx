@@ -2,13 +2,11 @@ import React from "react";
 import Input from "@components/Input";
 import { useFormContext, useFieldArray } from "react-hook-form";
 import { Description as DescriptionType } from "types/description";
-import { Grid, IconButton } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import Button from "@components/Button";
 import TotalAmount from "./totalAmount";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import AddIcon from '@mui/icons-material/Add';
-
-
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import AddIcon from "@mui/icons-material/Add";
 
 const DescriptionForm = () => {
   const { register, control } = useFormContext<DescriptionType>();
@@ -19,14 +17,35 @@ const DescriptionForm = () => {
     control,
   });
 
-
   return (
     <>
       <h3>Description</h3>
+      <Grid container>
+        <Grid item xs={4}>
+          <Typography>Item description</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography>Qty</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography>Unit Price</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography>Tax</Typography>
+        </Grid>
+        <Grid item xs={1}>
+          <Typography>Amount</Typography>
+        </Grid>
+      </Grid>
       {fields.map((field, index) => {
         return (
           <React.Fragment key={field.id}>
-            <Grid container spacing={1} justifyContent="center" alignItems="center">
+            <Grid
+              container
+              spacing={1}
+              justifyContent="center"
+              alignItems="center"
+            >
               <Grid item xs={4}>
                 <Input
                   name={`description.${index}.name`}
@@ -78,7 +97,7 @@ const DescriptionForm = () => {
       })}
       <Button
         text={"Add row"}
-        icon={ <AddIcon /> }
+        icon={<AddIcon />}
         onClick={() => {
           append({
             name: "",
