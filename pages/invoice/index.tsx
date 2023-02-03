@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   SubmitHandler,
   useForm,
@@ -17,6 +17,10 @@ import { Invoice as InvoiceType } from "types/inputValue";
 import BankInfoForm from "@components/Molecules/bankInfoForm";
 
 const InvoiceForm = () => {
+  // const defaultValues = {
+  //   name: "",
+  //   items: [{ name: "", quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
+  // };
   const methods = useForm<InvoiceType>({ defaultValues:{
     name: "",
     description: [{ name: "", quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
@@ -27,7 +31,6 @@ const InvoiceForm = () => {
     console.log(`Submit`, data);
     // reset();
   };
-
   return (
     <FormProvider {...methods}>
       <Stack component="form" onSubmit={handleSubmit(onSubmit)}>
