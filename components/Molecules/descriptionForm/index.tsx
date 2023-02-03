@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "@components/Input";
-import { useFormContext, useFieldArray } from "react-hook-form";
+import { useFormContext, useFieldArray, useWatch } from "react-hook-form";
 import { Description as DescriptionType } from "types/description";
-import { Grid, IconButton } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import Button from "@components/Button";
 import TotalAmount from "./totalAmount";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import AddIcon from '@mui/icons-material/Add';
-
-
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import AddIcon from "@mui/icons-material/Add";
 
 const DescriptionForm = () => {
-  const { register, control } = useFormContext<DescriptionType>();
+  const { register, control, watch } = useFormContext<DescriptionType>();
 
   //Append: Add new element to field
   const { fields, append, remove } = useFieldArray({
@@ -19,20 +17,60 @@ const DescriptionForm = () => {
     control,
   });
 
+  // const formValues = useWatch({
+  //   name: "description",
+  //   control: control,
+  // });
 
+  // console.log("formValue in index", formValues);
+
+  useEffect(() => {
+    console.log('Use Effect')
+    const subscription = watch((data) => {
+        console.log(data)
+    })
+
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [watch])
+  
   return (
     <>
       <h3>Description</h3>
+      <Grid container spacing={1} justifyContent="center" alignItems="center">
+        <Grid item xs={4}>
+          <Typography>Description</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography>Quantity</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography>Unit Price</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography>Tax</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography>Amount</Typography>
+        </Grid>
+      </Grid>
       {fields.map((field, index) => {
         return (
           <React.Fragment key={field.id}>
-            <Grid container spacing={1} justifyContent="center" alignItems="center">
+            <Grid
+              container
+              spacing={1}
+              justifyContent="center"
+              alignItems="center"
+            >
               <Grid item xs={4}>
                 <Input
                   name={`description.${index}.name`}
                   type="text"
                   placeholder="Enter Item name/Description"
                   register={register}
+              
                 />
               </Grid>
               <Grid item xs={2}>
@@ -78,7 +116,7 @@ const DescriptionForm = () => {
       })}
       <Button
         text={"Add row"}
-        icon={ <AddIcon /> }
+        icon={<AddIcon />}
         onClick={() => {
           append({
             name: "",
