@@ -1,12 +1,14 @@
 import React from "react";
 import Input from "@components/Input";
-import { useFormContext, useFieldArray } from "react-hook-form";
+import { useFormContext, useFieldArray, useForm } from "react-hook-form";
 import { Description as DescriptionType } from "types/description";
-import { Grid, IconButton, Typography } from "@mui/material";
+import { Grid, IconButton, TextField, Typography } from "@mui/material";
 import Button from "@components/Button";
 import TotalAmount from "./totalAmount";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import MuiInput from "@components/Input/MuiInput.tsx";
+import { Stack } from "@mui/system";
 
 const DescriptionForm = () => {
   const { register, control } = useFormContext<DescriptionType>();
@@ -37,64 +39,56 @@ const DescriptionForm = () => {
           <Typography>Amount</Typography>
         </Grid>
       </Grid>
-      {fields.map((field, index) => {
-        return (
-          <React.Fragment key={field.id}>
-            <Grid
-              container
-              spacing={1}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Grid item xs={4}>
-                <Input
-                  name={`description.${index}.name`}
-                  type="text"
-                  placeholder="Enter Item name/Description"
-                  register={register}
-                />
+      <Stack spacing={1}>
+        {fields.map((field, index) => {
+          return (
+            <React.Fragment key={field.id}>
+              <Grid
+                container
+                spacing={1}
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item xs={4}>
+                  <TextField
+                    {...register(`description.${index}.name`)}
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={2}>
+                  <TextField
+                    {...register(`description.${index}.quantity`)}
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={2}>
+                  <TextField
+                    {...register(`description.${index}.unitPrice`)}
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={2}>
+                  <TextField
+                    {...register(`description.${index}.tax`)}
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={1}>
+                  <TextField
+                    {...register(`description.${index}.amount`)}
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={1}>
+                  <IconButton aria-label="delete" onClick={() => remove(index)}>
+                    <DeleteForeverIcon />
+                  </IconButton>
+                </Grid>
               </Grid>
-              <Grid item xs={2}>
-                <Input
-                  name={`description.${index}.quantity`}
-                  type="number"
-                  placeholder="1"
-                  register={register}
-                />
-              </Grid>
-              <Grid item xs={2}>
-                <Input
-                  name={`description.${index}.unitPrice`}
-                  type="number"
-                  placeholder="$0"
-                  register={register}
-                />
-              </Grid>
-              <Grid item xs={2}>
-                <Input
-                  name={`description.${index}.tax`}
-                  type="number"
-                  placeholder="15%"
-                  register={register}
-                />
-              </Grid>
-              <Grid item xs={1}>
-                <Input
-                  name={`description.${index}.amount`}
-                  type="number"
-                  placeholder="$100"
-                  register={register}
-                />
-              </Grid>
-              <Grid item xs={1}>
-                <IconButton aria-label="delete" onClick={() => remove(index)}>
-                  <DeleteForeverIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
-          </React.Fragment>
-        );
-      })}
+            </React.Fragment>
+          );
+        })}
+      </Stack>
       <Button
         text={"Add row"}
         icon={<AddIcon />}

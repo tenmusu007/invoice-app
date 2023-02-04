@@ -25,7 +25,7 @@ const InvoiceForm = () => {
     name: "",
     description: [{ name: "", quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
   } });
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit, reset, formState, getValues, control, register } = methods;
 
   const onSubmit: SubmitHandler<InvoiceType> = async (data: InvoiceType) => {
     console.log(`Submit`, data);

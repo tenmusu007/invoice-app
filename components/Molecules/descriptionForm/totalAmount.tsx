@@ -17,6 +17,7 @@ const TotalAmount = ({ control }: Props) => {
     control,
   });
 
+  // console.log('form value', formValues);
   const subTotal = formValues?.reduce(
     (acc, { unitPrice, quantity }) =>
       acc + Math.floor((unitPrice || 0) * (quantity || 0)),
