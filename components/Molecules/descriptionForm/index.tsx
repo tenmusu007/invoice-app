@@ -7,7 +7,6 @@ import Button from "@components/Button";
 import TotalAmount from "./totalAmount";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import MuiInput from "@components/Input/MuiInput.tsx";
 import { Stack } from "@mui/system";
 
 const DescriptionForm = () => {
