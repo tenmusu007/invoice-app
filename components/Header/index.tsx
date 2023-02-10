@@ -14,8 +14,12 @@ const Header = () => {
 	};
 	return (
 		<>
-			<Grid container sx={{ width: "100%", marginX: "auto", marginY: 2 }}>
-				<Grid container item sm={3} sx={{ justifyContent: "space-around" }}>
+			<Grid
+				container
+				sx={{ width: "100%", marginX: "auto", marginY: 2 }}
+				position={"fixed"}
+			>
+				<Grid item sm={3} sx={{ justifyContent: "space-around" }}>
 					<Text variant={"h5"} text={"title"} />
 				</Grid>
 				<Grid container item sm={5} sx={{ justifyContent: "space-around" }}>
@@ -32,10 +36,10 @@ const Header = () => {
 						</LinkTag>
 					</Grid>
 					<Grid item sm={3}>
-						<LinkTag path={"/setting"}>
+						<LinkTag path={"/profile"}>
 							<Text
 								variant={"h6"}
-								text={"Setting"}
+								text={"Profile"}
 								style={{ textAlign: "center" }}
 							/>
 						</LinkTag>
@@ -58,10 +62,14 @@ const Header = () => {
 					) : (
 						<>
 							<Grid item sm={4}>
-								<Button> login</Button>
+								<LinkTag path={"/login"}>
+									<Button> login</Button>
+								</LinkTag>
 							</Grid>
 							<Grid item sm={4}>
-								<Button> signup</Button>
+								<LinkTag path={"/mylist"}>
+									<Button> signup</Button>
+								</LinkTag>
 							</Grid>
 						</>
 					)}
