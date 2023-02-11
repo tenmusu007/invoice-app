@@ -12,7 +12,6 @@ const Setting = (props: any) => {
 	const router = useRouter();
 	const textAline = { textAlign: "center" };
 	const [language, setLanguage] = useState("");
-	// const Locale = useLocale('');
 	const { t } = useLocale(ProfileText);
 	useEffect(() => {
 		setSetting(t);
