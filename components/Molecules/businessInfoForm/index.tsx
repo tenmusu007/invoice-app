@@ -1,10 +1,7 @@
 import React from "react";
 import Input from "@components/Input";
 import {
-  useFormContext,
-  UseFormRegisterReturn,
-  Validate,
-  ValidationRule,
+  useFormContext
 } from "react-hook-form";
 
 import { BusinessInfo as BusinessInfoType } from "types/businessInfo";
