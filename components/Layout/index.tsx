@@ -5,7 +5,7 @@ const Layout = ({ children }: Children) => {
 	return (
 		<>
 			<Container component='main' fixed>
-			<Header />
+			<Header/>
 				{" "}
 				{children}
 			</Container>
