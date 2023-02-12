@@ -12,71 +12,70 @@ import { ApiInstance } from "../helper/ApiInstance";
 import { useRouter } from "next/router";
 
 export default function Home(props: any) {
-	//login user data
-	const { data: session, status } = useSession();
-	const router = useRouter();
-	const fetch = async () => {
-		const res = await ApiInstance({
-			url: "/api/user/create",
-			method: "post",
-			data: {
-				username: session?.user?.name,
-				email: session?.user?.email,
-				image: session?.user?.image,
-			},
-		});
-	};
+  //login user data
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const fetch = async () => {
+    const res = await ApiInstance({
+      url: "/api/user/create",
+      method: "post",
+      data: {
+        username: session?.user?.name,
+        email: session?.user?.email,
+        image: session?.user?.image,
+      },
+    });
+  };
 
-	useEffect(() => {
-		() => {
-			if (status === "loading") {
-				return router.push("/load");
-			} else if (status === "authenticated") {
-				fetch();
-				return router.push("/");
-			}
-		};
-	}, [session]);
-	const [value, setValue] = useState<Dayjs | null>(dayjs());
-	const [start, setStart] = useState<Dayjs | null>();
-	const [end, setEnd] = useState<Dayjs | null>();
-	const handleChange = (newValue: Dayjs | null) => {
-		setValue(newValue);
-	};
-	return (
-		<>
-
-				<LocalizationProvider dateAdapter={AdapterDayjs}>
-					<Stack spacing={4}>
-						<Grid container>
-							<Grid item xs={4}>
-								<MobileDatePicker
-									label='Date mobile'
-									inputFormat='MM/DD/YYYY'
-									value={value}
-									onChange={handleChange}
-									renderInput={(params) => <TextField {...params} />}
-								/>
-							</Grid>
-							<Grid item xs={4}>
-								<TimePicker
-									label='From'
-									value={start}
-									onChange={handleChange}
-									renderInput={(params) => <TextField {...params} />}
-								/>
-							</Grid>
-							<Grid item xs={4}>
-								<TimePicker
-									label='End'
-									value={end}
-									onChange={handleChange}
-									renderInput={(params) => <TextField {...params} />}
-								/>
-							</Grid>
-						</Grid>
-					</Stack>
-				</LocalizationProvider>
-		</>
-	);
+  useEffect(() => {
+    () => {
+      if (status === "loading") {
+        return router.push("/load");
+      } else if (status === "authenticated") {
+        fetch();
+        return router.push("/");
+      }
+    };
+  }, [session]);
+  const [value, setValue] = useState<Dayjs | null>(dayjs());
+  const [start, setStart] = useState<Dayjs | null>();
+  const [end, setEnd] = useState<Dayjs | null>();
+  const handleChange = (newValue: Dayjs | null) => {
+    setValue(newValue);
+  };
+  return (
+    <>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Stack spacing={4}>
+          <Grid container>
+            <Grid item xs={4}>
+              <MobileDatePicker
+                label="Date mobile"
+                inputFormat="MM/DD/YYYY"
+                value={value}
+                onChange={handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TimePicker
+                label="From"
+                value={start}
+                onChange={handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TimePicker
+                label="End"
+                value={end}
+                onChange={handleChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </Grid>
+          </Grid>
+        </Stack>
+      </LocalizationProvider>
+    </>
+  );
 }

@@ -1,18 +1,25 @@
 import React, { useContext, useEffect } from "react";
-import { Control, useWatch } from "react-hook-form";
+import { Control, useFormContext, useWatch } from "react-hook-form";
 import { Description as DescriptionType } from "types/description";
-import TotalContext, { useTotalContext } from "Context/TotalContext";
+import { useTotalContext } from "Context/TotalContext";
+import { Grid, TextField, Typography } from "@mui/material";
+
 
 type Props = {
   control: Control<DescriptionType>;
 };
 
-//onChange使ってリアルタイムで監視したい
+type Total = {
+  total: number;
+  subTotal: number;
+}
+
 const TotalAmount = ({ control }: Props) => {
+  const { register } = useFormContext<Total>()
   const totalContext = useContext(useTotalContext);
 
   const formValues = useWatch({
-    name: "items",
+    name: "description",
     control,
   });
 
@@ -32,11 +39,26 @@ const TotalAmount = ({ control }: Props) => {
     totalContext?.setSubTotal(subTotal);
   }, [subTotal, total, totalContext]);
 
-
   return (
     <>
-      Sub Total: {totalContext?.subTotal}
-      Total:{totalContext?.total}
+      <Grid container direction="column" alignItems="flex-end">
+        <Grid item xs={6}>
+          <Typography>Sub Total</Typography>
+          <TextField
+            value={totalContext?.subTotal}
+            InputProps={{ readOnly: true }}
+            {...register('subTotal')}
+          ></TextField>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography>Total</Typography>
+          <TextField
+            value={totalContext?.total}
+            InputProps={{ readOnly: true }}
+            {...register('total')}
+          ></TextField>
+        </Grid>
+      </Grid>
     </>
   );
 };

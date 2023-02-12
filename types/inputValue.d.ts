@@ -4,18 +4,21 @@ import { BusinessInfo } from "./businessInfo";
 import { BillTo } from "./billTo";
 
 export type Invoice = {
-    InvoiceInfo?: InvoiceInfo;
-    BillTo?: BillTo;
-    BusinessInfo?: BusinessInfo;
-    Description?: Description;
+  //後で？は全部消す
+  InvoiceInfo: InvoiceInfo;
+  BillTo: BillTo;
+  BusinessInfo: BusinessInfo;
 
-    name?: string;
-    // item?: String;
-    items?: {
-      name: string;
-      quantity: number;
-      unitPrice: number;
-      tax: number;
-      amount: number;
-    }[];
-}
+  // name: string;
+
+  description: {
+    name: string;
+    quantity: number;
+    unitPrice: number;
+    tax: number;
+    amount: number;
+  }[];
+  subTotal: number;
+  total: number;
+  condition: string;
+};

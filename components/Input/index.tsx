@@ -1,7 +1,7 @@
 import React from "react";
 import { Input as InputType } from "types/input";
 
-const Input = ({ name, placeholder, type, register, onChange }: InputType) => {
+const Input = ({ name, placeholder, type, register, onChange, id }: InputType | any) => {
   return (
     <input
       type={type}
@@ -9,6 +9,7 @@ const Input = ({ name, placeholder, type, register, onChange }: InputType) => {
       placeholder={placeholder}
       style={{ width: "90%" }}
       onChange={onChange}
+      id={id}
     />
   );
 };
