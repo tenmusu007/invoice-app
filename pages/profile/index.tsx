@@ -6,7 +6,6 @@ import { GetServerSideProps } from "next/types";
 import { useLocale } from "helper/useLocale";
 import ProfileText from "./text.json";
 import { Box, Grid } from "@mui/material";
-import BoxLayout from "@components/atoms/Box";
 const Setting = (props: any) => {
 	const { data } = props;
 	const router = useRouter();
@@ -20,7 +19,6 @@ const Setting = (props: any) => {
 
 	return (
 		<>
-			<BoxLayout>
 
 				<Grid container>
 					<Grid item md={12}>
@@ -65,7 +63,6 @@ const Setting = (props: any) => {
 					<Text variant={"h6"} text={t.setting.info} style={textAline} />
 				</Grid>
 				</Grid>
-			</BoxLayout>
 		</>
 	);
 };

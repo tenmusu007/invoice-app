@@ -17,8 +17,7 @@ const SignUp = () => {
 	const { t } = useLocale(SignupText);
 
 	return (
-<BoxLayout>
-			
+
 			<Grid container>
 				<Grid
 					container
@@ -56,7 +55,6 @@ const SignUp = () => {
 					</Grid>
 				</Grid>
 			</Grid>
-	</BoxLayout>
 	);
 };
 

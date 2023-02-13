@@ -17,7 +17,6 @@ const Login = (props: any) => {
 	const { t } = useLocale(LoginText);
 	return (
 		<>
-			<BoxLayout>
 				<Grid container>
 					<Grid
 						container
@@ -52,7 +51,6 @@ const Login = (props: any) => {
 						</Grid>
 					</Grid>
 				</Grid>
-			</BoxLayout>
 		</>
 	);
 };

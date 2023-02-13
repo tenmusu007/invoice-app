@@ -24,7 +24,9 @@ const Header = () => {
 				</Grid>
 				<Grid container item sm={5} sx={{ justifyContent: "space-around" }}>
 					<Grid item sm={3} style={{ textAlign: "center" }}>
-						<Button> Create</Button>
+						<LinkTag path={"/invoice"}>
+							<Button> create</Button>
+						</LinkTag>
 					</Grid>
 					<Grid item sm={3}>
 						<LinkTag path={"/mylist"}>
