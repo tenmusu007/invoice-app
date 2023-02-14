@@ -16,7 +16,7 @@ const Header = () => {
     <>
       <Grid
         container
-        sx={{ width: '100%', marginX: 'auto', marginY: 2 }}
+        sx={{ width: '80%', marginX: 'auto', marginY: 2 }}
         position={'fixed'}
       >
         <Grid item sm={3} sx={{ justifyContent: 'space-around' }}>
