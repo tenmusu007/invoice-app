@@ -1,6 +1,6 @@
-import React, { createContext, useState } from "react";
-import { Children } from "types/children";
-import { Total as TotalType } from "types/total";
+import React, { createContext, useState } from 'react';
+import { Children } from 'types/children';
+import { Total as TotalType } from 'types/total';
 
 export const useTotalContext = createContext<TotalType | null>(null);
 
