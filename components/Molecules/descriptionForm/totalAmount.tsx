@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { Control, useFormContext, useWatch } from "react-hook-form";
-import { Description as DescriptionType } from "types/description";
-import { useTotalContext } from "Context/TotalContext";
-import { Grid, TextField, Typography } from "@mui/material";
+import React, { useContext, useEffect } from 'react';
+import { Control, useFormContext, useWatch } from 'react-hook-form';
+import { Description as DescriptionType } from 'types/description';
+import { useTotalContext } from 'Context/TotalContext';
+import { Grid, TextField, Typography } from '@mui/material';
 
 type Props = {
   control: Control<DescriptionType>;
@@ -18,7 +18,7 @@ const TotalAmount = ({ control }: Props) => {
   const totalContext = useContext(useTotalContext);
 
   const formValues = useWatch({
-    name: "description",
+    name: 'description',
     control,
   });
 
@@ -46,7 +46,7 @@ const TotalAmount = ({ control }: Props) => {
           <TextField
             value={totalContext?.subTotal}
             InputProps={{ readOnly: true }}
-            {...register("subTotal")}
+            {...register('subTotal')}
           ></TextField>
         </Grid>
         <Grid item xs={6}>
@@ -54,7 +54,7 @@ const TotalAmount = ({ control }: Props) => {
           <TextField
             value={totalContext?.total}
             InputProps={{ readOnly: true }}
-            {...register("total")}
+            {...register('total')}
           ></TextField>
         </Grid>
       </Grid>

@@ -3,7 +3,7 @@
 		"list": [
 			{
 				"userId": "12345",
-				"invocieNumber": 1,
+				"invoiceNumber": 1,
 				"issued": "2023/1/23",
 				"due": "2023/1/30",
 				"businessInfo": {
@@ -20,7 +20,7 @@
 					"name": "atsuya",
 					"address": "2467 east Ave",
 					"city": " Vancouver",
-					"province": "Britsh Coronbia",
+					"province": "Britsh Corombia",
 					"country": "Canada",
 					"postal": "E6W542",
 					"phone": "226556896",

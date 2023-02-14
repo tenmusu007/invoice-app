@@ -1,15 +1,15 @@
-import React from "react";
-import Input from "@components/Input";
-import { useFormContext } from "react-hook-form";
-import { BillTo as BillToType } from "types/billTo";
-import { Box } from "@mui/material";
-import { Stack } from "@mui/system";
+import React from 'react';
+import Input from '@components/Input';
+import { useFormContext } from 'react-hook-form';
+import { BillTo as BillToType } from 'types/billTo';
+import { Box } from '@mui/material';
+import { Stack } from '@mui/system';
 
 const BillToForm = () => {
   const { register } = useFormContext<BillToType>();
 
   return (
-    <Box sx={{ width: "45%" }}>
+    <Box sx={{ width: '45%' }}>
       <h3>Bill to</h3>
       <Stack spacing={0.5}>
         <Input

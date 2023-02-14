@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from 'mongoose';
 const BusinessInfoSchema = new Schema({
   userId: {
     type: String,
@@ -30,5 +30,5 @@ const BusinessInfoSchema = new Schema({
   },
 });
 const BusinessInfo =
-  models.BusinessInfo || model("BusinessInfo", BusinessInfoSchema);
+  models.BusinessInfo || model('BusinessInfo', BusinessInfoSchema);
 export default BusinessInfo;

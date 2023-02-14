@@ -1,7 +1,7 @@
 {
-	"en": {
-		"headline": "Welcom to Invoicer",
-		"desc": "Your free invoice generator is around the corner!!",
-		"btn": "Please Sign-in with your Google here."
-	}
+  "en": {
+    "headline": "Welcom to Invoicer",
+    "desc": "Your free invoice generator is around the corner!!",
+    "btn": "Please Sign-in with your Google here."
+  }
 }

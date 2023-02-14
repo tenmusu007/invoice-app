@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from 'mongoose';
 const BankInfoSchema = new Schema({
   bankName: {
     type: String,
@@ -23,5 +23,5 @@ const BankInfoSchema = new Schema({
     required: true,
   },
 });
-const BankInfo = models.BankInfo || model("BankInfo", BankInfoSchema);
+const BankInfo = models.BankInfo || model('BankInfo', BankInfoSchema);
 export default BankInfo;

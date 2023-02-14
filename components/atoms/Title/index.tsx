@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
-import React from "react";
-import { Title as TitleType } from "types/title";
+import { Typography } from '@mui/material';
+import React from 'react';
+import { Title as TitleType } from 'types/title';
 
 const PageTitle = ({ content, variant, component }: TitleType) => {
   return (

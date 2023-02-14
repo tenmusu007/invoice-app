@@ -1,7 +1,7 @@
-import BoxLayout from "@components/atoms/Box";
-import InvoiceCard from "@components/Molecules/InvoiceCard";
-import { Grid } from "@mui/material";
-import dummyData from "../../data/mylist.json";
+import BoxLayout from '@components/atoms/Box';
+import InvoiceCard from '@components/Molecules/InvoiceCard';
+import { Grid } from '@mui/material';
+import dummyData from '../../data/mylist.json';
 const mylist = () => {
   const { list }: any = dummyData.data;
   return (

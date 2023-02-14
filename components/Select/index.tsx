@@ -4,14 +4,14 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-} from "@mui/material";
-import { useRouter } from "next/router";
-import { SelectType } from "types/select";
+} from '@mui/material';
+import { useRouter } from 'next/router';
+import { SelectType } from 'types/select';
 const SelectInput = (props: Partial<SelectType>) => {
   const { items, name, language, setLanguage } = props;
   const router = useRouter();
   const handleChange = (event: SelectChangeEvent) => {
-    if (event.target.value !== "English") {
+    if (event.target.value !== 'English') {
       setLanguage?.(`jp`);
       return router.push(`/jp/setting`);
     } else {

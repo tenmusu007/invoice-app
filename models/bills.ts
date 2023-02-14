@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from 'mongoose';
 const BillsSchema = new Schema({
   userId: {
     type: String,
@@ -23,5 +23,5 @@ const BillsSchema = new Schema({
     type: String,
   },
 });
-const Bills = models.Bills || model("Bills", BillsSchema);
+const Bills = models.Bills || model('Bills', BillsSchema);
 export default Bills;

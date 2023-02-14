@@ -1,5 +1,5 @@
-import React from "react";
-import { Input as InputType } from "types/input";
+import React from 'react';
+import { Input as InputType } from 'types/input';
 
 const Input = ({
   name,
@@ -14,7 +14,7 @@ const Input = ({
       type={type}
       {...register(name)}
       placeholder={placeholder}
-      style={{ width: "90%" }}
+      style={{ width: '90%' }}
       onChange={onChange}
       id={id}
     />

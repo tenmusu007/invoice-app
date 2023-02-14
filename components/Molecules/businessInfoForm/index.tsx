@@ -1,15 +1,15 @@
-import React from "react";
-import Input from "@components/Input";
-import { useFormContext } from "react-hook-form";
+import React from 'react';
+import Input from '@components/Input';
+import { useFormContext } from 'react-hook-form';
 
-import { BusinessInfo as BusinessInfoType } from "types/businessInfo";
-import { Box } from "@mui/material";
-import { Stack } from "@mui/system";
+import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import { Box } from '@mui/material';
+import { Stack } from '@mui/system';
 
 const BusinessInfoForm = () => {
   const { register } = useFormContext<BusinessInfoType>();
   return (
-    <Box sx={{ width: "45%" }}>
+    <Box sx={{ width: '45%' }}>
       <h3>Business Info</h3>
       <Stack spacing={0.5}>
         <Input

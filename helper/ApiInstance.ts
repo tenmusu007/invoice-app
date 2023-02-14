@@ -1,17 +1,17 @@
-import axios from "axios";
-import { Api } from "../types/api";
+import axios from 'axios';
+import { Api } from '../types/api';
 
 export const ApiInstance = async (api: Api) => {
   let res: any = undefined;
   const Url = process.env.NEXT_PUBLIC_BASE_URL + api.url;
   switch (api.method) {
-    case "get":
+    case 'get':
       res = await axios.get(Url);
       break;
-    case "post":
+    case 'post':
       res = await axios.post(Url, api?.data);
       break;
-    case "delete":
+    case 'delete':
       res = await axios.delete(Url, api?.data);
       break;
   }

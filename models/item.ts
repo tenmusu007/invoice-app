@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from 'mongoose';
 const ItemSchema = new Schema({
   userId: {
     type: String,
@@ -12,7 +12,7 @@ const ItemSchema = new Schema({
   },
   quantity: {
     type: Number,
-    reqired: true,
+    required: true,
   },
   unitPrice: {
     type: Number,
@@ -27,5 +27,5 @@ const ItemSchema = new Schema({
     required: true,
   },
 });
-const Item = models.Item || model("Item", ItemSchema);
+const Item = models.Item || model('Item', ItemSchema);
 export default Item;

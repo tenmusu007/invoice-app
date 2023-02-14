@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from 'mongoose';
 const UsersSchema = new Schema({
   email: {
     type: String,
@@ -20,8 +20,8 @@ const UsersSchema = new Schema({
   },
   language: {
     type: String,
-    default: "en",
+    default: 'en',
   },
 });
-const Users = models.Users || model("Users", UsersSchema);
+const Users = models.Users || model('Users', UsersSchema);
 export default Users;

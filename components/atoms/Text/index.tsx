@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { TypographyType } from "types/text";
+import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import { TypographyType } from 'types/text';
 const Text = (props: Partial<TypographyType>) => {
   const { label, labelText, variant, text, style, children } = props;
   return (

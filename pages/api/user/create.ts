@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import connectMopngo from "@db/connectMongo";
+import connectMongo from "@db/connectMongo";
 import Users from "@models/users";
 
 export default async function create(
@@ -7,7 +7,7 @@ export default async function create(
   res: NextApiResponse
 ) {
   try {
-    await connectMopngo();
+    await connectMongo();
     if (!req.body) return res.status(200).json("no data");
     const { email, username, image } = await req.body;
     const checkUser = await Users.findOne({ email: email });

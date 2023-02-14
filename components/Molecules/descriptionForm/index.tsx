@@ -1,19 +1,19 @@
-import React from "react";
-import { useFormContext, useFieldArray } from "react-hook-form";
-import { Description as DescriptionType } from "types/description";
-import { Grid, IconButton, TextField, Typography } from "@mui/material";
-import Button from "@components/Button";
-import TotalAmount from "./totalAmount";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import AddIcon from "@mui/icons-material/Add";
-import { Stack } from "@mui/system";
+import React from 'react';
+import { useFormContext, useFieldArray } from 'react-hook-form';
+import { Description as DescriptionType } from 'types/description';
+import { Grid, IconButton, TextField, Typography } from '@mui/material';
+import Button from '@components/Button';
+import TotalAmount from './totalAmount';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AddIcon from '@mui/icons-material/Add';
+import { Stack } from '@mui/system';
 
 const DescriptionForm = () => {
   const { register, control } = useFormContext<DescriptionType>();
 
   //Append: Add new element to field
   const { fields, append, remove } = useFieldArray({
-    name: "description",
+    name: 'description',
     control,
   });
 
@@ -88,11 +88,11 @@ const DescriptionForm = () => {
         })}
       </Stack>
       <Button
-        text={"Add row"}
+        text={'Add row'}
         icon={<AddIcon />}
         onClick={() => {
           append({
-            name: "",
+            name: '',
             quantity: 0,
             unitPrice: 0,
             tax: 0,

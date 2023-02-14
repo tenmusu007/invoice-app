@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   SubmitHandler,
   useForm,
@@ -6,23 +6,23 @@ import {
   Validate,
   ValidationRule,
   FormProvider,
-} from "react-hook-form";
-import Button from "@components/Button";
-import { Box, Stack } from "@mui/material";
-import BillToForm from "@components/Molecules/billToForm";
-import BusinessInfoForm from "@components/Molecules/businessInfoForm";
-import DescriptionForm from "@components/Molecules/descriptionForm";
-import InfoForm from "@components/Molecules/infoForm";
-import { Invoice as InvoiceType } from "types/inputValue";
-import BankInfoForm from "@components/Molecules/bankInfoForm";
-import PageTitle from "@components/atoms/Title";
-import BoxLayout from "@components/atoms/Box";
+} from 'react-hook-form';
+import Button from '@components/Button';
+import { Box, Stack } from '@mui/material';
+import BillToForm from '@components/Molecules/billToForm';
+import BusinessInfoForm from '@components/Molecules/businessInfoForm';
+import DescriptionForm from '@components/Molecules/descriptionForm';
+import InfoForm from '@components/Molecules/infoForm';
+import { Invoice as InvoiceType } from 'types/inputValue';
+import BankInfoForm from '@components/Molecules/bankInfoForm';
+import PageTitle from '@components/atoms/Title';
+import BoxLayout from '@components/atoms/Box';
 
 const InvoiceForm = () => {
   const methods = useForm<InvoiceType>({
     defaultValues: {
       // name: "",
-      description: [{ name: "", quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
+      description: [{ name: '', quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
     },
   });
   const { handleSubmit, reset } = methods;
@@ -46,13 +46,13 @@ const InvoiceForm = () => {
         <BankInfoForm />
         <Box width={2}>
           <Button
-            text={"Submit"}
+            text={'Submit'}
             type="submit"
             sx={{
-              background: "#EEBBC3",
-              color: "#232946",
+              background: '#EEBBC3',
+              color: '#232946',
               borderRadius: 2,
-              fontWeight: "bold",
+              fontWeight: 'bold',
             }}
           />
         </Box>

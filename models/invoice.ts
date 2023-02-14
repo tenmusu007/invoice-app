@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from 'mongoose';
 const InvoiceSchema = new Schema({
   userId: {
     type: String,
@@ -29,5 +29,5 @@ const InvoiceSchema = new Schema({
     required: true,
   },
 });
-const Invoice = models.Invoice || model("Invoice", InvoiceSchema);
+const Invoice = models.Invoice || model('Invoice', InvoiceSchema);
 export default Invoice;
