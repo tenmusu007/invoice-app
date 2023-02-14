@@ -8,7 +8,7 @@ const InvoiceCard = (props: any) => {
   const { businessInfo, invocieNumber, issued } = props.list;
   return (
     <Link path={`/invoice/${encodeURIComponent(invocieNumber as string)}`}>
-      <Card sx={{ width: 150, height: 180 }}>
+      <Card sx={{ width: 150, height: 180, margin:'auto'}}>
         <CardContent>
           <Text
             text={`No${invocieNumber}`}
