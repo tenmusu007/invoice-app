@@ -1,4 +1,4 @@
-export type inputLabel= {
-    htmlFor: string;
-    labelName: string;
-}
+export type inputLabel = {
+  htmlFor: string;
+  labelName: string;
+};

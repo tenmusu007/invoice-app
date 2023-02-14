@@ -7,17 +7,16 @@ import { useSession } from "next-auth/react";
 
 export const useAuthContext = createContext<Auth | null>(null);
 const AuthContext = ({ children }: Children) => {
-	const { data: session } = useSession();
+  const { data: session } = useSession();
 
-	const router = useRouter();
-	useEffect(() => {
-	}, []);
+  const router = useRouter();
+  useEffect(() => {}, []);
 
-	return (
-		<useAuthContext.Provider value={{}}>
-			<Layout>{children}</Layout>
-		</useAuthContext.Provider>
-	);
+  return (
+    <useAuthContext.Provider value={{}}>
+      <Layout>{children}</Layout>
+    </useAuthContext.Provider>
+  );
 };
 
 export default AuthContext;

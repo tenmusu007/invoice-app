@@ -4,7 +4,6 @@ import { Description as DescriptionType } from "types/description";
 import { useTotalContext } from "Context/TotalContext";
 import { Grid, TextField, Typography } from "@mui/material";
 
-
 type Props = {
   control: Control<DescriptionType>;
 };
@@ -12,10 +11,10 @@ type Props = {
 type Total = {
   total: number;
   subTotal: number;
-}
+};
 
 const TotalAmount = ({ control }: Props) => {
-  const { register } = useFormContext<Total>()
+  const { register } = useFormContext<Total>();
   const totalContext = useContext(useTotalContext);
 
   const formValues = useWatch({
@@ -47,7 +46,7 @@ const TotalAmount = ({ control }: Props) => {
           <TextField
             value={totalContext?.subTotal}
             InputProps={{ readOnly: true }}
-            {...register('subTotal')}
+            {...register("subTotal")}
           ></TextField>
         </Grid>
         <Grid item xs={6}>
@@ -55,7 +54,7 @@ const TotalAmount = ({ control }: Props) => {
           <TextField
             value={totalContext?.total}
             InputProps={{ readOnly: true }}
-            {...register('total')}
+            {...register("total")}
           ></TextField>
         </Grid>
       </Grid>

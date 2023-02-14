@@ -1,8 +1,6 @@
 import React from "react";
 import Input from "@components/Input";
-import {
-  useFormContext
-} from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import { BusinessInfo as BusinessInfoType } from "types/businessInfo";
 import { Box } from "@mui/material";
