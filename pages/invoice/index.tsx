@@ -34,30 +34,31 @@ const InvoiceForm = () => {
   };
   return (
     <FormProvider {...methods}>
-      {/* <BoxLayout> */}
-      <PageTitle content="INVOICE" variant="h2" component="h2" />
-      <Stack component="form" onSubmit={handleSubmit(onSubmit)} spacing={2}>
-        <InfoForm />
-        <Stack direction="row" spacing={2}>
-          <BillToForm />
-          <BusinessInfoForm />
+        <Stack
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
+          paddingTop={5}
+        >
+          <InfoForm />
+          <Stack direction="row" spacing={2}>
+            <BillToForm />
+            <BusinessInfoForm />
+          </Stack>
+          <DescriptionForm />
+          <BankInfoForm />
+          <Box width={2}>
+            <Button
+              text={'Submit'}
+              type="submit"
+              sx={{
+                background: '#EEBBC3',
+                color: '#232946',
+                borderRadius: 2,
+                fontWeight: 'bold',
+              }}
+            />
+          </Box>
         </Stack>
-        <DescriptionForm />
-        <BankInfoForm />
-        <Box width={2}>
-          <Button
-            text={'Submit'}
-            type="submit"
-            sx={{
-              background: '#EEBBC3',
-              color: '#232946',
-              borderRadius: 2,
-              fontWeight: 'bold',
-            }}
-          />
-        </Box>
-      </Stack>
-      {/* </BoxLayout> */}
     </FormProvider>
   );
 };
