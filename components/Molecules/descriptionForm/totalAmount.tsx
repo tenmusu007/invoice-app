@@ -33,9 +33,23 @@ const TotalAmount = ({ control }: Props) => {
     0
   );
 
+  // const amount = formValues?.reduce(
+  //   (acc, { unitPrice, quantity, tax }) =>
+  //     acc + Math.floor((unitPrice || 0) * (quantity || 0) * ((1 + tax / 100) || 1) ),
+  //   0
+  // );
+
+  const amount = formValues?.map((value) => {
+    const eachAmount = Math.floor((value.unitPrice || 0) * (value.quantity || 0) * ((1 + value.tax / 100) || 1));
+    return eachAmount;
+  })
+
+  
+
   useEffect(() => {
     totalContext?.setTotal(total);
     totalContext?.setSubTotal(subTotal);
+    totalContext?.setAmount(amount);
   }, [subTotal, total, totalContext]);
 
   return (

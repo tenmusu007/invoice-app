@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Description as DescriptionType } from 'types/description';
 import { Grid, IconButton, TextField, Typography } from '@mui/material';
@@ -7,8 +7,10 @@ import TotalAmount from './totalAmount';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddIcon from '@mui/icons-material/Add';
 import { Stack } from '@mui/system';
+import { useTotalContext } from 'Context/TotalContext';
 
 const DescriptionForm = () => {
+  const totalContext = useContext(useTotalContext);
   const { register, control } = useFormContext<DescriptionType>();
 
   //Append: Add new element to field
@@ -75,6 +77,7 @@ const DescriptionForm = () => {
                   <TextField
                     {...register(`description.${index}.amount`)}
                     size="small"
+                    value={totalContext?.amount[index]}
                   />
                 </Grid>
                 <Grid item xs={1}>
