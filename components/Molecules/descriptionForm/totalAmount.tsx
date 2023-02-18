@@ -40,11 +40,13 @@ const TotalAmount = ({ control }: Props) => {
   // );
 
   const amount = formValues?.map((value) => {
-    const eachAmount = Math.floor((value.unitPrice || 0) * (value.quantity || 0) * ((1 + value.tax / 100) || 1));
+    const eachAmount = Math.floor(
+      (value.unitPrice || 0) *
+        (value.quantity || 0) *
+        (1 + value.tax / 100 || 1)
+    );
     return eachAmount;
-  })
-
-  
+  });
 
   useEffect(() => {
     totalContext?.setTotal(total);
