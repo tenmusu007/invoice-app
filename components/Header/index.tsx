@@ -16,10 +16,12 @@ const Header = () => {
     <>
       <Grid
         container
-        sx={{ width: '80%', marginX: 'auto', marginY: 2 }}
+        sx={{ width: '100%', marginX: '0', marginY: 2 }}
         position={'fixed'}
+        alignItems={'center'}
+        top={0}
       >
-        <Grid item sm={3} sx={{ justifyContent: 'space-around' }}>
+        <Grid item sm={3} sx={{ justifyContent: 'space-around' }} textAlign={'center'}>
           <Text variant={'h5'} text={'title'} />
         </Grid>
         <Grid container item sm={5} sx={{ justifyContent: 'space-around' }}>
