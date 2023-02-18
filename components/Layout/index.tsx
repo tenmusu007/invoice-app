@@ -5,11 +5,9 @@ import Header from '../Header';
 const Layout = ({ children }: Children) => {
   return (
     <>
+      <Header />
       <Container component="main" fixed>
-        <Header />
-        {/* <BoxLayout> */}
-        {children}
-        {/* </BoxLayout> */}
+        <BoxLayout>{children}</BoxLayout>
       </Container>
     </>
   );

@@ -3,14 +3,15 @@ import Text from '@components/atoms/Text';
 import Button from '@components/Button';
 import { Container, Grid } from '@mui/material';
 import { useLocale } from 'helper/useLocale';
+import { getSession } from 'next-auth/react';
 import Image from 'next/image';
+import { GetServerSideProps } from 'next/types';
 import Illustrationsec from 'public/Illustrationsec.png';
 import Illustrationtop from 'public/Illustrationtop.jpg';
 import HomeText from './text.json';
-const Home = () => {
+const Home = (props:any) => {
   const handleGetStarted = () => {};
   const { t } = useLocale(HomeText);
-
   return (
     <>
       <BoxLayout>
