@@ -5,4 +5,6 @@ export type Total = {
   setSubTotal: (num) => void;
   tax: number;
   setTax: (num) => void;
+  amount: number[];
+  setAmount: (num) => void;
 };
