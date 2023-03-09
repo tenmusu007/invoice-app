@@ -5,7 +5,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Grid } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { ApiInstance } from "../helper/ApiInstance";
@@ -15,28 +15,7 @@ export default function Home(props: any) {
   //login user data
   const { data: session, status } = useSession();
   const router = useRouter();
-  const fetch = async () => {
-    const res = await ApiInstance({
-      url: "/api/user/create",
-      method: "post",
-      data: {
-        username: session?.user?.name,
-        email: session?.user?.email,
-        image: session?.user?.image,
-      },
-    });
-  };
 
-  useEffect(() => {
-    () => {
-      if (status === "loading") {
-        return router.push("/load");
-      } else if (status === "authenticated") {
-        fetch();
-        return router.push("/");
-      }
-    };
-  }, [session]);
   const [value, setValue] = useState<Dayjs | null>(dayjs());
   const [start, setStart] = useState<Dayjs | null>();
   const [end, setEnd] = useState<Dayjs | null>();
