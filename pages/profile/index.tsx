@@ -6,6 +6,8 @@ import { GetServerSideProps } from 'next/types';
 import { useLocale } from 'helper/useLocale';
 import ProfileText from './text.json';
 import { Box, Grid } from '@mui/material';
+import Button from '@components/Button';
+import Modal from '@components/Modal';
 const Setting = (props: any) => {
   const { data } = props;
   const router = useRouter();
@@ -16,6 +18,9 @@ const Setting = (props: any) => {
     setSetting(t);
   }, [data, language]);
   const [setting, setSetting] = useState<any>(t);
+   const [openModal, setOpenModal] = useState<boolean>(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
 
   return (
     <>
@@ -60,6 +65,8 @@ const Setting = (props: any) => {
         <Grid item md={12}>
           <Text variant={'h6'} text={t.setting.bill} style={textAline} />
           <Text variant={'h6'} text={t.setting.info} style={textAline} />
+          <Button text={'Bill to'} onClick={handleOpen} />
+          <Modal openModal={openModal} setOpenModal={handleClose} />
         </Grid>
       </Grid>
     </>
