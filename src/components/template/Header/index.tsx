@@ -1,9 +1,9 @@
 import { Button, Grid } from '@mui/material';
 import { useContext } from 'react';
 import { signOut, useSession } from 'next-auth/react';
-import Text from '@components/atoms/Text';
+import Text from 'src/components/atoms/Text';
 import { title } from 'process';
-import LinkTag from '@components/atoms/Link';
+import LinkTag from 'src/components/atoms/Link';
 const Header = () => {
   const { data: session } = useSession();
 
@@ -45,10 +45,10 @@ const Header = () => {
                 </LinkTag>
               </Grid>
               <Grid item sm={3}>
-                <LinkTag path={'/profile'}>
+                <LinkTag path={'/account'}>
                   <Text
                     variant={'h6'}
-                    text={'Profile'}
+                    text={'Account'}
                     style={{ textAlign: 'center' }}
                   />
                 </LinkTag>

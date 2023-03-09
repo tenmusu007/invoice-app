@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '@components/Input';
+import Input from '@components/atoms/Input';
 import { useFormContext } from 'react-hook-form';
 
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';

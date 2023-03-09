@@ -13,10 +13,10 @@ const SelectInput = (props: Partial<SelectType>) => {
   const handleChange = (event: SelectChangeEvent) => {
     if (event.target.value !== 'English') {
       setLanguage?.(`jp`);
-      return router.push(`/jp/profile`);
+      return router.push(`/jp/account`);
     } else {
       setLanguage?.(`en`);
-      return router.push(`/en/profile`);
+      return router.push(`/en/account`);
     }
   };
   return (
