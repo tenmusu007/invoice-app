@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '@components/atoms/Input';
+import Input from '@src/components/atoms/Input';
 import { useFormContext } from 'react-hook-form';
 import { InvoiceInfo as InvoiceInfoType } from 'types/invoiceInfo';
 import { Box, Stack } from '@mui/system';

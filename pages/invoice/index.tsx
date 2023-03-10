@@ -7,14 +7,14 @@ import {
   ValidationRule,
   FormProvider,
 } from 'react-hook-form';
-import Button from '@components/atoms/Button';
+import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@components/molecules/BillToForm';
-import BusinessInfoForm from '@components/molecules/BusinessInfoForm';
+import BillToForm from '@src/components/molecules/BillToForm';
+import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
 import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
 import InfoForm from 'src/pages/invoiceForm/InfoForm';
 import { Invoice as InvoiceType } from 'types/inputValue';
-import BankInfoForm from '@components/molecules/BankInfoForm';
+import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import PageTitle from 'src/components/atoms/Title';
 import BoxLayout from 'src/components/atoms/Box';
 

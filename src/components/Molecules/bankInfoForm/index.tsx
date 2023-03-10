@@ -1,4 +1,4 @@
-import Input from '@components/atoms/Input';
+import Input from '@src/components/atoms/Input';
 import { Box, TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';

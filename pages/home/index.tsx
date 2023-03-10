@@ -1,6 +1,6 @@
 import BoxLayout from 'src/components/atoms/Box';
 import Text from 'src/components/atoms/Text';
-import Button from '@components/atoms/Button';
+import Button from '@src/components/atoms/Button';
 import { Container, Grid } from '@mui/material';
 import { useLocale } from 'helper/useLocale';
 import { getSession, useSession } from 'next-auth/react';
