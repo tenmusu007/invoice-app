@@ -1,13 +1,13 @@
-import SelectInput from '@components/Select';
-import Text from '@components/atoms/Text';
+import SelectInput from '@components/atoms/Select';
+import Text from 'src/components/atoms/Text';
 import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next/types';
 import { useLocale } from 'helper/useLocale';
 import ProfileText from './text.json';
 import { Box, Grid } from '@mui/material';
-import Button from '@components/Button';
-import Modal from '@components/Modal';
+import Button from '@components/atoms/Button';
+import Modal from '@components/organisms/Modal';
 const Setting = (props: any) => {
   const { data } = props;
   const router = useRouter();
@@ -18,7 +18,7 @@ const Setting = (props: any) => {
     setSetting(t);
   }, [data, language]);
   const [setting, setSetting] = useState<any>(t);
-   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 

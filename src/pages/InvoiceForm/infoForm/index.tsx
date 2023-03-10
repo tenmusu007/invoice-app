@@ -1,9 +1,9 @@
 import React from 'react';
-import Input from '@components/Input';
+import Input from '@components/atoms/Input';
 import { useFormContext } from 'react-hook-form';
 import { InvoiceInfo as InvoiceInfoType } from 'types/invoiceInfo';
 import { Box, Stack } from '@mui/system';
-import InputLabel from '@components/atoms/label';
+import InputLabel from 'src/components/atoms/label';
 
 const InfoForm = () => {
   const { register } = useFormContext<InvoiceInfoType>();

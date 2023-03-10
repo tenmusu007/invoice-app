@@ -1,4 +1,4 @@
-import Text from '@components/atoms/Text';
+import Text from 'src/components/atoms/Text';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

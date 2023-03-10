@@ -1,5 +1,5 @@
-import Link from '@components/atoms/Link';
-import Text from '@components/atoms/Text';
+import Link from 'src/components/atoms/Link';
+import Text from 'src/components/atoms/Text';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,7 +8,7 @@ const InvoiceCard = (props: any) => {
   const { businessInfo, invocieNumber, issued } = props.list;
   return (
     <Link path={`/invoice/${encodeURIComponent(invocieNumber as string)}`}>
-      <Card sx={{ width: 150, height: 180, margin:'auto'}}>
+      <Card sx={{ width: 150, height: 180, margin: 'auto' }}>
         <CardContent>
           <Text
             text={`No${invocieNumber}`}

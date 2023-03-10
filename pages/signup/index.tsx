@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box, Button, Grid } from '@mui/material';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import LinkTag from '@components/atoms/Link';
+import LinkTag from 'src/components/atoms/Link';
 import GoogleButton from 'react-google-button';
-import Text from '@components/atoms/Text';
+import Text from 'src/components/atoms/Text';
 import Image from 'next/image';
 import Illustrationtop from 'public/Illustrationtop.jpg';
 import { useLocale } from 'helper/useLocale';
 import SignupText from './text.json';
-import BoxLayout from '@components/atoms/Box';
+import BoxLayout from 'src/components/atoms/Box';
 const SignUp = () => {
   const { data: session } = useSession();
   const handleGoggle = () => {

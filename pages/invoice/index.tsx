@@ -7,16 +7,16 @@ import {
   ValidationRule,
   FormProvider,
 } from 'react-hook-form';
-import Button from '@components/Button';
+import Button from '@components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@components/Molecules/billToForm';
-import BusinessInfoForm from '@components/Molecules/businessInfoForm';
-import DescriptionForm from '@components/Molecules/descriptionForm';
-import InfoForm from '@components/Molecules/infoForm';
+import BillToForm from '@components/molecules/BillToForm';
+import BusinessInfoForm from '@components/molecules/BusinessInfoForm';
+import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
+import InfoForm from 'src/pages/invoiceForm/InfoForm';
 import { Invoice as InvoiceType } from 'types/inputValue';
-import BankInfoForm from '@components/Molecules/bankInfoForm';
-import PageTitle from '@components/atoms/Title';
-import BoxLayout from '@components/atoms/Box';
+import BankInfoForm from '@components/molecules/BankInfoForm';
+import PageTitle from 'src/components/atoms/Title';
+import BoxLayout from 'src/components/atoms/Box';
 
 const InvoiceForm = () => {
   const methods = useForm<InvoiceType>({
@@ -34,31 +34,27 @@ const InvoiceForm = () => {
   };
   return (
     <FormProvider {...methods}>
-        <Stack
-          component="form"
-          onSubmit={handleSubmit(onSubmit)}
-          paddingTop={5}
-        >
-          <InfoForm />
-          <Stack direction="row" spacing={2}>
-            <BillToForm />
-            <BusinessInfoForm />
-          </Stack>
-          <DescriptionForm />
-          <BankInfoForm />
-          <Box width={2}>
-            <Button
-              text={'Submit'}
-              type="submit"
-              sx={{
-                background: '#EEBBC3',
-                color: '#232946',
-                borderRadius: 2,
-                fontWeight: 'bold',
-              }}
-            />
-          </Box>
+      <Stack component="form" onSubmit={handleSubmit(onSubmit)} paddingTop={5}>
+        <InfoForm />
+        <Stack direction="row" spacing={2}>
+          <BillToForm />
+          <BusinessInfoForm />
         </Stack>
+        <DescriptionForm />
+        <BankInfoForm />
+        <Box width={2}>
+          <Button
+            text={'Submit'}
+            type="submit"
+            sx={{
+              background: '#EEBBC3',
+              color: '#232946',
+              borderRadius: 2,
+              fontWeight: 'bold',
+            }}
+          />
+        </Box>
+      </Stack>
     </FormProvider>
   );
 };

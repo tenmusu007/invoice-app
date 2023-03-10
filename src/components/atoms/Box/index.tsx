@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { Children } from '../../../types/children';
+import { Children } from '../../../../types/children';
 const BoxLayout = ({ children }: Children) => {
   return (
     <Box

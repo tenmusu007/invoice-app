@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Grid} from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { signIn } from 'next-auth/react';
-import Text from '@components/atoms/Text';
+import Text from 'src/components/atoms/Text';
 import Image from 'next/image';
 import Illustrationtop from 'public/Illustrationtop.jpg';
 import GoogleButton from 'react-google-button';
@@ -10,7 +10,9 @@ import LoginText from './text.json';
 import { GetServerSideProps } from 'next';
 const Login = (props: any) => {
   const handleGoggle = () => {
-    signIn('google', { callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/home` });
+    signIn('google', {
+      callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/home`,
+    });
   };
   const { t } = useLocale(LoginText);
   return (

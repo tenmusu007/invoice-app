@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Description as DescriptionType } from 'types/description';
 import { Grid, IconButton, TextField, Typography } from '@mui/material';
-import Button from '@components/Button';
+import Button from '@components/atoms/Button';
 import TotalAmount from './totalAmount';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddIcon from '@mui/icons-material/Add';
