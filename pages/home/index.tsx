@@ -3,15 +3,24 @@ import Text from 'src/components/atoms/Text';
 import Button from '@components/atoms/Button';
 import { Container, Grid } from '@mui/material';
 import { useLocale } from 'helper/useLocale';
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { GetServerSideProps } from 'next/types';
 import Illustrationsec from 'public/Illustrationsec.png';
 import Illustrationtop from 'public/Illustrationtop.jpg';
 import HomeText from './text.json';
+import { useEffect } from 'react';
+import { ApiInstance } from 'helper/ApiInstance';
+import { useHomeHook } from './hooks';
 const Home = (props: any) => {
   const handleGetStarted = () => {};
   const { t } = useLocale(HomeText);
+  const { data: session } = useSession();
+  const user = { email: session?.user?.email };
+  const { action, state } = useHomeHook(user);
+  useEffect(() => {
+    action.UserCheck();
+  }, []);
   return (
     <>
       <BoxLayout>

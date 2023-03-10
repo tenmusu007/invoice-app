@@ -7,7 +7,7 @@ import { useLocale } from 'helper/useLocale';
 import ProfileText from './text.json';
 import { Box, Grid } from '@mui/material';
 import Button from '@components/atoms/Button';
-import Modal from 'src/pages/Account/Modal';
+import Modal from '@components/organisms/Modal';
 const Setting = (props: any) => {
   const { data } = props;
   const router = useRouter();
