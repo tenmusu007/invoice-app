@@ -1,15 +1,21 @@
 import { ApiInstance } from 'helper/ApiInstance';
 import { useState } from 'react';
-
-export const useHomeHook = (props: any) => {
-  const [userInfo, setUserInfo] = useState<any>()
-  const UserCheck = async() => {
+import { UserInfo } from 'types/user';
+import { UserInfoData } from 'types/user';
+type Pros = {
+  data: UserInfo | undefined;
+};
+export const useHomeHook = (props: Pros) => {
+  console.log(props);
+  const {data} = props
+  const [userInfo, setUserInfo] = useState<any>();
+  const UserCheck = async () => {
     const res = await ApiInstance({
       method: 'post',
       url: 'user/create',
-      data:props,
+      data: data,
     });
-    setUserInfo(res)
+    setUserInfo(res);
   };
   return {
     action: {

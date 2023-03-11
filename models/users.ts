@@ -2,12 +2,15 @@ import { Schema, model, models } from 'mongoose';
 const UsersSchema = new Schema({
   email: {
     type: String,
+    required: true,
   },
   userName: {
     type: String,
+    required: true,
   },
   image: {
     type: String,
+    required: true,
   },
   invoice: {
     type: Array,

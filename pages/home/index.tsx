@@ -3,7 +3,7 @@ import Text from 'src/components/atoms/Text';
 import Button from '@src/components/atoms/Button';
 import { Container, Grid } from '@mui/material';
 import { useLocale } from 'helper/useLocale';
-import { getSession, useSession } from 'next-auth/react';
+import { getCsrfToken, getSession, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { GetServerSideProps } from 'next/types';
 import Illustrationsec from 'public/Illustrationsec.png';
@@ -12,15 +12,24 @@ import HomeText from './text.json';
 import { useEffect } from 'react';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useHomeHook } from './hooks';
+import { CtxOrReq } from 'next-auth/client/_utils';
+import { getToken } from 'next-auth/jwt';
 const Home = (props: any) => {
+
   const handleGetStarted = () => {};
   const { t } = useLocale(HomeText);
-  const { data: session } = useSession();
-  const user = { email: session?.user?.email };
-  const { action, state } = useHomeHook(user);
+  const { data } = useSession();
+  const test = getSession()
+  // console.log('session',session);
+  console.log('session', data);
+  
+  // const user = { data: session?.user };
   useEffect(() => {
-    action.UserCheck();
+    // action.UserCheck();
   }, []);
+  // const { action, state } = useHomeHook(user);
+  // console.log(state.userInfo);
+  
   return (
     <>
       <BoxLayout>
