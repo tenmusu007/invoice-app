@@ -8,6 +8,7 @@ import ProfileText from './text.json';
 import { Box, Grid } from '@mui/material';
 import Button from '@src/components/atoms/Button';
 import BillToTemplate from '@src/pages/Account/Template/billToTemplate';
+import BusinessInfoTemplate from '@src/pages/Account/Template/businessInfoTemplate';
 const Setting = (props: any) => {
   const { data } = props;
   const router = useRouter();
@@ -27,8 +28,12 @@ const Setting = (props: any) => {
   }, [data, language]);
   const [setting, setSetting] = useState<any>(t);
   const [openBillToModal, setOpenBillToModal] = useState<boolean>(false);
+  const [openBusinessInfoModal, setOpenBusinessInfoModal] =
+    useState<boolean>(false);
   const handleBillToOpen = () => setOpenBillToModal(true);
   const handleBillToClose = () => setOpenBillToModal(false);
+  const handleBusinessInfoOpen = () => setOpenBusinessInfoModal(true);
+  const handleBusinessInfoClose = () => setOpenBusinessInfoModal(false);
 
   return (
     <>
@@ -38,7 +43,7 @@ const Setting = (props: any) => {
             label={'h5'}
             labelText={t.setting.name}
             variant={'body1'}
-            text={'Astuya'}
+            text={'Atsuya'}
             style={textStyle}
           />
         </Grid>
@@ -53,17 +58,26 @@ const Setting = (props: any) => {
           </Text>
         </Grid>
         <Grid item md={12}>
-          <Text variant={'h6'} text={t.setting.info} style={textAline} />
+          <Button
+            variant={'outlined'}
+            sx={textAline}
+            text={t.setting.info}
+            onClick={handleBusinessInfoOpen}
+          />
           <Button
             variant={'outlined'}
             sx={textAline}
             text={t.setting.bill}
             onClick={handleBillToOpen}
           />
+          <BusinessInfoTemplate
+            openModal={openBusinessInfoModal}
+            setOpenModal={handleBusinessInfoClose}
+          />
           <BillToTemplate
             openModal={openBillToModal}
             setOpenModal={handleBillToClose}
-          ></BillToTemplate>
+          />
         </Grid>
       </Grid>
     </>

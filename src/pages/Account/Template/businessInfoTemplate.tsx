@@ -1,18 +1,18 @@
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@src/components/Molecules/billToForm';
+import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
 import { Modal as ModalType } from 'types/modal';
-import { BillTo as BillToType } from 'types/billTo';
-import { SubmitHandler, FormProvider, useForm } from 'react-hook-form';
+import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import { FormProvider, useForm } from 'react-hook-form';
 
-const BillToTemplate = ({ openModal, setOpenModal }: ModalType) => {
-  const onSubmit = async (data: BillToType) => {
-    console.log('Bill to template', data);
+const BusinessInfoTemplate = ({ openModal, setOpenModal }: ModalType) => {
+  const onSubmit = async (data: BusinessInfoType) => {
+    console.log('Business Info template', data);
   };
 
   const methods = useForm();
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit } = methods;
 
   const formStyle = {
     background: '#FFF5F5',
@@ -34,7 +34,7 @@ const BillToTemplate = ({ openModal, setOpenModal }: ModalType) => {
           onSubmit={handleSubmit(onSubmit)}
           sx={formStyle}
         >
-          <BillToForm />
+          <BusinessInfoForm />
           <Box width={2}>
             <Button text={'Submit'} type="submit" sx={buttonStyle} />
           </Box>
@@ -44,4 +44,4 @@ const BillToTemplate = ({ openModal, setOpenModal }: ModalType) => {
   );
 };
 
-export default BillToTemplate;
+export default BusinessInfoTemplate;

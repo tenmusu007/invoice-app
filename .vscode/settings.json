@@ -1,10 +1,11 @@
 {
-    // Set default formatter to prettier
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    // Automatic formatting by prettier when saving files
-    "editor.formatOnSave": true,
-    // Automatic formatting by ESLint when saving files
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true
-    }
-  }
+  // Set default formatter to prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Automatic formatting by prettier when saving files
+  "editor.formatOnSave": true,
+  // Automatic formatting by ESLint when saving files
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "cSpell.words": ["Atsuya"]
+}
