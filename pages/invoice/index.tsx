@@ -9,12 +9,12 @@ import {
 } from 'react-hook-form';
 import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@src/components/molecules/BillToForm';
-import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
-import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
-import InfoForm from 'src/pages/invoiceForm/InfoForm';
+import BillToForm from '@src/components/Molecules/billToForm';
+import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
+import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
+import InfoForm from 'src/pages/InvoiceForm/infoForm';
 import { Invoice as InvoiceType } from 'types/inputValue';
-import BankInfoForm from '@src/components/molecules/BankInfoForm';
+import BankInfoForm from '@src/components/Molecules/bankInfoForm';
 import PageTitle from 'src/components/atoms/Title';
 import BoxLayout from 'src/components/atoms/Box';
 

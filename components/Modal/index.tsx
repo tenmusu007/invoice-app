@@ -1,5 +1,5 @@
 import { Modal as MUIModal } from '@mui/material';
-import Box from '@mui/material/Box';
+import { Box } from '@mui/system';
 import { Modal as ModalType } from 'types/modal';
 
 const style = {
@@ -7,18 +7,19 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 600,
-  bgcolor: '#FFF5F5',
-  border: '1px solid #000',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
+  p: 4,
 };
-
-//Background color needs to be changed but even if I changed the style, it never updated
 
 const Modal = ({ children, openModal, setOpenModal }: ModalType) => {
   return (
     <MUIModal open={openModal} onClose={setOpenModal}>
-      <Box sx={style}>{children}</Box>
+      <Box sx={style}>
+        {children}
+      </Box>
     </MUIModal>
   );
 };
