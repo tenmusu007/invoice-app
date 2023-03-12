@@ -3,15 +3,14 @@ import Box from '@mui/material/Box';
 import { Modal as ModalType } from 'types/modal';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 600,
-  bgcolor: '#FFF5F5',
+  bgColor: '#FFF5F5 !important',
   border: '1px solid #000',
-  boxShadow: 24,
-};
+} as const;
 
 //Background color needs to be changed but even if I changed the style, it never updated
 
