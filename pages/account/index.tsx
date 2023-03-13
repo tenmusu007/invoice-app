@@ -1,6 +1,6 @@
 import SelectInput from '@src/components/atoms/Select';
 import Text from 'src/components/atoms/Text';
-import { use, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next/types';
 import { useLocale } from 'helper/useLocale';
@@ -10,6 +10,8 @@ import Button from '@src/components/atoms/Button';
 import BillToTemplate from '@src/pages/Account/Template/billToTemplate';
 import BusinessInfoTemplate from '@src/pages/Account/Template/businessInfoTemplate';
 import BankInfoTemplate from '@src/pages/Account/Template/bankInfoTemplate';
+import { useModalContext } from 'Context/ModalContext';
+
 const Setting = (props: any) => {
   const { data } = props;
   const router = useRouter();
@@ -28,18 +30,17 @@ const Setting = (props: any) => {
     setSetting(t);
   }, [data, language]);
   const [setting, setSetting] = useState<any>(t);
-  const [openBillToModal, setOpenBillToModal] = useState<boolean>(false);
-  const [openBusinessInfoModal, setOpenBusinessInfoModal] =
-    useState<boolean>(false);
-  const [openBankInfoModal, setOpenBankInfoModal] =
-    useState<boolean>(false);
-  
-  const handleBillToOpen = () => setOpenBillToModal(true);
-  const handleBillToClose = () => setOpenBillToModal(false);
-  const handleBusinessInfoOpen = () => setOpenBusinessInfoModal(true);
-  const handleBusinessInfoClose = () => setOpenBusinessInfoModal(false);
-  const handleBankInfoOpen = () => setOpenBankInfoModal(true);
-  const handleBankInfoClose = () => setOpenBankInfoModal(false);
+  const {
+    openBillToModal,
+    openBusinessInfoModal,
+    openBankInfoModal,
+    handleBillToOpen,
+    handleBillToClose,
+    handleBusinessInfoOpen,
+    handleBusinessInfoClose,
+    handleBankInfoOpen,
+    handleBankInfoClose,
+  } = useContext(useModalContext);
 
   return (
     <>
@@ -90,8 +91,10 @@ const Setting = (props: any) => {
             openModal={openBillToModal}
             setOpenModal={handleBillToClose}
           />
-          <BankInfoTemplate openModal={openBankInfoModal}
-            setOpenModal={handleBankInfoClose} />
+          <BankInfoTemplate
+            openModal={openBankInfoModal}
+            setOpenModal={handleBankInfoClose}
+          />
         </Grid>
       </Grid>
     </>
