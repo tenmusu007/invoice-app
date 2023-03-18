@@ -22,6 +22,10 @@ const BillsSchema = new Schema({
   postal: {
     type: String,
   },
+  template: {
+    type: Boolean,
+    default: false,
+  },
 });
 const Bills = models.Bills || model('Bills', BillsSchema);
 export default Bills;

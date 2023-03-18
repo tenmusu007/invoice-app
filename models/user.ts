@@ -1,29 +1,20 @@
 import { Schema, model, models } from 'mongoose';
 const UsersSchema = new Schema({
-  email: {
+  name: {
     type: String,
     required: true,
   },
-  userName: {
+  email: {
     type: String,
     required: true,
   },
   image: {
     type: String,
-    required: true,
+    required:true
   },
-  invoice: {
-    type: Array,
-  },
-  billTo: {
-    type: Array,
-  },
-  businessInfo: {
-    type: Array,
-  },
-  language: {
+  accessToken: {
     type: String,
-    default: 'en',
+    required: true,
   },
 });
 const Users = models.Users || model('Users', UsersSchema);

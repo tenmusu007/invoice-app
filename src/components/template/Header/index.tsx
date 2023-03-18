@@ -25,7 +25,9 @@ const Header = () => {
           sx={{ justifyContent: 'space-around' }}
           textAlign={'center'}
         >
-          <Text variant={'h5'} text={'title'} />
+          <LinkTag path={'/home'}>
+            <Text variant={'h5'} text={'Invoicer'} />
+          </LinkTag>
         </Grid>
         <Grid container item sm={5} sx={{ justifyContent: 'space-around' }}>
           {session && (
