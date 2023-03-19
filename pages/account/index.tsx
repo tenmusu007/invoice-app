@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next/types';
 import { useLocale } from 'helper/useLocale';
 import ProfileText from './text.json';
-import { Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import Button from '@src/components/atoms/Button';
 import BillToTemplate from '@src/pages/Account/Template/billToTemplate';
 import BusinessInfoTemplate from '@src/pages/Account/Template/businessInfoTemplate';
@@ -42,6 +42,26 @@ const Setting = (props: any) => {
     handleBankInfoClose,
   } = useContext(useModalContext);
 
+  type buttonArr = {
+    text: string;
+    clickEvent: () => void;
+  }[];
+
+  const buttons: buttonArr = [
+    {
+      text: `${t.setting.info}`,
+      clickEvent: handleBusinessInfoOpen,
+    },
+    {
+      text: `${t.setting.bill}`,
+      clickEvent: handleBillToOpen,
+    },
+    {
+      text: `${t.setting.bank}`,
+      clickEvent: handleBankInfoOpen,
+    },
+  ];
+
   return (
     <>
       <Grid container>
@@ -65,24 +85,17 @@ const Setting = (props: any) => {
           </Text>
         </Grid>
         <Grid item md={12}>
-          <Button
-            variant={'outlined'}
-            sx={textAline}
-            text={t.setting.info}
-            onClick={handleBusinessInfoOpen}
-          />
-          <Button
-            variant={'outlined'}
-            sx={textAline}
-            text={t.setting.bill}
-            onClick={handleBillToOpen}
-          />
-          <Button
-            variant={'outlined'}
-            sx={textAline}
-            text={t.setting.bank}
-            onClick={handleBankInfoOpen}
-          />
+          {buttons.map((btn, index) => {
+            return (
+              <Button
+                key={index}
+                variant={'outlined'}
+                sx={textAline}
+                text={'btn.text'}
+                onClick={btn.clickEvent}
+              />
+            );
+          })}
           <BusinessInfoTemplate
             openModal={openBusinessInfoModal}
             setOpenModal={handleBusinessInfoClose}
