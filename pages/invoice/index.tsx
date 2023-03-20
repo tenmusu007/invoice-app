@@ -1,22 +1,23 @@
 import React from 'react';
-import {
-  SubmitHandler,
-  useForm,
-  UseFormRegisterReturn,
-  Validate,
-  ValidationRule,
-  FormProvider,
-} from 'react-hook-form';
+import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@src/components/molecules/BillToForm';
-import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
-import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
-import InfoForm from 'src/pages/invoiceForm/InfoForm';
+import BillToForm from '@src/components/Molecules/billToForm';
+import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
+import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
+import InfoForm from 'src/pages/InvoiceForm/infoForm';
 import { Invoice as InvoiceType } from 'types/inputValue';
-import BankInfoForm from '@src/components/molecules/BankInfoForm';
+import BankInfoForm from '@src/components/Molecules/bankInfoForm';
 import PageTitle from 'src/components/atoms/Title';
 import BoxLayout from 'src/components/atoms/Box';
+import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
+
+const buttonStyle = {
+  background: '#EEBBC3',
+  color: '#232946',
+  borderRadius: 2,
+  fontWeight: 'bold',
+} as const;
 
 const InvoiceForm = () => {
   const methods = useForm<InvoiceType>({
@@ -42,17 +43,9 @@ const InvoiceForm = () => {
         </Stack>
         <DescriptionForm />
         <BankInfoForm />
+        <TermsAndConditionForm />
         <Box width={2}>
-          <Button
-            text={'Submit'}
-            type="submit"
-            sx={{
-              background: '#EEBBC3',
-              color: '#232946',
-              borderRadius: 2,
-              fontWeight: 'bold',
-            }}
-          />
+          <Button text={'Submit'} type="submit" sx={buttonStyle} />
         </Box>
       </Stack>
     </FormProvider>

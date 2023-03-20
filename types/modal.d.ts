@@ -1,7 +1,7 @@
 import { Children } from './children';
 
 export type Modal = {
-    children?: Children;
-    openModal: boolean
-    setOpenModal: Dispatch<SetStateAction<boolean>>
-}
+  children?: Children | string | element;
+  openModal: boolean;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
+};

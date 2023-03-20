@@ -1,5 +1,5 @@
 import Input from '@src/components/atoms/Input';
-import { Box, TextField } from '@mui/material';
+import { Box } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -8,12 +8,7 @@ const BankInfoForm = () => {
   const { register } = useFormContext();
   return (
     <Stack spacing={2}>
-      <TextField
-        {...register('condition')}
-        label="NOTE/TERM & CONDITIONS"
-        multiline
-        maxRows={4}
-      />
+      <h3>Bank Info</h3>
       <Stack direction="row" spacing={2}>
         <Box sx={{ width: '45%' }}>
           <Stack spacing={1}>

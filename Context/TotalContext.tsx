@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import { Children } from 'types/children';
 import { Total as TotalType } from 'types/total';
 
+//Initial value needs to define like '{} as TotalType' as ModalContext does
 export const useTotalContext = createContext<TotalType | null>(null);
 
 const TotalContext = ({ children }: Children) => {
