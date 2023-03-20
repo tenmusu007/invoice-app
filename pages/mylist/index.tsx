@@ -1,4 +1,4 @@
-import InvoiceCard from 'src/pages/Mylist/InvoiceCard';
+import InvoiceCard from 'src/pages/mylist/InvoiceCard';
 import { Grid } from '@mui/material';
 import dummyData from '../../mocks/mylist.json';
 const mylist = () => {
