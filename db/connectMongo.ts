@@ -9,6 +9,8 @@ const connectMongo = async () => {
       return;
     })
     .catch((error) => {
+      console.log('DB not connect');
+      
       return error;
     });
 };

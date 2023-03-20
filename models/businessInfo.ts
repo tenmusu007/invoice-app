@@ -28,6 +28,10 @@ const BusinessInfoSchema = new Schema({
   email: {
     type: String,
   },
+  template: {
+    type: Boolean,
+    default:false
+  }
 });
 const BusinessInfo =
   models.BusinessInfo || model('BusinessInfo', BusinessInfoSchema);

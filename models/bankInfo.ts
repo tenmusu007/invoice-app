@@ -22,6 +22,10 @@ const BankInfoSchema = new Schema({
     type: String,
     required: true,
   },
+  template: {
+    type: Boolean,
+    default: false,
+  },
 });
 const BankInfo = models.BankInfo || model('BankInfo', BankInfoSchema);
 export default BankInfo;
