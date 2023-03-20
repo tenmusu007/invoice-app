@@ -14,7 +14,7 @@ const Input = ({
       type={type}
       {...register(name)}
       placeholder={placeholder}
-      style={{ width: '90%' }}
+      style={{ width: '90%', borderRadius: '4px', padding: '8px 16px' }}
       onChange={onChange}
       id={id}
     />
