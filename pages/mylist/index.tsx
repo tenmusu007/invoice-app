@@ -1,9 +1,9 @@
-import InvoiceCard from 'src/pages/mylist/InvoiceCard';
+// import InvoiceCard from 'src/pages/mylist/InvoiceCard';
 import { Grid } from '@mui/material';
 import dummyData from '../../mocks/mylist.json';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useEffect } from 'react';
-import MylistPage from '@src/pages/mylist';
+import MylistPage from '@src/pages/Mylist';
 import { GetServerSideProps } from 'next/types';
 const Mylist = () => {
   useEffect(() => {
