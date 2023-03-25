@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/material';
-import BankInfoForm from '@src/components/molecules/BankInfoForm';
+import BankInfoForm from '@src/components/Molecules/bankInfoForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
 import { Modal as ModalType } from 'types/modal';

@@ -1,10 +1,10 @@
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@src/components/molecules/BillToForm';
+import BillToForm from '@src/components/Molecules/billToForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
 import { Modal as ModalType } from 'types/modal';
 import { BillTo as BillToType } from 'types/billTo';
-import { SubmitHandler, FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const BillToTemplate = ({ openModal, setOpenModal }: ModalType) => {
   const onSubmit = async (data: BillToType) => {

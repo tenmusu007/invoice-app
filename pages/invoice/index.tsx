@@ -8,8 +8,7 @@ import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
 import InfoForm from 'src/pages/InvoiceForm/infoForm';
 import { Invoice as InvoiceType } from 'types/inputValue';
 import BankInfoForm from '@src/components/Molecules/bankInfoForm';
-import PageTitle from 'src/components/atoms/Title';
-import BoxLayout from 'src/components/atoms/Box';
+
 import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
 
 const buttonStyle = {
@@ -22,7 +21,6 @@ const buttonStyle = {
 const InvoiceForm = () => {
   const methods = useForm<InvoiceType>({
     defaultValues: {
-      // name: "",
       description: [{ name: '', quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
     },
   });
@@ -33,6 +31,7 @@ const InvoiceForm = () => {
     //Cannot get total and subTotal because reset method works.
     // await reset();
   };
+
   return (
     <FormProvider {...methods}>
       <Stack component="form" onSubmit={handleSubmit(onSubmit)} paddingTop={5}>

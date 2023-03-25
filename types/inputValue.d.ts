@@ -8,8 +8,6 @@ export type Invoice = {
   BillTo: BillTo;
   BusinessInfo: BusinessInfo;
 
-  // name: string;
-
   description: {
     name: string;
     quantity: number;
@@ -17,7 +15,7 @@ export type Invoice = {
     tax: number;
     amount: number;
   }[];
-  subTotal: number;
-  total: number;
+  subTotal: number | string;
+  total: number | string;
   condition: string;
 };
