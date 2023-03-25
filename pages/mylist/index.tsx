@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import dummyData from '../../mocks/mylist.json';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useEffect } from 'react';
-import MylistPage from '@src/pages/Mylist';
+import MylistPage from '@src/pages/mylist';
 import { GetServerSideProps } from 'next/types';
 const Mylist = () => {
   useEffect(() => {

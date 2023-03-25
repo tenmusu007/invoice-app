@@ -18,9 +18,6 @@ const AccountPage = (props: Props) => {
   const { locale } = props;
   const { state, action, style } = useAccoountHook();
   const t = state.t;
-  console.log(state.userData.language);
-console.log(locale);
-
   useEffect(() => {
     action.handleFetchUserData();
   }, []);

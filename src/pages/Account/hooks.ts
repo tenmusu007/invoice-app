@@ -13,7 +13,6 @@ type buttonArr = {
 export const useAccoountHook = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<any>('');
-  console.log(userData);
 
   const textAline = { textAlign: 'center' } as const;
   const textStyle = {
