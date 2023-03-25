@@ -1,0 +1,46 @@
+{
+  "en": {
+    "title": "Invocier",
+    "header": {
+      "create": "create",
+      "Mylist": "MyList",
+      "Setting": "Setting"
+    },
+    "setting": {
+      "name": "Name",
+      "language": "Language",
+      "langchoice": [{ "name": "日本語", "value": "jp" },{ "name": "English", "value": "en" }],
+      "jpn": "日本語",
+      "en": "English",
+      "bill": "Create Bill To Template",
+      "info": "Create Your Info Template ",
+      "bank": "Create Your Bank Info Template"
+    },
+    "home": {
+      "title": "Create your own invoice so that you’ll never miss your income."
+    }
+  },
+  "jp": {
+    "title": "Invocier",
+    "header": {
+      "create": "新規",
+      "Mylist": "MyList",
+      "Setting": "設定"
+    },
+    "setting": {
+      "name": "名前",
+      "language": "言語",
+      "langchoice": [
+        { "name": "日本語", "value": "jp" },
+        { "name": "English", "value": "en" }
+      ],
+      "jpn": "日本語",
+      "en": "English",
+      "bill": "相手先テンプレート作成",
+      "info": "個人情報テンプレート作成 "
+    },
+    "home": {
+      "title": "請求書を手軽に作ろう!"
+    }
+  }
+}
