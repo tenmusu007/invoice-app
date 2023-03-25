@@ -17,14 +17,11 @@ export default async function create(
 
     const checkUser = await Users.findOne({ email: email });
     if (checkUser) {
-      console.log(token);
       const updateUser = await checkUser.updateOne({
         $set: {
           accessToken: token?.accessToken,
         },
       });
-      console.log('here', updateUser);
-      
       return res.status(200).json(checkUser);
     }
     const newUser = await new Users({

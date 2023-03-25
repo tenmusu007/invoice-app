@@ -1,6 +1,6 @@
 export type SelectType = {
   items: Array;
   name: String;
-  language: any;
-  setLanguage?: (lang: any) => void;
+  language?: String;
+  handleChangeLanguage?: (lang: any) => void;
 };
