@@ -36,10 +36,11 @@ const Header = () => {
       ) : (
         <Grid
           container
-          sx={{ width: '100%', marginX: '0', marginY: 2 }}
+          sx={{ width: '100%', marginX: '0', paddingY: 2 }}
           position={'fixed'}
           alignItems={'center'}
           top={0}
+          style={{ backgroundColor: '#FFF5F5', zIndex: 2 }}
         >
           <Grid
             item

@@ -6,7 +6,7 @@ const BoxLayout = ({ children }: Children) => {
       display={'grid'}
       justifyContent={'center'}
       alignItems={'center'}
-      sx={{ height: '100vh' }}
+      sx={{ height: '100vh', backgroundColor: '#B8C1EC' }}
       paddingTop={5}
     >
       {children}

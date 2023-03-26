@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import Loader from './loader';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import { Box } from '@mui/material';
+import "../styles/styles.css"
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
@@ -19,7 +21,7 @@ export default function App({
       setPageLoading(true);
       NProgress.start();
     };
-    
+
     const handleStop = () => {
       NProgress.done();
       setPageLoading(false);
@@ -37,13 +39,15 @@ export default function App({
   }, [router]);
   return (
     <SessionProvider session={pageProps.session}>
-      <Layout>
-        <ModalContext>
-          <TotalContext>
-            {!pageLoading &&  <Component {...pageProps} />}
-          </TotalContext>
-        </ModalContext>
-      </Layout>
+      <Box style={{ backgroundColor: '#B8C1EC' }}>
+        <Layout>
+          <ModalContext>
+            <TotalContext>
+              {!pageLoading && <Component {...pageProps} />}
+            </TotalContext>
+          </ModalContext>
+        </Layout>
+      </Box>
     </SessionProvider>
   );
 }

@@ -24,28 +24,34 @@ const AccountPage = (props: Props) => {
   return (
     <>
       <Grid container>
-        <Grid item md={12}>
-          <Text
-            label={'h5'}
-            labelText={t.setting.name}
-            variant={'body1'}
-            text={'Atsuya'}
-            style={style.textStyle}
-          />
+        <Grid item alignItems="center" display="flex" md={12} marginY={2}>
+          <Grid item md={6}>
+            <Text
+              variant={'h4'}
+              text={t.setting.name}
+              style={style.textAline}
+            />
+          </Grid>
+          <Grid item md={6}>
+            <Text variant={'h4'} text={'Atsuya'} style={style.textAline} />
+          </Grid>
         </Grid>
-        <Grid item md={12}>
-          <Text
-            label={'h5'}
-            labelText={t.setting.language}
-            style={style.textStyle}
-          >
+        <Grid item alignItems="center" display="flex" md={12} marginY={2}>
+          <Grid item md={6}>
+            <Text
+              variant={'h4'}
+              text={t.setting.language}
+              style={style.textAline}
+            />
+          </Grid>
+          <Grid item md={6} textAlign={'center'}>
             <SelectInput
               items={t.setting.langchoice}
               name={'language'}
-              language={ locale}
+              language={locale}
               handleChangeLanguage={action.handleChangeLanguage}
             />
-          </Text>
+          </Grid>
         </Grid>
         <Grid item md={12}>
           {state.buttons.map((btn, index) => {

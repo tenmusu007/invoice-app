@@ -10,10 +10,6 @@ import Illustrationsec from 'public/Illustrationsec.png';
 import Illustrationtop from 'public/Illustrationtop.jpg';
 import HomeText from './text.json';
 import { useEffect } from 'react';
-import { ApiInstance } from 'helper/ApiInstance';
-// import { useHomeHook } from './hooks';
-import { CtxOrReq } from 'next-auth/client/_utils';
-import { getToken } from 'next-auth/jwt';
 import { useHomeHook } from '@src/pages/home/hooks';
 const HomePage = (props: any) => {
   const handleGetStarted = () => {};
@@ -28,30 +24,27 @@ const HomePage = (props: any) => {
 
   return (
     <>
-      <BoxLayout>
-        <Container maxWidth="md">
-          <Grid container alignItems="center" display="flex" marginY={5}>
-            <Grid item sm={6} sx={{ display: 'flex', alignItems: 'center' }}>
-              <Text text={t.headline} variant={'h4'} />
-            </Grid>
-            <Grid item sm={6} sx={{ textAlign: 'center' }}>
-              <Image src={Illustrationtop} alt={'image'} width={300} />
-            </Grid>
-          </Grid>
-          <Grid container alignItems="center" display="flex" marginY={5}>
-            <Grid item sm={4} sx={{ textAlign: 'center' }}>
-              <Button
-                text={t.getstarted}
-                onClick={handleGetStarted}
-                sx={{ background: 'red' }}
-              />
-            </Grid>
-            <Grid item sm={6} sx={{ textAlign: 'center' }}>
-              <Image src={Illustrationsec} alt={'image'} width={300} />
-            </Grid>
-          </Grid>
-        </Container>
-      </BoxLayout>
+      <Grid container alignItems="center" display="flex" marginY={3}>
+        <Grid item sm={6} sx={{ display: 'flex', alignItems: 'center' }}>
+          <Text text={t.headline} variant={'h4'} />
+        </Grid>
+        <Grid item sm={6} sx={{ textAlign: 'center' }}>
+          <Image src={Illustrationtop} alt={'image'} width={300} />
+        </Grid>
+      </Grid>
+      <Grid container alignItems="center" display="flex" marginY={3}>
+        <Grid item sm={4} sx={{ textAlign: 'center' }}>
+          <Button
+            text={t.getstarted}
+            onClick={handleGetStarted}
+            sx={{ background: '#EEBBC3', color: 'black' ,}}
+            variant={'contained'}
+          />
+        </Grid>
+        <Grid item sm={6} sx={{ textAlign: 'center' }}>
+          <Image src={Illustrationsec} alt={'image'} width={300} />
+        </Grid>
+      </Grid>
     </>
   );
 };
