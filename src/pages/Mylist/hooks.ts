@@ -7,7 +7,7 @@ export const useMyListHook = () => {
       method: 'get',
       url: 'mylist/get',
     });
-    setmyInvoice(res);
+    setmyInvoice(res.data);
   };
   return {
     action: {
