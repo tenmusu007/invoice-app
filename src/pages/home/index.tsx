@@ -37,8 +37,11 @@ const HomePage = (props: any) => {
           <Button
             text={t.getstarted}
             onClick={handleGetStarted}
-            sx={{ background: '#EEBBC3', color: 'black' ,}}
-            variant={'contained'}
+            sx={{
+              background: '#EEBBC3',
+              color: 'black',
+              '&:hover': { backgroundColor: '#EEBBC3' },
+            }}
           />
         </Grid>
         <Grid item sm={6} sx={{ textAlign: 'center' }}>

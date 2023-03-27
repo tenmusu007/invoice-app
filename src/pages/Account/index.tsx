@@ -33,7 +33,11 @@ const AccountPage = (props: Props) => {
             />
           </Grid>
           <Grid item md={6}>
-            <Text variant={'h4'} text={'Atsuya'} style={style.textAline} />
+            <Text
+              variant={'h4'}
+              text={state.userData.name}
+              style={style.textAline}
+            />
           </Grid>
         </Grid>
         <Grid item alignItems="center" display="flex" md={12} marginY={2}>

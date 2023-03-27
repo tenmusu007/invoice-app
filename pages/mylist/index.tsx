@@ -14,7 +14,7 @@ const Mylist = () => {
       method: 'get',
       url: 'mylist/get',
     });
-    console.log(res.data);
+    // console.log(res.data);
   };
   return (
     <>
