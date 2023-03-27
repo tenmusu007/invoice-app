@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@src/components/Molecules/billToForm';
+import BillToForm from '@src/components/molecules/BillToForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
 import { Modal as ModalType } from 'types/modal';

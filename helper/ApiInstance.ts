@@ -7,16 +7,16 @@ export const ApiInstance = async (api: Api) => {
   try {   
     switch (api.method) {
       case 'get':
-        res = await axios.get(Url);
+        res = await axios.get(Url,api?.option);
         break;
       case 'post':
-        res = await axios.post(Url, api?.data); 
+        res = await axios.post(Url, api?.data, api?.option); 
         break;
       case 'delete':
         res = await axios.delete(Url, api?.data);
         break;
     }
-    return res?.data;
+    return res;
   } catch (error) {
     return error
   }

@@ -13,7 +13,7 @@ type buttonArr = {
 export const useAccoountHook = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<any>('');
-
+  const [progress, setProgress] = useState(0);
   const textAline = { textAlign: 'center' } as const;
   const textStyle = {
     width: '45%',
@@ -48,7 +48,26 @@ export const useAccoountHook = () => {
       clickEvent: handleBankInfoOpen,
     },
   ];
+  // const handleProgress = (progressEvent:any) => {
+  //   const { loaded, total } = progressEvent;
+  //   setProgress(Math.round((loaded * 100) / total));
+  // };
+  // const handleChangeLanguage = async (event: SelectChangeEvent) => {
+  //   const locale = event.target.value;
+  //   const res = await ApiInstance({
+  //     method: 'post',
+  //     url: 'account/update',
+  //     data: { locale: locale },
+  //     option: {
+  //       onDownloadProgress: handleProgress,
+  //     },
+  //   });
+  //   console.log(res);
+    
+  //   setUserData(res.data);
 
+  //   return router.push(router.pathname, router.asPath, { locale });
+  // };
   const handleChangeLanguage = async (event: SelectChangeEvent) => {
     const locale = event.target.value;
     const res = await ApiInstance({
@@ -56,7 +75,7 @@ export const useAccoountHook = () => {
       url: 'account/update',
       data: { locale: locale },
     });
-    setUserData(res);
+    setUserData(res.data);
 
     return router.push(router.pathname, router.asPath, { locale });
   };
@@ -65,8 +84,7 @@ export const useAccoountHook = () => {
       method: 'post',
       url: 'account/user',
     });
-    // console.log(res);
-    setUserData(res);
+    setUserData(res.data);
   };
   return {
     action: {
