@@ -14,7 +14,7 @@ export const useHomeHook = (props: any) => {
       url: 'user/create',
       data: data,
     });
-    setUserInfo(res);
+    setUserInfo(res.data);
   };
   return {
     action: {

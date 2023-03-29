@@ -1,3 +1,4 @@
+import connectMongo from '@db/connectMongo';
 import UserInFo from '@models/account';
 import BankInfo from '@models/bankInfo';
 import Bills from '@models/bills';
@@ -8,6 +9,7 @@ import { getToken } from 'next-auth/jwt';
 
 export default async function getUserData(req: NextApiRequest, res: NextApiResponse) {
   try {
+    await connectMongo();
     const token = await getToken({ req });
     const cuurentUser = await Users.find({ accessToken: token?.accessToken });
     const userInfo = await UserInFo.findOne({

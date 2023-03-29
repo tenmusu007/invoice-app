@@ -3,12 +3,12 @@ import { Grid } from '@mui/material';
 import dummyData from '../../../mocks/mylist.json';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useEffect } from 'react';
-import { useMyListHook } from './hooks';
+import { useMyListHooks } from './hooks';
 const MylistPage = () => {
   const { list }: any = dummyData.data;
-  const { action, state } = useMyListHook()
+  const { action, state } = useMyListHooks()
   useEffect(() => {
-    action.fetchMyList();
+    action.hanleFetchMyList();
   }, []);
   return (
     <>
