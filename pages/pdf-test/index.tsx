@@ -1,12 +1,26 @@
-import PDFGeneratePage from '@src/components/organisms/Modal/PDFGenerate'
-import PDFView from '@src/components/organisms/Modal/PDFView'
-import React from 'react'
+import dynamic from 'next/dynamic';
 
+import React, { useEffect, useState } from 'react';
 
-const index = () => {
+const TestPDF = dynamic(
+  () => import('../../src/components/organisms/PDFView/index'),
+  {
+    ssr: false,
+  }
+);
+
+const PDFViewTest = () => {
+  const [client, setClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setClient(true);
+  }, []);
+
   return (
-    <PDFGeneratePage />
-  )
-}
+    <div style={{ height: '100%' }}>
+      <TestPDF />
+    </div>
+  );
+};
 
-export default index
+export default PDFViewTest;

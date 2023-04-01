@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
@@ -19,6 +20,7 @@ const buttonStyle = {
 } as const;
 
 const InvoiceForm = () => {
+  const router = useRouter();
   const methods = useForm<InvoiceType>({
     defaultValues: {
       description: [{ name: '', quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
@@ -26,10 +28,24 @@ const InvoiceForm = () => {
   });
   const { handleSubmit, reset } = methods;
 
-  const onSubmit: SubmitHandler<InvoiceType> = async (data: InvoiceType) => {
+  const onSubmit: SubmitHandler<InvoiceType> = async (
+    data: InvoiceType,
+    e: any
+  ) => {
+    e.preventDefault();
     console.log(`Submit`, data);
     //Cannot get total and subTotal because reset method works.
-    // await reset();
+
+    try {
+      router.push({
+        pathname: '/pdf-test'
+      });
+      setTimeout(() => {
+        router.reload();
+      }, 1000);
+    } catch (e: any) {
+      console.log('Error', e.message);
+    }
   };
 
   return (
