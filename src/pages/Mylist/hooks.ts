@@ -1,17 +1,17 @@
 import { ApiInstance } from 'helper/ApiInstance';
 import { useState } from 'react';
-export const useMyListHook = () => {
+export const useMyListHooks = () => {
   const [myInvoice, setmyInvoice] = useState<any[]>([]);
-  const fetchMyList = async () => {
+  const hanleFetchMyList = async () => {
     const res = await ApiInstance({
       method: 'get',
       url: 'mylist/get',
     });
-    setmyInvoice(res);
+    setmyInvoice(res.data);
   };
   return {
     action: {
-      fetchMyList,
+      hanleFetchMyList,
     },
     state: { myInvoice },
   };
