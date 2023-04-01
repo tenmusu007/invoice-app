@@ -1,5 +1,9 @@
 import { Schema, model, models } from 'mongoose';
 const BankInfoSchema = new Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
   bankName: {
     type: String,
   },

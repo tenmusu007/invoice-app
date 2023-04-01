@@ -7,7 +7,7 @@ import BillToTemplate from '@src/pages/account/Template/billToTemplate';
 import BusinessInfoTemplate from '@src/pages/account/Template/businessInfoTemplate';
 import BankInfoTemplate from '@src/pages/account/Template/bankInfoTemplate';
 import { useModalContext } from 'Context/ModalContext';
-import { useAccoountHook } from './hooks';
+import { useAccoountHooks } from './hooks';
 import { useLocale } from 'helper/useLocale';
 import AccountText from './text.json';
 
@@ -16,10 +16,11 @@ type Props = {
 };
 const AccountPage = (props: Props) => {
   const { locale } = props;
-  const { state, action, style } = useAccoountHook();
+  const { state, action, style } = useAccoountHooks();
   const t = state.t;
   useEffect(() => {
     action.handleFetchUserData();
+    action.handleFetchUserTemplate()
   }, []);
   return (
     <>
@@ -80,6 +81,17 @@ const AccountPage = (props: Props) => {
           <BankInfoTemplate
             openModal={state.openBankInfoModal}
             setOpenModal={action.handleBankInfoClose}
+          />
+        </Grid>
+        <Grid item md={12}>
+          <SelectInput template={state.userTemplate.bills} name={'BillTo'} />
+          <SelectInput
+            template={state.userTemplate.banckInfo}
+            name={'BanckInfo'}
+          />
+          <SelectInput
+            template={state.userTemplate.businessInfo}
+            name={'BusinessInfo'}
           />
         </Grid>
       </Grid>

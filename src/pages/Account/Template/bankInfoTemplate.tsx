@@ -1,15 +1,15 @@
 import { Box, Stack } from '@mui/material';
-import BankInfoForm from '@src/components/Molecules/bankInfoForm';
+import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
 import { Modal as ModalType } from 'types/modal';
 import { BankInfo as BankInfoType } from 'types/bankInfo';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTemplateHooks } from './hooks';
 
 const BankInfoTemplate = ({ openModal, setOpenModal }: ModalType) => {
-  const onSubmit = async (data: BankInfoType) => {
-    console.log('Bank Info template', data);
-  };
+
+  const { action, state } = useTemplateHooks();
 
   const methods = useForm();
   const { handleSubmit } = methods;
@@ -29,11 +29,7 @@ const BankInfoTemplate = ({ openModal, setOpenModal }: ModalType) => {
   return (
     <FormProvider {...methods}>
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        <Stack
-          component="form"
-          onSubmit={handleSubmit(onSubmit)}
-          sx={formStyle}
-        >
+        <Stack component="form" onSubmit={handleSubmit(action.onSubmitBankInfo)} sx={formStyle}>
           <BankInfoForm />
           <Box width={2}>
             <Button text={'Submit'} type="submit" sx={buttonStyle} />

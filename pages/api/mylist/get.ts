@@ -5,7 +5,6 @@ import { getToken } from 'next-auth/jwt';
 
 export default async function get(req: NextApiRequest, res: NextApiResponse) {
   // If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`
-  console.log();
   try {
     const token = await getToken({ req });
     const cuurentUser = await Users.find({ accessToken: token?.accessToken });

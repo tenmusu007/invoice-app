@@ -10,9 +10,10 @@ type buttonArr = {
   text: string;
   clickEvent: () => void;
 }[];
-export const useAccoountHook = () => {
+export const useAccoountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<any>('');
+  const [userTemplate, setUserTemplate] = useState<any>([]);
   const [progress, setProgress] = useState(0);
   const textAline = { textAlign: 'center' } as const;
   const textStyle = {
@@ -86,6 +87,13 @@ export const useAccoountHook = () => {
     });
     setUserData(res.data);
   };
+  const handleFetchUserTemplate = async () => {
+    const res = await ApiInstance({
+      method: 'post',
+      url: 'account/get_template',
+    });
+    setUserTemplate(res.data);
+  };
   return {
     action: {
       openBillToModal,
@@ -96,9 +104,11 @@ export const useAccoountHook = () => {
       handleBankInfoClose,
       handleChangeLanguage,
       handleFetchUserData,
+      handleFetchUserTemplate,
     },
     state: {
       userData,
+      userTemplate,
       buttons,
       t,
       openBillToModal,

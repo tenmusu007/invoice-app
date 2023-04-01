@@ -5,11 +5,11 @@ import Modal from '@src/components/organisms/Modal';
 import { Modal as ModalType } from 'types/modal';
 import { BillTo as BillToType } from 'types/billTo';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTemplateHooks } from './hooks';
 
 const BillToTemplate = ({ openModal, setOpenModal }: ModalType) => {
-  const onSubmit = async (data: BillToType) => {
-    console.log('Bill to template', data);
-  };
+
+  const { action, state } = useTemplateHooks();
 
   const methods = useForm();
   const { handleSubmit, reset } = methods;
@@ -31,7 +31,7 @@ const BillToTemplate = ({ openModal, setOpenModal }: ModalType) => {
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
         <Stack
           component="form"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(action.onSubmitBillTo)}
           sx={formStyle}
         >
           <BillToForm />
