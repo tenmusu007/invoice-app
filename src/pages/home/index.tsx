@@ -10,13 +10,13 @@ import Illustrationsec from 'public/Illustrationsec.png';
 import Illustrationtop from 'public/Illustrationtop.jpg';
 import HomeText from './text.json';
 import { useEffect } from 'react';
-import { useHomeHook } from '@src/pages/home/hooks';
+import { useHomeHooks } from '@src/pages/home/hooks';
 const HomePage = (props: any) => {
   const handleGetStarted = () => {};
   const { t } = useLocale(HomeText);
   const { data } = useSession();
   const user = { data: data };
-  const { action, state } = useHomeHook(user);
+  const { action, state } = useHomeHooks(user);
 
   useEffect(() => {
     action.UserCheck();

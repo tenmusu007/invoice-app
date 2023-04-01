@@ -10,7 +10,7 @@ type buttonArr = {
   text: string;
   clickEvent: () => void;
 }[];
-export const useAccoountHooks = () => {
+export const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<any>('');
   const [userTemplate, setUserTemplate] = useState<any>([]);

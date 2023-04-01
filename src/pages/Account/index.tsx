@@ -7,7 +7,7 @@ import BillToTemplate from '@src/pages/account/Template/billToTemplate';
 import BusinessInfoTemplate from '@src/pages/account/Template/businessInfoTemplate';
 import BankInfoTemplate from '@src/pages/account/Template/bankInfoTemplate';
 import { useModalContext } from 'Context/ModalContext';
-import { useAccoountHooks } from './hooks';
+import { useAccountHooks } from './hooks';
 import { useLocale } from 'helper/useLocale';
 import AccountText from './text.json';
 
@@ -16,7 +16,7 @@ type Props = {
 };
 const AccountPage = (props: Props) => {
   const { locale } = props;
-  const { state, action, style } = useAccoountHooks();
+  const { state, action, style } = useAccountHooks();
   const t = state.t;
   useEffect(() => {
     action.handleFetchUserData();
