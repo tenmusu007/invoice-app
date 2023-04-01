@@ -1730,6 +1730,14 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-pdf@^6.2.0":
+  "integrity" "sha512-OSCYmrfaJvpXkM5V4seUMAhUDOAOqbGQf9kwv14INyTf7AjDs2ukfkkQrLWRQ8OjWrDklbXYWh5l7pT7l0N76g=="
+  "resolved" "https://registry.npmjs.org/@types/react-pdf/-/react-pdf-6.2.0.tgz"
+  "version" "6.2.0"
+  dependencies:
+    "@types/react" "*"
+    "pdfjs-dist" "^2.16.105"
+
 "@types/react-transition-group@^4.4.5":
   version "4.4.5"
   resolved "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.5.tgz"
