@@ -14,7 +14,7 @@ import { Invoice as InvoiceType } from 'types/inputValue';
 const styles = StyleSheet.create({
   page: { paddingTop: 200 },
   section: { margin: '24px', marginTop: 36 },
-  heading: { fontSize: '24px' },
+  heading: { fontSize: '24px', fontWeight: 'black' },
   title: {
     fontSize: '32px',
     textAlign: 'left',
@@ -23,11 +23,34 @@ const styles = StyleSheet.create({
   },
   info: {
     textAlign: 'right',
+    marginBottom: '32px',
+  },
+  width45: {
+    width: '45%',
   },
   flex: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    textAlign: 'justify',
+  },
+  flexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+  },
+  centralize: {
+    width: '90%',
+    margin: '0 auto',
+  },
+  paymentInfo: {
+    borderTop: '1 solid gray',
+    borderBottom: '1 solid gray',
+    paddingTop: '16px',
+    paddingBottom: '16px',
+  },
+  smallText: {
+    fontSize: '16px',
   },
 });
 
@@ -42,31 +65,37 @@ const PDF = () => {
               <View>
                 <Text style={styles.title}>Invoice</Text>
               </View>
-              <View style={styles.info}>
-                <Text>{data.invocieNumber}</Text>
-                <Text>{data.issued}</Text>
-                <Text>{data.due}</Text>
+              <View style={[styles.info]}>
+                <Text>Invoice: #{data.invocieNumber}</Text>
+                <Text>Issued: {data.issued}</Text>
+                <Text>Due: {data.due}</Text>
               </View>
-              <View style={styles.flex}>
-                <View style={{ width: '45%'}}>
+              <View
+                style={[styles.flex, styles.paymentInfo, styles.centralize]}
+              >
+                <View style={[styles.width45, styles.flexColumn]}>
                   <View style={styles.heading}>
                     <Text>Bill To:</Text>
                   </View>
-                  <Text>{data.billTo.companyName}</Text>
-                  <Text>{data.billTo.addressLine1}</Text>
-                  <Text>{data.billTo.city}</Text>
-                  <Text>{data.billTo.province}</Text>
-                  <Text>{data.billTo.country}</Text>
+                  <View style={[styles.smallText, styles.flexColumn]}>
+                    <Text>{data.billTo.companyName}</Text>
+                    <Text>{data.billTo.addressLine1}</Text>
+                    <Text>{data.billTo.city}</Text>
+                    <Text>{data.billTo.province}</Text>
+                    <Text>{data.billTo.country}</Text>
+                  </View>
                 </View>
-                <View style={{ width: '45%'}}>
+                <View style={[styles.width45, styles.flexColumn]}>
                   <View style={styles.heading}>
                     <Text>Business Info:</Text>
                   </View>
-                  <Text>{data.businessInfo.companyName}</Text>
-                  <Text>{data.businessInfo.address}</Text>
-                  <Text>{data.businessInfo.city}</Text>
-                  <Text>{data.businessInfo.province}</Text>
-                  <Text>{data.businessInfo.country}</Text>
+                  <View style={[styles.smallText, styles.flexColumn]}>
+                    <Text>{data.businessInfo.companyName}</Text>
+                    <Text>{data.businessInfo.address}</Text>
+                    <Text>{data.businessInfo.city}</Text>
+                    <Text>{data.businessInfo.province}</Text>
+                    <Text>{data.businessInfo.country}</Text>
+                  </View>
                 </View>
               </View>
             </div>
