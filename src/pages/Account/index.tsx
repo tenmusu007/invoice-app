@@ -20,7 +20,7 @@ const AccountPage = (props: Props) => {
   const t = state.t;
   useEffect(() => {
     action.handleFetchUserData();
-    action.handleFetchUserTemplate()
+    action.handleFetchUserTemplate();
   }, []);
   return (
     <>
@@ -54,22 +54,28 @@ const AccountPage = (props: Props) => {
               items={t.setting.langchoice}
               name={'language'}
               language={locale}
-              handleChangeLanguage={action.handleChangeLanguage}
+              onChange={action.handleChangeLanguage}
             />
           </Grid>
         </Grid>
-        <Grid item md={12}>
+        <Grid item alignItems="center" display="flex" md={12}>
           {state.buttons.map((btn, index) => {
             return (
-              <Button
-                key={index}
-                variant={'outlined'}
-                sx={style.textAline}
-                text={'btn.text'}
-                onClick={btn.clickEvent}
-              />
+              <>
+                <Grid item textAlign={'center'} md={4}>
+                  <Button
+                    key={index}
+                    variant={'outlined'}
+                    sx={style.textAline}
+                    text={'btn.text'}
+                    onClick={btn.clickEvent}
+                  />
+                </Grid>
+              </>
             );
           })}
+        </Grid>
+        <Grid item alignItems="center" display="flex" md={12}>
           <BusinessInfoTemplate
             openModal={state.openBusinessInfoModal}
             setOpenModal={action.handleBusinessInfoClose}
@@ -83,16 +89,22 @@ const AccountPage = (props: Props) => {
             setOpenModal={action.handleBankInfoClose}
           />
         </Grid>
-        <Grid item md={12}>
-          <SelectInput template={state.userTemplate.bills} name={'BillTo'} />
-          <SelectInput
-            template={state.userTemplate.banckInfo}
-            name={'BanckInfo'}
-          />
-          <SelectInput
-            template={state.userTemplate.businessInfo}
-            name={'BusinessInfo'}
-          />
+        <Grid item alignItems="center" display="flex" md={12}>
+          <Grid item textAlign={'center'} md={4}>
+            <SelectInput template={state.userTemplate.bills} name={'BillTo'} />
+          </Grid>
+          <Grid item textAlign={'center'} md={4}>
+            <SelectInput
+              template={state.userTemplate.banckInfo}
+              name={'BanckInfo'}
+            />
+          </Grid>
+          <Grid item textAlign={'center'} md={4}>
+            <SelectInput
+              template={state.userTemplate.businessInfo}
+              name={'BusinessInfo'}
+            />
+          </Grid>
         </Grid>
       </Grid>
     </>
