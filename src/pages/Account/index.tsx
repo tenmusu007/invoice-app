@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import Button from '@src/components/atoms/Button';
 import BillToTemplate from '@src/pages/account/Template/billToTemplate';
-import BusinessInfoTemplate from '@src/pages/account/Template/businessInfoTemplate';
+import BusinessInfoTemplate from '@src/pages/account/businessInfoTemplate';
 import BankInfoTemplate from '@src/pages/account/Template/bankInfoTemplate';
 import { useModalContext } from 'Context/ModalContext';
 import { useAccountHooks } from './hooks';
@@ -22,6 +22,8 @@ const AccountPage = (props: Props) => {
     action.handleFetchUserData();
     action.handleFetchUserTemplate();
   }, []);
+  console.log(state.templates);
+
   return (
     <>
       <Grid container>
@@ -58,27 +60,12 @@ const AccountPage = (props: Props) => {
             />
           </Grid>
         </Grid>
-        <Grid item alignItems="center" display="flex" md={12}>
-          {state.buttons.map((btn, index) => {
-            return (
-              <>
-                <Grid item textAlign={'center'} md={4}>
-                  <Button
-                    key={index}
-                    variant={'outlined'}
-                    sx={style.textAline}
-                    text={'btn.text'}
-                    onClick={btn.clickEvent}
-                  />
-                </Grid>
-              </>
-            );
-          })}
-        </Grid>
+
         <Grid item alignItems="center" display="flex" md={12}>
           <BusinessInfoTemplate
             openModal={state.openBusinessInfoModal}
             setOpenModal={action.handleBusinessInfoClose}
+            template={state.businessInfoData}
           />
           <BillToTemplate
             openModal={state.openBillToModal}
@@ -89,9 +76,13 @@ const AccountPage = (props: Props) => {
             setOpenModal={action.handleBankInfoClose}
           />
         </Grid>
-        <Grid item alignItems="center" display="flex" md={12}>
+        {/* <Grid item alignItems="center" display="flex" md={12}>
           <Grid item textAlign={'center'} md={4}>
-            <SelectInput template={state.userTemplate.bills} name={'BillTo'} />
+            <SelectInput
+              template={state.userTemplate.bills}
+              name={'BillTo'}
+              onChange={action.handleDisplayTemplate}
+            />
           </Grid>
           <Grid item textAlign={'center'} md={4}>
             <SelectInput
@@ -105,6 +96,28 @@ const AccountPage = (props: Props) => {
               name={'BusinessInfo'}
             />
           </Grid>
+        </Grid> */}
+        <Grid item alignItems="center" display="flex" md={12}>
+          {state.templates.map((template, index) => {
+            return (
+              <>
+                <Grid item textAlign={'center'} md={4}>
+                  <SelectInput
+                    template={template.data}
+                    name={template.name}
+                    onChange={action.handleDisplayTemplate}
+                  />
+                  <Button
+                    key={index}
+                    variant={'outlined'}
+                    sx={style.textAline}
+                    text={template.text}
+                    onClick={template.clickEvent}
+                  />
+                </Grid>
+              </>
+            );
+          })}
         </Grid>
       </Grid>
     </>

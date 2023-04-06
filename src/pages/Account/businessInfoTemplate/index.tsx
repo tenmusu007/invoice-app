@@ -5,12 +5,39 @@ import Modal from '@src/components/organisms/Modal';
 import { Modal as ModalType } from 'types/modal';
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useTemplateHooks } from './hooks';
+import { useBusinessTemplateHooks } from './hooks';
+import { log } from 'console';
 
-const BusinessInfoTemplate = ({ openModal, setOpenModal }: ModalType) => {
-  const {action, state} = useTemplateHooks()
+const BusinessInfoTemplate = ({
+  openModal,
+  setOpenModal,
+  template,
+}: ModalType) => {
+  const { action, state } = useBusinessTemplateHooks(template);
+  const data = {
+    businessName: template?.name || '',
+    addressLine1: template?.name || '',
+    city: template?.name || '',
+    province: template?.name || '',
+    country: template?.name || '',
+    postalCode: template?.name || '',
+    phoneNumber: template?.name || '',
+    email: template?.name || '',
+  };
+  console.log('template',template);
 
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: {
+      businessName: 'test',
+      addressLine1: 'test',
+      city: 'test',
+      province: 'test',
+      country: 'test',
+      postalCode: 'test',
+      phoneNumber: 'test',
+      email: 'test',
+    },
+  });
   const { handleSubmit } = methods;
 
   const formStyle = {
@@ -33,7 +60,7 @@ const BusinessInfoTemplate = ({ openModal, setOpenModal }: ModalType) => {
           onSubmit={handleSubmit(action.onSubmitBusinessInfo)}
           sx={formStyle}
         >
-          <BusinessInfoForm />
+          <BusinessInfoForm template={template} />
           <Box width={2}>
             <Button text={'Submit'} type="submit" sx={buttonStyle} />
           </Box>

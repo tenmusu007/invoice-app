@@ -8,7 +8,9 @@ const Input = ({
   register,
   onChange,
   id,
+  value,
 }: InputType | any) => {
+  console.log(value);
   return (
     <input
       type={type}
@@ -17,6 +19,7 @@ const Input = ({
       style={{ width: '90%', borderRadius: '4px', padding: '8px 16px' }}
       onChange={onChange}
       id={id}
+      defaultValue={value}
     />
   );
 };

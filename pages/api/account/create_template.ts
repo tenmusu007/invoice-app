@@ -15,7 +15,8 @@ export default async function createTemplate(
     const token = await getToken({ req });
     const cuurentUser = await Users.find({ accessToken: token?.accessToken });
     const userId = cuurentUser[0]._id.toString();
-    const { bankInfo, billTo, businessInfo } = req.body;
+    if (!req.body)return res.status(200).json({ result: 'template is empty' });
+      const { bankInfo, billTo, businessInfo } = req.body;
     switch (true) {
       case !!bankInfo:
         const newBanckInfo = await new BankInfo({

@@ -5,16 +5,22 @@ import { useLocale } from 'helper/useLocale';
 import router from 'next/router';
 import { useContext, useState } from 'react';
 import AccountText from './text.json';
+import { log } from 'console';
 
 type buttonArr = {
   text: string;
   clickEvent: () => void;
+  data: any;
+  name: string;
 }[];
 export const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<any>('');
   const [userTemplate, setUserTemplate] = useState<any>([]);
   const [progress, setProgress] = useState(0);
+  const [businessInfoData, setBusinessInfoData] = useState<any>();
+  const [billTooData, setBillToData] = useState<any>();
+  const [bankInfoData, setBankInfoData] = useState<any>();
   const textAline = { textAlign: 'center' } as const;
   const textStyle = {
     width: '45%',
@@ -35,18 +41,24 @@ export const useAccountHooks = () => {
     handleBankInfoOpen,
     handleBankInfoClose,
   } = useContext(useModalContext);
-  const buttons: buttonArr = [
+  const templates: buttonArr = [
     {
+      name: 'BusinessInfo',
       text: `${t.setting.info}`,
       clickEvent: handleBusinessInfoOpen,
+      data: userTemplate.businessInfo,
     },
     {
+      name: 'BillTo',
       text: `${t.setting.bill}`,
       clickEvent: handleBillToOpen,
+      data: userTemplate.bills,
     },
     {
+      name: 'BankInfo',
       text: `${t.setting.bank}`,
       clickEvent: handleBankInfoOpen,
+      data: userTemplate.banckInfo,
     },
   ];
   // const handleProgress = (progressEvent:any) => {
@@ -64,7 +76,7 @@ export const useAccountHooks = () => {
   //     },
   //   });
   //   console.log(res);
-    
+
   //   setUserData(res.data);
 
   //   return router.push(router.pathname, router.asPath, { locale });
@@ -94,6 +106,19 @@ export const useAccountHooks = () => {
     });
     setUserTemplate(res.data);
   };
+  const handleDisplayTemplate = async (event: SelectChangeEvent) => {
+    const template: any = event.target.value;
+    console.log(template);
+    if (template.name) {
+      setBusinessInfoData(template);
+    }
+    if (template.companyName) {
+      setBillToData(template);
+    }
+    if (template.banckName) {
+      setBankInfoData(template);
+    }
+  };
   return {
     action: {
       openBillToModal,
@@ -105,15 +130,19 @@ export const useAccountHooks = () => {
       handleChangeLanguage,
       handleFetchUserData,
       handleFetchUserTemplate,
+      handleDisplayTemplate,
     },
     state: {
       userData,
       userTemplate,
-      buttons,
+      templates,
       t,
       openBillToModal,
       openBusinessInfoModal,
       openBankInfoModal,
+      businessInfoData,
+      billTooData,
+      bankInfoData,
     },
     style: { textAline, textStyle },
   };

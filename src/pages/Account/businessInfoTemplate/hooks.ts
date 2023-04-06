@@ -7,7 +7,14 @@ import { useEffect, useState } from 'react';
 type Props = {
   template?: BusinessInfo;
 };
-export const useTemplateHooks = (templates?: any) => {
+export const useBusinessTemplateHooks = (templates?: any) => {
+  console.log(templates);
+  useEffect(() => {
+    setTemplate(templates);
+  }, []);
+
+  const [template, setTemplate] = useState<any>();
+  console.log(template);
 
   const onSubmitBusinessInfo = async (data: BusinessInfoType) => {
     const res = await ApiInstance({
@@ -17,24 +24,8 @@ export const useTemplateHooks = (templates?: any) => {
     });
     if (res.status === 400) return console.error('fail');
   };
-  const onSubmitBankInfo = async (data: BankInfoType) => {
-    const res = await ApiInstance({
-      method: 'post',
-      url: 'account/create_template',
-      data: { bankInfo: data },
-    });
-    if (res.status === 400) return console.error('fail');
-  };
-  const onSubmitBillTo = async (data: BillToType) => {
-    const res = await ApiInstance({
-      method: 'post',
-      url: 'account/create_template',
-      data: { billTo: data },
-    });
-    if (res.status === 400) return console.error('fail');
-  };
   return {
-    action: { onSubmitBusinessInfo, onSubmitBankInfo, onSubmitBillTo },
-    state: {},
+    action: { onSubmitBusinessInfo },
+    state: { template },
   };
 };

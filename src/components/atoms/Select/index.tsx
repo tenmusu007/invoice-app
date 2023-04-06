@@ -19,6 +19,7 @@ const SelectInput = (props: Partial<SelectType>) => {
           value={language}
           label="Language"
           onChange={onChange}
+          
         >
           {items && items?.map((item: any) => {
           return (
@@ -30,7 +31,7 @@ const SelectInput = (props: Partial<SelectType>) => {
           {template &&
             template?.map((item: any) => {
               return (
-                <MenuItem value={item._id} key={item.userId}>
+                <MenuItem value={item} key={item._id} >
                   {item.companyName}
                   {item.name}
                   {item.bankName}
