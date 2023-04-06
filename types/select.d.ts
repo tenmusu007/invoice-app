@@ -3,5 +3,5 @@ export type SelectType = {
   name: String;
   language?: String;
   template?: Array;
-  handleChangeLanguage?: (lang: any) => void;
+  onChange?: (lang: any) => void;
 };

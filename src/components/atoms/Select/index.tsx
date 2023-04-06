@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { SelectType } from 'types/select';
 const SelectInput = (props: Partial<SelectType>) => {
-  const { items, name, language, template,handleChangeLanguage } = props;
+  const { items, name, language, template,onChange } = props;
   return (
     <FormControl sx={{ m: 1, minWidth: 200 }}>
       <>
@@ -18,7 +18,7 @@ const SelectInput = (props: Partial<SelectType>) => {
           // defaultValue={language}
           value={language}
           label="Language"
-          onChange={handleChangeLanguage}
+          onChange={onChange}
         >
           {items && items?.map((item: any) => {
           return (
