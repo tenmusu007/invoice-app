@@ -64,7 +64,7 @@ export const useAccountHooks = () => {
   //     },
   //   });
   //   console.log(res);
-    
+
   //   setUserData(res.data);
 
   //   return router.push(router.pathname, router.asPath, { locale });
