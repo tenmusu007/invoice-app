@@ -3,14 +3,14 @@ import { useRouter } from 'next/router';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@src/components/Molecules/BillToForm';
+import BillToForm from '@src/components/Molecules/billToForm';
 import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
-import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
-import InfoForm from 'src/pages/invoiceForm/InfoForm';
+import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
+import InfoForm from 'src/pages/InvoiceForm/infoForm';
 import { Invoice as InvoiceType } from 'types/inputValue';
 import BankInfoForm from '@src/components/Molecules/bankInfoForm';
 
-import TermsAndConditionForm from '@src/pages/invoiceForm/termsConditionForm';
+import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
 
 const buttonStyle = {
   background: '#EEBBC3',
