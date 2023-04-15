@@ -1,3 +1,4 @@
+import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Invoice as InvoiceType } from 'types/inputValue';
@@ -11,6 +12,16 @@ export const useInvoice = () => {
   });
   const { handleSubmit, reset } = methods;
 
+  // Connect to Mongo
+  const storeInvoice = async (data: InvoiceType) => {
+    const res = await ApiInstance({
+      method: 'post',
+      url: 'invoice/create',
+      data: { invoice: data },
+    });
+    if (res.status === 400) return console.log('fail');
+  };
+
   const generateInvoice: SubmitHandler<InvoiceType> = async (
     data: InvoiceType,
     e: any
@@ -20,12 +31,14 @@ export const useInvoice = () => {
     //Cannot get total and subTotal because reset method works.
 
     try {
-      router.push({
-        pathname: '/pdf-view',
-      });
-      setTimeout(() => {
-        router.reload();
-      }, 1000);
+      //call Mongo fun
+      storeInvoice(data);
+      // router.push({
+      //   pathname: '/pdf-view',
+      // });
+      // setTimeout(() => {
+      //   router.reload();
+      // }, 1000);
     } catch (e: any) {
       console.log('Error', e.message);
     }

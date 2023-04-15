@@ -5,10 +5,6 @@ const InvoiceSchema = new Schema({
     type: String,
     required: true,
   },
-  invoiceId: {
-    type: String,
-    required: true,
-  },
   invoiceNumber: {
     type: Number,
     required: true,
