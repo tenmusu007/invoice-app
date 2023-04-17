@@ -27,11 +27,11 @@ export const useInvoice = () => {
     e: any
   ) => {
     e.preventDefault();
-    console.log(`Submit`, data);
+    // console.log(`Submit`, data);
     //Cannot get total and subTotal because reset method works.
 
     try {
-      //call Mongo fun
+      // console.log('data', data);
       storeInvoice(data);
       // router.push({
       //   pathname: '/pdf-view',

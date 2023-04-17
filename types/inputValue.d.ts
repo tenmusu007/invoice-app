@@ -4,9 +4,9 @@ import { BusinessInfo } from './businessInfo';
 import { BillTo } from './billTo';
 
 export type Invoice = {
-  InvoiceInfo: InvoiceInfo;
-  BillTo: BillTo;
-  BusinessInfo: BusinessInfo;
+  invoiceInfo: InvoiceInfo;
+  billTo: BillTo;
+  businessInfo: BusinessInfo;
 
   description: {
     name: string;

@@ -5,9 +5,9 @@ import BusinessInfo from '@models/businessInfo';
 import Users from '@models/user';
 import { Invoice as InvoiceType } from 'types/inputValue';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getToken } from 'next-auth/jwt';
+import { JWT, getToken } from 'next-auth/jwt';
 
-// Why we cant use arrow function?
+// Make sure we delete all the console.log
 export default async function createInvoice(
   req: NextApiRequest,
   res: NextApiResponse
@@ -15,33 +15,54 @@ export default async function createInvoice(
   try {
     await connectMongo();
     console.log('successfully connected');
-    // const token = await getToken({ req });
-    // const currentUser = await Users.find({ accessToken: token?.accessToken });
-    // const currentUserId = await currentUser[0]._id.toString();
-    // const invoiceData: InvoiceType = await req.body;
-    // const newBillTo = await new Bills({
-    //   userId: currentUserId,
-    //   companyName: invoiceData.BillTo.companyName,
-    //   address: invoiceData.BillTo.addressLine1,
-    //   city: invoiceData.BillTo.city,
-    //   province: invoiceData.BillTo.province,
-    //   country: invoiceData.BillTo.country,
-    //   postal: invoiceData.BillTo.postalCode,
-    //   template: false,
-    // });
-    //   await newBillTo.save();
-    //   console.log('newBillTo', newBillTo._id.toString());
-    // const newInvoice = await new Invoice({
-    //   userId: currentUserId,
-    //   invoiceNumber: invoiceData.InvoiceInfo.invoiceNumber,
-    //   issued: invoiceData.InvoiceInfo.issuedDate,
-    //   due: invoiceData.InvoiceInfo.dueDate,
-    //   billTo: invoiceData.BillTo,
-    //   businessInfo: invoiceData.BusinessInfo,
-    //   items: invoiceData.description,
-    //   total: invoiceData.total,
-    //   subTotal: invoiceData.subTotal,
-    // });
+    const token: JWT | null = await getToken({ req });
+    const currentUser = await Users.find({ accessToken: token?.accessToken });
+    const currentUserId: string = await currentUser[0]._id.toString();
+    // As soon as fixed the property of invoice user to businessInfo, give InvoiceType to invoiceData
+    const invoiceData = await req.body.invoice;
+
+    // console.log('invoice data', invoiceData);
+
+    // Bill to
+    const newBillTo = await new Bills({
+      userId: currentUserId,
+      companyName: invoiceData.billTo.companyName,
+      address: invoiceData.billTo.addressLine1,
+      city: invoiceData.billTo.city,
+      province: invoiceData.billTo.province,
+      country: invoiceData.billTo.country,
+      postal: invoiceData.billTo.postalCode,
+      template: false,
+    });
+    await newBillTo.save();
+
+    // Business Info
+    const newBusinessInfo = await new BusinessInfo({
+      userId: currentUserId,
+      name: invoiceData.user.businessName,
+      address: invoiceData.user.addressLine1,
+      city: invoiceData.user.city,
+      province: invoiceData.user.province,
+      country: invoiceData.user.country,
+      postal: invoiceData.user.postalCode,
+      phone: invoiceData.user.phoneNumber,
+      email: invoiceData.user.email,
+      template: false,
+    });
+    await newBusinessInfo.save();
+    const newInvoice = await new Invoice({
+      userId: currentUserId,
+      invoiceNumber: invoiceData.info.invoiceNumber,
+      issued: invoiceData.info.issuedDate,
+      due: invoiceData.info.dueDate,
+      billTo: newBillTo.userId,
+      businessInfo: newBusinessInfo.userId,
+      items: invoiceData.description,
+      total: invoiceData.total,
+      subTotal: invoiceData.subTotal,
+    });
+    // console.log('currentId', currentUserId, 'currentUser', currentUser);
+    // console.log('schema', newBillTo, newBusinessInfo, newInvoice);
     // await newInvoice.save();
     res.status(200).json({ res: 'You nailed it!!' });
   } catch (e) {
