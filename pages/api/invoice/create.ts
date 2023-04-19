@@ -17,6 +17,7 @@ export default async function createInvoice(
     console.log('successfully connected');
     const token: JWT | null = await getToken({ req });
     const currentUser = await Users.find({ accessToken: token?.accessToken });
+    console.log('current user', currentUser, typeof currentUser);
     const currentUserId: string = await currentUser[0]._id.toString();
     // As soon as fixed the property of invoice user to businessInfo, give InvoiceType to invoiceData
     const invoiceData = await req.body.invoice;
@@ -34,7 +35,8 @@ export default async function createInvoice(
       postal: invoiceData.billTo.postalCode,
       template: false,
     });
-    await newBillTo.save();
+    // await newBillTo.save();
+    const billToId: string = newBillTo._id.toString();
 
     // Business Info
     const newBusinessInfo = await new BusinessInfo({
@@ -49,20 +51,21 @@ export default async function createInvoice(
       email: invoiceData.user.email,
       template: false,
     });
-    await newBusinessInfo.save();
+    // await newBusinessInfo.save();
+    const businessInfoId: string = newBusinessInfo._id.toString();
+
     const newInvoice = await new Invoice({
       userId: currentUserId,
       invoiceNumber: invoiceData.info.invoiceNumber,
       issued: invoiceData.info.issuedDate,
       due: invoiceData.info.dueDate,
-      billTo: newBillTo.userId,
-      businessInfo: newBusinessInfo.userId,
+      billTo: billToId,
+      businessInfo: businessInfoId,
       items: invoiceData.description,
       total: invoiceData.total,
       subTotal: invoiceData.subTotal,
     });
-    // console.log('currentId', currentUserId, 'currentUser', currentUser);
-    // console.log('schema', newBillTo, newBusinessInfo, newInvoice);
+
     // await newInvoice.save();
     res.status(200).json({ res: 'You nailed it!!' });
   } catch (e) {
