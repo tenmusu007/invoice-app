@@ -16,19 +16,19 @@ const BankInfoForm = (props: any) => {
         <Box sx={{ width: '45%' }}>
           <Stack spacing={1}>
             <Input
-              name="bankName"
+              name="bankInfo.bankName"
               register={regs}
               placeholder="Bank name"
               type="text"
             />
             <Input
-              name="branchNumber"
+              name="bankInfo.branchNumber"
               register={regs}
               placeholder="Branch number"
               type="number"
             />
             <Input
-              name="accountNumber"
+              name="bankInfo.accountNumber"
               register={regs}
               placeholder="Bank account number"
               type="number"
@@ -37,7 +37,7 @@ const BankInfoForm = (props: any) => {
         </Box>
         <Box sx={{ width: '45%' }}>
           <Stack spacing={1}>
-            <select {...regs('accountType')}>
+            <select {...regs('bankInfo.accountType')}>
               <option key="Checking" value="Checking">
                 Checking
               </option>
@@ -46,13 +46,13 @@ const BankInfoForm = (props: any) => {
               </option>
             </select>
             <Input
-              name="accountName"
+              name="bankInfo.accountName"
               register={regs}
               placeholder="Holder name"
               type="text"
             />
             <Input
-              name="transitNumber"
+              name="bankInfo.transitNumber"
               register={regs}
               placeholder="Transit number"
               type="number"

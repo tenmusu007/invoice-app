@@ -31,7 +31,6 @@ export default async function editTemplate(
             holderName: bankInfo.accountName,
           },
         });
-        await updateBankInfo.save();
         break;
       case !!billTo:
         const editBillToTemplate = await Bills.findById(billTo._id);
@@ -47,7 +46,6 @@ export default async function editTemplate(
             postal: billTo.postalCode,
           },
         });
-        await updateBillTo.save();
         break;
       case !!businessInfo:
         const editBusinessInfoTemplate = await BusinessInfo.findById(
@@ -67,13 +65,12 @@ export default async function editTemplate(
             email: businessInfo.email,
           },
         });
-        updateBusinessInfo.save();
         break;
       default:
         break;
     }
     res.status(200).json({ result: 'success' });
   } catch (error) {
-    res.status(400).json(error);
+    res.status(400).json({ result: error });
   }
 }

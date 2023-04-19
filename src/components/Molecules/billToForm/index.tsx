@@ -10,39 +10,44 @@ const BillToForm = (props: any) => {
 
   const methods = useForm();
   const { register } = useFormContext();
-  const regs = register;
+  const regs = defRegister ? defRegister : register;
 
   return (
     <Box sx={{ width: '45%' }}>
       <h3>Bill to</h3>
       <Stack spacing={0.5}>
         <Input
-          name="companyName"
+          name="billTo.companyName"
           register={regs}
           placeholder="Company/Client Name"
           type="text"
         />
         <Input
-          name="addressLine1"
+          name="billTo.addressLine1"
           register={regs}
           placeholder="Address Line 1"
           type="text"
         />
-        <Input name="city" register={regs} placeholder="City" type="text" />
         <Input
-          name="province"
+          name="billTo.city"
+          register={regs}
+          placeholder="City"
+          type="text"
+        />
+        <Input
+          name="billTo.province"
           register={regs}
           placeholder="Province"
           type="text"
         />
         <Input
-          name="country"
+          name="billTo.country"
           register={regs}
           placeholder="Country"
           type="text"
         />
         <Input
-          name="postalCode"
+          name="billTo.postalCode"
           register={regs}
           placeholder="Postal Code"
           type="text"

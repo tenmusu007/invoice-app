@@ -18,38 +18,43 @@ const BusinessInfoForm = (props: any) => {
       <h3>Business Info</h3>
       <Stack spacing={0.5}>
         <Input
-          name="businessName"
+          name="businessInfo.businessName"
           type="text"
           placeholder="Your/Business Name"
           register={regs}
         />
         <Input
-          name="addressLine1"
+          name="businessInfo.addressLine1"
           type="text"
           placeholder="Address line 1"
           register={regs}
         />
-        <Input name="city" type="text" placeholder="City" register={regs} />
         <Input
-          name="province"
+          name="businessInfo.city"
+          type="text"
+          placeholder="City"
+          register={regs}
+        />
+        <Input
+          name="businessInfo.province"
           type="text"
           placeholder="Province"
           register={regs}
         />
         <Input
-          name="country"
+          name="businessInfo.country"
           type="text"
           placeholder="Country"
           register={regs}
         />
         <Input
-          name="postalCode"
+          name="businessInfo.postalCode"
           type="text"
           placeholder="Postal Code"
           register={regs}
         />
         <Input
-          name="phoneNumber"
+          name="businessInfo.phoneNumber"
           type="text"
           placeholder="Phone number"
           register={regs}

@@ -11,7 +11,7 @@ export const useBankInfoTemplateHooks = (props: Props) => {
   const router = useRouter();
 
   const onSubmitBankInfo = async (data: BankInfoType) => {
-    if (!data.bankName) {
+    if (!data.bankInfo.bankName) {
       return console.log('data is undifined');
     }
     const res = await ApiInstance({
@@ -25,13 +25,13 @@ export const useBankInfoTemplateHooks = (props: Props) => {
   const onSubmitEditBankInfo = async () => {
     const editTemplate = props?.getValues();
     const formatedEditTemplate = {
-      _id: editTemplate._id,
-      bankName: editTemplate.bankName,
-      transitNumber: editTemplate.transitNumber,
-      branchNumber: editTemplate.branchNumber,
-      accountNumber: editTemplate.accountNumber,
-      accountType: editTemplate.accountType,
-      holderName: editTemplate.accountName,
+      _id: editTemplate.bankInfo._id,
+      bankName: editTemplate.bankInfo.bankName,
+      transitNumber: editTemplate.bankInfo.transitNumber,
+      branchNumber: editTemplate.bankInfo.branchNumber,
+      accountNumber: editTemplate.bankInfo.accountNumber,
+      accountType: editTemplate.bankInfo.accountType,
+      holderName: editTemplate.bankInfo.accountName,
     };
     const res = await ApiInstance({
       method: 'post',

@@ -25,20 +25,22 @@ const BusinessInfoTemplate = (props: Props) => {
   useEffect(() => {
     if (template) {
       Object.keys(template).forEach((key) => {
-        setValue(key, template[key]);
+        setValue(`businessInfo.${key}`, template[key]);
       });
     }
   }, [template]);
   const methods = useForm<BusinessInfoType>({
     defaultValues: {
-      businessName: template?.name,
-      addressLine1: template?.address,
-      city: template?.city,
-      province: template?.province,
-      country: template?.country,
-      postalCode: template?.postal,
-      phoneNumber: template?.phone,
-      email: template?.email,
+      businessInfo: {
+        businessName: template?.name,
+        addressLine1: template?.address,
+        city: template?.city,
+        province: template?.province,
+        country: template?.country,
+        postalCode: template?.postal,
+        phoneNumber: template?.phone,
+        email: template?.email,
+      },
     },
   });
   const { handleSubmit } = methods;

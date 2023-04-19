@@ -15,19 +15,19 @@ export default async function createTemplate(
     const token = await getToken({ req });
     const cuurentUser = await Users.find({ accessToken: token?.accessToken });
     const userId = cuurentUser[0]._id.toString();
-    if (!req.body)return res.status(200).json({ result: 'template is empty' });
-    const { bankInfo, billTo, businessInfo } = req.body;
+    if (!req.body) return res.status(200).json({ result: 'template is empty' });
+    const { bankInfo, billTo, businessInfo } = await req.body;
 
     switch (true) {
       case !!bankInfo:
         const newBanckInfo = await new BankInfo({
           userId: userId,
-          bankName: bankInfo.bankName,
-          transitNumber: bankInfo.transitNumber,
-          branchNumber: bankInfo.branchNumber,
-          accountNumber: bankInfo.accountNumber,
-          accountType: bankInfo.accountType,
-          holderName: bankInfo.accountName,
+          bankName: bankInfo.bankInfo.bankName,
+          transitNumber: bankInfo.bankInfo.transitNumber,
+          branchNumber: bankInfo.bankInfo.branchNumber,
+          accountNumber: bankInfo.bankInfo.accountNumber,
+          accountType: bankInfo.bankInfo.accountType,
+          holderName: bankInfo.bankInfo.accountName,
           template: true,
         });
         await newBanckInfo.save();
@@ -35,12 +35,12 @@ export default async function createTemplate(
       case !!billTo:
         const newBillTo = await new Bills({
           userId: userId,
-          companyName: billTo.companyName,
-          address: billTo.addressLine1,
-          city: billTo.city,
-          province: billTo.province,
-          country: billTo.country,
-          postal: billTo.postalCode,
+          companyName: billTo.billTo.companyName,
+          address: billTo.billTo.addressLine1,
+          city: billTo.billTo.city,
+          province: billTo.billTo.province,
+          country: billTo.billTo.country,
+          postal: billTo.billTo.postalCode,
           template: true,
         });
         await newBillTo.save();
@@ -48,14 +48,14 @@ export default async function createTemplate(
       case !!businessInfo:
         const newBusinessInfo = await new BusinessInfo({
           userId: userId,
-          name: businessInfo.businessName,
-          address: businessInfo.addressLine1,
-          city: businessInfo.city,
-          province: businessInfo.province,
-          country: businessInfo.country,
-          postal: businessInfo.postalCode,
-          phone: businessInfo.phoneNumber,
-          email: businessInfo.email,
+          name: businessInfo.businessInfo.businessName,
+          address: businessInfo.businessInfo.addressLine1,
+          city: businessInfo.businessInfo.city,
+          province: businessInfo.businessInfo.province,
+          country: businessInfo.businessInfo.country,
+          postal: businessInfo.businessInfo.postalCode,
+          phone: businessInfo.businessInfo.phoneNumber,
+          email: businessInfo.businessInfo.email,
           template: true,
         });
         await newBusinessInfo.save();

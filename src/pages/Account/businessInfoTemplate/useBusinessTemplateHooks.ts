@@ -11,7 +11,7 @@ type Props = {
 export const useBusinessTemplateHooks = (props?: Props) => {
   const router = useRouter();
   const onSubmitBusinessInfo = async (data: BusinessInfoType) => {
-    if (!data.businessName) {
+    if (!data.businessInfo.businessName) {
       return console.log('data is undifined');
     }
     const res = await ApiInstance({
@@ -25,16 +25,17 @@ export const useBusinessTemplateHooks = (props?: Props) => {
   const onSubmitEditBusinessInfo = async () => {
     const editTemplate = props?.getValues();
     const formatedEditTemplate = {
-      _id: editTemplate._id,
-      name: editTemplate.businessName,
-      address: editTemplate.addressLine1,
-      city: editTemplate.city,
-      province: editTemplate.province,
-      country: editTemplate.country,
-      postal: editTemplate.postalCode,
-      phone: editTemplate.phoneNumber,
-      email: editTemplate.email,
+      _id: editTemplate.businessInfo._id,
+      name: editTemplate.businessInfo.businessName,
+      address: editTemplate.businessInfo.addressLine1,
+      city: editTemplate.businessInfo.city,
+      province: editTemplate.businessInfo.province,
+      country: editTemplate.businessInfo.country,
+      postal: editTemplate.businessInfo.postalCode,
+      phone: editTemplate.businessInfo.phoneNumber,
+      email: editTemplate.businessInfo.email,
     };
+
     const res = await ApiInstance({
       method: 'post',
       url: 'account/edit_template',

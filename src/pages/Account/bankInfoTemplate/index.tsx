@@ -24,18 +24,20 @@ const BankInfoTemplate = (props: Props) => {
   useEffect(() => {
     if (template) {
       Object.keys(template).forEach((key) => {
-        setValue(key, template[key]);
+        setValue(`bankInfo.${key}`, template[key]);
       });
     }
   }, [template]);
   const methods = useForm<BankInfoType>({
     defaultValues: {
-      bankName: template?.bankName,
-      transitNumber: template?.transitNumber,
-      branchNumber: template?.branchNumber,
-      accountNumber: template?.accountNumber,
-      accountType: template?.accountType,
-      accountName: template?.accountName,
+      bankInfo: {
+        bankName: template?.bankName,
+        transitNumber: template?.transitNumber,
+        branchNumber: template?.branchNumber,
+        accountNumber: template?.accountNumber,
+        accountType: template?.accountType,
+        accountName: template?.accountName,
+      },
     },
   });
   const { handleSubmit } = methods;

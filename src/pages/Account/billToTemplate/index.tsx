@@ -17,27 +17,29 @@ const BillToTemplate = (props: Props) => {
   const { openModal, setOpenModal, template } = props;
 
   const { register, setValue, getValues } = useForm();
-    const templateSet = {
-      template: template,
-      getValues: getValues,
-    };
-  const { action, state } = useBillToTemplateHooks(templateSet);
+  const templateSet = {
+    template: template,
+    getValues: getValues,
+  };
+  const { action } = useBillToTemplateHooks(templateSet);
   useEffect(() => {
     if (template) {
       Object.keys(template).forEach((key) => {
-        setValue(key, template[key]);
+        setValue(`billTo.${key}`, template[key]);
       });
     }
   }, [template]);
 
   const methods = useForm<BillToType>({
     defaultValues: {
-      companyName: template?.companyName,
-      addressLine1: template?.addressLine1,
-      city: template?.city,
-      province: template?.province,
-      country: template?.country,
-      postalCode: template?.postalCode,
+      billTo: {
+        companyName: template?.companyName,
+        addressLine1: template?.addressLine1,
+        city: template?.city,
+        province: template?.province,
+        country: template?.country,
+        postalCode: template?.postalCode,
+      },
     },
   });
   const { handleSubmit } = methods;
