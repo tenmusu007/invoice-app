@@ -1,27 +1,27 @@
 import { Box, Stack } from '@mui/material';
-import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
+import BillToForm from '@src/components/molecules/BillToForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
 import { Modal as ModalType } from 'types/modal';
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import { BillTo as BillToType } from 'types/billTo';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useBusinessTemplateHooks } from './useBusinessTemplateHooks';
+import { useBillToTemplateHooks } from './useBillToTemplateHooks';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import Input from '@src/components/atoms/Input';
+
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
-  template: any | undefined;
+  template: BillToType | undefined;
 };
-const BusinessInfoTemplate = (props: Props) => {
+const BillToTemplate = (props: Props) => {
   const { openModal, setOpenModal, template } = props;
 
   const { register, setValue, getValues } = useForm();
-  const templateSet = {
-    template: template,
-    getValues: getValues,
-  };
-  const { action } = useBusinessTemplateHooks(templateSet);
+    const templateSet = {
+      template: template,
+      getValues: getValues,
+    };
+  const { action, state } = useBillToTemplateHooks(templateSet);
   useEffect(() => {
     if (template) {
       Object.keys(template).forEach((key) => {
@@ -29,20 +29,18 @@ const BusinessInfoTemplate = (props: Props) => {
       });
     }
   }, [template]);
-  const methods = useForm<BusinessInfoType>({
+
+  const methods = useForm<BillToType>({
     defaultValues: {
-      businessName: template?.name,
-      addressLine1: template?.address,
+      companyName: template?.companyName,
+      addressLine1: template?.addressLine1,
       city: template?.city,
       province: template?.province,
       country: template?.country,
-      postalCode: template?.postal,
-      phoneNumber: template?.phone,
-      email: template?.email,
+      postalCode: template?.postalCode,
     },
   });
   const { handleSubmit } = methods;
-
   return (
     <FormProvider {...methods}>
       <Modal
@@ -51,17 +49,21 @@ const BusinessInfoTemplate = (props: Props) => {
         contents={
           <Stack
             component="form"
-            onSubmit={handleSubmit(action.onSubmitBusinessInfo)}
+            onSubmit={handleSubmit(action.onSubmitBillTo)}
             sx={formStyle}
           >
-            <BusinessInfoForm defRegister={template ? register : ''} />
+            <BillToForm
+              defRegister={template ? register : ''}
+              template={template}
+            />
+
             <Box width={2}>
               {template ? (
                 <Button
                   text={'edit'}
                   type="button"
                   sx={buttonStyle}
-                  onClick={action.onSubmitEditBusinessInfo}
+                  onClick={action.onSubmitEditBillTo}
                 />
               ) : (
                 <Button text={'Submit'} type="submit" sx={buttonStyle} />
@@ -74,7 +76,8 @@ const BusinessInfoTemplate = (props: Props) => {
   );
 };
 
-export default BusinessInfoTemplate;
+export default BillToTemplate;
+
 const formStyle = {
   background: '#FFF5F5',
   p: 10,

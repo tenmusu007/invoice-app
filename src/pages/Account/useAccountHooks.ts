@@ -5,7 +5,11 @@ import { useLocale } from 'helper/useLocale';
 import router from 'next/router';
 import { useContext, useState } from 'react';
 import AccountText from './text.json';
-import { log } from 'console';
+import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import { BankInfo as BankInfoType } from 'types/bankInfo';
+import { BillTo as BillToType } from 'types/billTo';
+import { UserInfo } from 'types/user';
+import { Templates } from 'types/template';
 
 type buttonArr = {
   text: string;
@@ -15,12 +19,11 @@ type buttonArr = {
 }[];
 export const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
-  const [userData, setUserData] = useState<any>('');
-  const [userTemplate, setUserTemplate] = useState<any>([]);
-  const [progress, setProgress] = useState(0);
-  const [businessInfoData, setBusinessInfoData] = useState<any>();
-  const [billTooData, setBillToData] = useState<any>();
-  const [bankInfoData, setBankInfoData] = useState<any>();
+  const [userData, setUserData] = useState<UserInfo>();
+  const [userTemplate, setUserTemplate] = useState<Templates>();
+  const [businessInfoData, setBusinessInfoData] = useState<BusinessInfoType>();
+  const [billTooData, setBillToData] = useState<BillToType>();
+  const [bankInfoData, setBankInfoData] = useState<BankInfoType>();
   const textAline = { textAlign: 'center' } as const;
   const textStyle = {
     width: '45%',
@@ -44,43 +47,23 @@ export const useAccountHooks = () => {
   const templates: buttonArr = [
     {
       name: 'BusinessInfo',
-      text: `${t.setting.info}`,
+      text: businessInfoData ? `${t.setting.edit}` : `${t.setting.info}`,
       clickEvent: handleBusinessInfoOpen,
-      data: userTemplate.businessInfo,
+      data: userTemplate?.businessInfo,
     },
     {
       name: 'BillTo',
-      text: `${t.setting.bill}`,
+      text: billTooData ? `${t.setting.edit}` : `${t.setting.bill}`,
       clickEvent: handleBillToOpen,
-      data: userTemplate.bills,
+      data: userTemplate?.bills,
     },
     {
       name: 'BankInfo',
-      text: `${t.setting.bank}`,
+      text: bankInfoData ? `${t.setting.edit}` : `${t.setting.bank}`,
       clickEvent: handleBankInfoOpen,
-      data: userTemplate.banckInfo,
+      data: userTemplate?.banckInfo,
     },
   ];
-  // const handleProgress = (progressEvent:any) => {
-  //   const { loaded, total } = progressEvent;
-  //   setProgress(Math.round((loaded * 100) / total));
-  // };
-  // const handleChangeLanguage = async (event: SelectChangeEvent) => {
-  //   const locale = event.target.value;
-  //   const res = await ApiInstance({
-  //     method: 'post',
-  //     url: 'account/update',
-  //     data: { locale: locale },
-  //     option: {
-  //       onDownloadProgress: handleProgress,
-  //     },
-  //   });
-  //   console.log(res);
-
-  //   setUserData(res.data);
-
-  //   return router.push(router.pathname, router.asPath, { locale });
-  // };
   const handleChangeLanguage = async (event: SelectChangeEvent) => {
     const locale = event.target.value;
     const res = await ApiInstance({
@@ -88,8 +71,7 @@ export const useAccountHooks = () => {
       url: 'account/update',
       data: { locale: locale },
     });
-    setUserData(res.data);
-
+    if (res.status !== 200) return;
     return router.push(router.pathname, router.asPath, { locale });
   };
   const handleFetchUserData = async () => {
@@ -97,6 +79,8 @@ export const useAccountHooks = () => {
       method: 'post',
       url: 'account/user',
     });
+    if (res.status !== 200) return;
+
     setUserData(res.data);
   };
   const handleFetchUserTemplate = async () => {
@@ -104,19 +88,54 @@ export const useAccountHooks = () => {
       method: 'post',
       url: 'account/get_template',
     });
+    if (res.status !== 200) return;
+
     setUserTemplate(res.data);
   };
   const handleDisplayTemplate = async (event: SelectChangeEvent) => {
     const template: any = event.target.value;
-    console.log(template);
+    if (!template) return;
+    if (template === 'create') {
+      setBusinessInfoData(undefined);
+      setBankInfoData(undefined);
+      setBillToData(undefined);
+    }
     if (template.name) {
-      setBusinessInfoData(template);
-    }
-    if (template.companyName) {
-      setBillToData(template);
-    }
-    if (template.banckName) {
-      setBankInfoData(template);
+      const formatedTemplate = {
+        _id: template._id,
+        businessName: template.name,
+        addressLine1: template?.address,
+        city: template?.city,
+        province: template?.province,
+        country: template?.country,
+        postalCode: template?.postal,
+        phoneNumber: template?.phone,
+        email: template?.email,
+      };
+      setBusinessInfoData(formatedTemplate);
+    } else if (template.bankName) {
+      const formatedTemplate = {
+        _id: template._id,
+        bankName: template.bankName,
+        transitNumber: template.transitNumber,
+        branchNumber: template.branchNumber,
+        accountNumber: template.accountNumber,
+        accountType: template.accountType,
+        accountName: template.holderName,
+      };
+      setBankInfoData(formatedTemplate);
+    } else if (template.companyName) {
+      const formatedTemplate = {
+        _id: template._id,
+        companyName: template.companyName,
+        addressLine1: template.address,
+        city: template.city,
+        province: template.province,
+        country: template.country,
+        postalCode: template.postal,
+      };
+
+      setBillToData(formatedTemplate);
     }
   };
   return {

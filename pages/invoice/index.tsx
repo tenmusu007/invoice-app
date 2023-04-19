@@ -36,16 +36,16 @@ const InvoiceForm = () => {
     console.log(`Submit`, data);
     //Cannot get total and subTotal because reset method works.
 
-    try {
-      router.push({
-        pathname: '/pdf-test'
-      });
-      setTimeout(() => {
-        router.reload();
-      }, 1000);
-    } catch (e: any) {
-      console.log('Error', e.message);
-    }
+    // try {
+    //   router.push({
+    //     pathname: '/pdf-test'
+    //   });
+    //   setTimeout(() => {
+    //     router.reload();
+    //   }, 1000);
+    // } catch (e: any) {
+    //   console.log('Error', e.message);
+    // }
   };
 
   return (

@@ -1,27 +1,26 @@
 import { Box, Stack } from '@mui/material';
-import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
+import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
-import { Modal as ModalType } from 'types/modal';
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import { BankInfo as BankInfoType } from 'types/bankInfo';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useBusinessTemplateHooks } from './useBusinessTemplateHooks';
+import { useBankInfoTemplateHooks } from './useBankInfoTemplateHooks';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import Input from '@src/components/atoms/Input';
+
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
-  template: any | undefined;
+  template: BankInfoType | undefined;
 };
-const BusinessInfoTemplate = (props: Props) => {
+const BankInfoTemplate = (props: Props) => {
   const { openModal, setOpenModal, template } = props;
-
   const { register, setValue, getValues } = useForm();
   const templateSet = {
     template: template,
     getValues: getValues,
   };
-  const { action } = useBusinessTemplateHooks(templateSet);
+  const { action, state } = useBankInfoTemplateHooks(templateSet);
+
   useEffect(() => {
     if (template) {
       Object.keys(template).forEach((key) => {
@@ -29,16 +28,14 @@ const BusinessInfoTemplate = (props: Props) => {
       });
     }
   }, [template]);
-  const methods = useForm<BusinessInfoType>({
+  const methods = useForm<BankInfoType>({
     defaultValues: {
-      businessName: template?.name,
-      addressLine1: template?.address,
-      city: template?.city,
-      province: template?.province,
-      country: template?.country,
-      postalCode: template?.postal,
-      phoneNumber: template?.phone,
-      email: template?.email,
+      bankName: template?.bankName,
+      transitNumber: template?.transitNumber,
+      branchNumber: template?.branchNumber,
+      accountNumber: template?.accountNumber,
+      accountType: template?.accountType,
+      accountName: template?.accountName,
     },
   });
   const { handleSubmit } = methods;
@@ -51,17 +48,17 @@ const BusinessInfoTemplate = (props: Props) => {
         contents={
           <Stack
             component="form"
-            onSubmit={handleSubmit(action.onSubmitBusinessInfo)}
+            onSubmit={handleSubmit(action.onSubmitBankInfo)}
             sx={formStyle}
           >
-            <BusinessInfoForm defRegister={template ? register : ''} />
+            <BankInfoForm defRegister={template ? register : ''} />
             <Box width={2}>
               {template ? (
                 <Button
                   text={'edit'}
                   type="button"
                   sx={buttonStyle}
-                  onClick={action.onSubmitEditBusinessInfo}
+                  onClick={action.onSubmitEditBankInfo}
                 />
               ) : (
                 <Button text={'Submit'} type="submit" sx={buttonStyle} />
@@ -74,7 +71,8 @@ const BusinessInfoTemplate = (props: Props) => {
   );
 };
 
-export default BusinessInfoTemplate;
+export default BankInfoTemplate;
+
 const formStyle = {
   background: '#FFF5F5',
   p: 10,

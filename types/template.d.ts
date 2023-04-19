@@ -4,16 +4,41 @@ export type BusinessInfo = {
   name: string;
   address: string;
   city: string;
-  province:string;
+  province: string;
   country: string;
   postal: string;
   phone: string;
   email: string;
   template: boolean;
   __v: number;
-  templateName: 'BusinessInfo';
 };
 export type BankInfo = {
-
+  _id: string;
+  userId: string;
+  bankName: string;
+  transitNumber: number;
+  branchNumber: number;
+  accountNumber: number;
+  accountType: string;
+  holderName: string;
+  template: boolean;
+  __v: 0;
 };
-export type BillTo = {};
+export type BillTo = {
+  _id: string;
+  userId: string;
+  companyName: string;
+  address: string;
+  city: string;
+  province: string;
+  country: string;
+  postal: string;
+  template: boolean;
+  __v: 0;
+};
+
+export type Templates = {
+  businessInfo: BusinessInfoType[];
+  bills: BillToType[];
+  banckInfo: BankInfoType[];
+};

@@ -10,11 +10,9 @@ type Props = {
   template?: BusinessInfo;
 };
 const BusinessInfoForm = (props: any) => {
-
-  const { template } = props;
-console.log('here',template);
-
+  const { defRegister } = props;
   const { register } = useFormContext<BusinessInfoType>();
+  const regs = defRegister ? defRegister : register;
   return (
     <Box sx={{ width: '45%' }}>
       <h3>Business Info</h3>
@@ -23,58 +21,40 @@ console.log('here',template);
           name="businessName"
           type="text"
           placeholder="Your/Business Name"
-          register={register}
-          value={template?.name}
+          register={regs}
         />
         <Input
           name="addressLine1"
           type="text"
           placeholder="Address line 1"
-          register={register}
-          value={template?.address}
+          register={regs}
         />
-        <Input
-          name="city"
-          type="text"
-          placeholder="City"
-          register={register}
-          value={template?.city}
-        />
+        <Input name="city" type="text" placeholder="City" register={regs} />
         <Input
           name="province"
           type="text"
           placeholder="Province"
-          register={register}
-          value={template?.province}
+          register={regs}
         />
         <Input
           name="country"
           type="text"
           placeholder="Country"
-          register={register}
-          value={template?.country}
+          register={regs}
         />
         <Input
           name="postalCode"
           type="text"
           placeholder="Postal Code"
-          register={register}
-          value={template?.postal}
+          register={regs}
         />
         <Input
           name="phoneNumber"
           type="text"
           placeholder="Phone number"
-          register={register}
-          value={template?.phone}
+          register={regs}
         />
-        <Input
-          name="email"
-          type="text"
-          placeholder="Email"
-          register={register}
-          value={template?.email}
-        />
+        <Input name="email" type="text" placeholder="Email" register={regs} />
       </Stack>
     </Box>
   );

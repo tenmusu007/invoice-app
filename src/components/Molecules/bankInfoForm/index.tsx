@@ -4,8 +4,11 @@ import { Stack } from '@mui/system';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
-const BankInfoForm = () => {
+const BankInfoForm = (props: any) => {
+  const { defRegister } = props;
+
   const { register } = useFormContext();
+  const regs = defRegister ? defRegister : register;
   return (
     <Stack spacing={2}>
       <h3>Bank Info</h3>
@@ -13,20 +16,20 @@ const BankInfoForm = () => {
         <Box sx={{ width: '45%' }}>
           <Stack spacing={1}>
             <Input
-              name="bankInfo.bankName"
-              register={register}
+              name="bankName"
+              register={regs}
               placeholder="Bank name"
               type="text"
             />
             <Input
-              name="bankInfo.branchNumber"
-              register={register}
+              name="branchNumber"
+              register={regs}
               placeholder="Branch number"
               type="number"
             />
             <Input
-              name="bankInfo.accountNumber"
-              register={register}
+              name="accountNumber"
+              register={regs}
               placeholder="Bank account number"
               type="number"
             />
@@ -34,7 +37,7 @@ const BankInfoForm = () => {
         </Box>
         <Box sx={{ width: '45%' }}>
           <Stack spacing={1}>
-            <select {...register('bankInfo.accountType')}>
+            <select {...regs('accountType')}>
               <option key="Checking" value="Checking">
                 Checking
               </option>
@@ -43,14 +46,14 @@ const BankInfoForm = () => {
               </option>
             </select>
             <Input
-              name="bankInfo.accountName"
-              register={register}
+              name="accountName"
+              register={regs}
               placeholder="Holder name"
               type="text"
             />
             <Input
-              name="bankInfo.transitNumber"
-              register={register}
+              name="transitNumber"
+              register={regs}
               placeholder="Transit number"
               type="number"
             />

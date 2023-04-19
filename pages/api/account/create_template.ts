@@ -16,17 +16,18 @@ export default async function createTemplate(
     const cuurentUser = await Users.find({ accessToken: token?.accessToken });
     const userId = cuurentUser[0]._id.toString();
     if (!req.body)return res.status(200).json({ result: 'template is empty' });
-      const { bankInfo, billTo, businessInfo } = req.body;
+    const { bankInfo, billTo, businessInfo } = req.body;
+
     switch (true) {
       case !!bankInfo:
         const newBanckInfo = await new BankInfo({
           userId: userId,
-          bankName: bankInfo.bankInfo.bankName,
-          transitNumber: bankInfo.bankInfo.transitNumber,
-          branchNumber: bankInfo.bankInfo.branchNumber,
-          accountNumber: bankInfo.bankInfo.accountNumber,
-          accountType: bankInfo.bankInfo.accountType,
-          holderName: bankInfo.bankInfo.accountName,
+          bankName: bankInfo.bankName,
+          transitNumber: bankInfo.transitNumber,
+          branchNumber: bankInfo.branchNumber,
+          accountNumber: bankInfo.accountNumber,
+          accountType: bankInfo.accountType,
+          holderName: bankInfo.accountName,
           template: true,
         });
         await newBanckInfo.save();
@@ -34,12 +35,12 @@ export default async function createTemplate(
       case !!billTo:
         const newBillTo = await new Bills({
           userId: userId,
-          companyName: billTo.billTo.companyName,
-          address: billTo.billTo.addressLine1,
-          city: billTo.billTo.city,
-          province: billTo.billTo.province,
-          country: billTo.billTo.country,
-          postal: billTo.billTo.postalCode,
+          companyName: billTo.companyName,
+          address: billTo.addressLine1,
+          city: billTo.city,
+          province: billTo.province,
+          country: billTo.country,
+          postal: billTo.postalCode,
           template: true,
         });
         await newBillTo.save();
@@ -47,14 +48,14 @@ export default async function createTemplate(
       case !!businessInfo:
         const newBusinessInfo = await new BusinessInfo({
           userId: userId,
-          name: businessInfo.user.businessName,
-          address: businessInfo.user.addressLine1,
-          city: businessInfo.user.city,
-          province: businessInfo.user.province,
-          country: businessInfo.user.country,
-          postal: businessInfo.user.postalCode,
-          phone: businessInfo.user.phoneNumber,
-          email: businessInfo.user.email,
+          name: businessInfo.businessName,
+          address: businessInfo.addressLine1,
+          city: businessInfo.city,
+          province: businessInfo.province,
+          country: businessInfo.country,
+          postal: businessInfo.postalCode,
+          phone: businessInfo.phoneNumber,
+          email: businessInfo.email,
           template: true,
         });
         await newBusinessInfo.save();

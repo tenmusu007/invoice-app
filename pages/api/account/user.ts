@@ -35,9 +35,6 @@ export default async function getUserData(req: NextApiRequest, res: NextApiRespo
       name: cuurentUser[0].name,
       image: cuurentUser[0].image,
       language: userInfo.language,
-      businessInfo: businessInfo,
-      billTo: billTo,
-      bankInfo: bankInfo,
     });
   } catch (error) {
     res.status(400).json(error);
