@@ -35,7 +35,7 @@ export default async function createInvoice(
       postal: invoiceData.billTo.postalCode,
       template: false,
     });
-    // await newBillTo.save();
+    await newBillTo.save();
     const billToId: string = newBillTo._id.toString();
 
     // Business Info
@@ -51,7 +51,7 @@ export default async function createInvoice(
       email: invoiceData.user.email,
       template: false,
     });
-    // await newBusinessInfo.save();
+    await newBusinessInfo.save();
     const businessInfoId: string = newBusinessInfo._id.toString();
 
     const newInvoice = await new Invoice({

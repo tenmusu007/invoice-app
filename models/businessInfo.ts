@@ -1,5 +1,18 @@
 import { Schema, model, models } from 'mongoose';
-const BusinessInfoSchema = new Schema({
+
+interface BusinessInfoSchema {
+  userId: string;
+  name: string;
+  address: string;
+  city: string;
+  province: string;
+  country: string;
+  postal: string;
+  phone: string;
+  email: string;
+  template: boolean;
+}
+const BusinessInfoSchema = new Schema<BusinessInfoSchema>({
   userId: {
     type: String,
     required: true,
@@ -30,9 +43,9 @@ const BusinessInfoSchema = new Schema({
   },
   template: {
     type: Boolean,
-    default:false
-  }
+    default: false,
+  },
 });
 const BusinessInfo =
-  models.BusinessInfo || model('BusinessInfo', BusinessInfoSchema);
+  models.BusinessInfo || model<BusinessInfoSchema>('BusinessInfo', BusinessInfoSchema);
 export default BusinessInfo;
