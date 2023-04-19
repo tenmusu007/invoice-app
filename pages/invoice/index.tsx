@@ -38,7 +38,7 @@ const InvoiceForm = () => {
 
     // try {
     //   router.push({
-    //     pathname: '/pdf-test'
+    //     pathname: '/pdf-view'
     //   });
     //   setTimeout(() => {
     //     router.reload();
