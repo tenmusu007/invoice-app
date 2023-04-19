@@ -9,6 +9,11 @@ const TestPDF = dynamic(
   }
 );
 
+const frameStyle = {
+  height: '100%',
+  marginTop: 160,
+} as const;
+
 const PDFViewTest = () => {
   const [client, setClient] = useState<boolean>(false);
 
@@ -17,7 +22,7 @@ const PDFViewTest = () => {
   }, []);
 
   return (
-    <div style={{ height: '100%' }}>
+    <div style={frameStyle}>
       <TestPDF />
     </div>
   );

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@src/components/molecules/BillToForm';
+import BillToForm from '@src/components/Molecules/BillToForm';
 import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
 import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
 import InfoForm from 'src/pages/invoiceForm/InfoForm';

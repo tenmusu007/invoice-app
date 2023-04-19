@@ -30,7 +30,23 @@
           "accountType": "Checking",
           "accountName": "My account",
           "transitNumber": 1
-        }
+        },
+        "items": [
+          {
+            "name": "Item1",
+            "quantity": "1",
+            "unitPrice": "100",
+            "tax": "10",
+            "amount": "110"
+          },
+          {
+            "name": "Item1",
+            "quantity": "1",
+            "unitPrice": "100",
+            "tax": "10",
+            "amount": "110"
+          }
+        ]
       }
     ]
   }

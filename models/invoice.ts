@@ -1,8 +1,5 @@
 import { Schema, model, models } from 'mongoose';
 
-const isTemplate = true;
-
-const billToType = isTemplate ? String : Object;
 const InvoiceSchema = new Schema({
   userId: {
     type: String,
@@ -25,7 +22,7 @@ const InvoiceSchema = new Schema({
     required: true,
   },
   billTo: {
-    type: billToType,
+    type: String,
     required: true,
   },
   businessInfo: {
@@ -34,6 +31,14 @@ const InvoiceSchema = new Schema({
   },
   items: {
     type: Array,
+    required: true,
+  },
+  total: {
+    type: Number,
+    required: true,
+  },
+  subTotal: {
+    type: Number,
     required: true,
   },
 });
