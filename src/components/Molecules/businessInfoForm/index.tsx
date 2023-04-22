@@ -7,10 +7,11 @@ import { Box } from '@mui/material';
 import { Stack } from '@mui/system';
 import { BusinessInfo } from 'types/template';
 type Props = {
-  template?: BusinessInfo;
+  defRegister?: any;
+  disabled?: boolean;
 };
-const BusinessInfoForm = (props: any) => {
-  const { defRegister } = props;
+const BusinessInfoForm = (props: Props) => {
+  const { defRegister,disabled } = props;
   const { register } = useFormContext<BusinessInfoType>();
   const regs = defRegister ? defRegister : register;
   return (
@@ -22,44 +23,57 @@ const BusinessInfoForm = (props: any) => {
           type="text"
           placeholder="Your/Business Name"
           register={regs}
+          disabled={disabled}
         />
         <Input
           name="businessInfo.addressLine1"
           type="text"
           placeholder="Address line 1"
           register={regs}
+          disabled={disabled}
         />
         <Input
           name="businessInfo.city"
           type="text"
           placeholder="City"
           register={regs}
+          disabled={disabled}
         />
         <Input
           name="businessInfo.province"
           type="text"
           placeholder="Province"
           register={regs}
+          disabled={disabled}
         />
         <Input
           name="businessInfo.country"
           type="text"
           placeholder="Country"
           register={regs}
+          disabled={disabled}
         />
         <Input
           name="businessInfo.postalCode"
           type="text"
           placeholder="Postal Code"
           register={regs}
+          disabled={disabled}
         />
         <Input
           name="businessInfo.phoneNumber"
           type="text"
           placeholder="Phone number"
           register={regs}
+          disabled={disabled}
         />
-        <Input name="email" type="text" placeholder="Email" register={regs} />
+        <Input
+          name="businessInfo.email"
+          type="text"
+          placeholder="Email"
+          register={regs}
+          disabled={disabled}
+        />
       </Stack>
     </Box>
   );

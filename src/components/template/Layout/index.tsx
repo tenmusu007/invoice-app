@@ -6,7 +6,7 @@ const Layout = ({ children }: Children) => {
   return (
     <>
       <Header />
-      <Container component="main" fixed >
+      <Container component="main" fixed>
         <BoxLayout>{children}</BoxLayout>
       </Container>
     </>
