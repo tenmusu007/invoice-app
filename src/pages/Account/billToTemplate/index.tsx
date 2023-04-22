@@ -2,7 +2,6 @@ import { Box, Stack } from '@mui/material';
 import BillToForm from '@src/components/molecules/BillToForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
-import { Modal as ModalType } from 'types/modal';
 import { BillTo as BillToType } from 'types/billTo';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useBillToTemplateHooks } from './useBillToTemplateHooks';

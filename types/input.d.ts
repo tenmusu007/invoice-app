@@ -17,5 +17,4 @@ export type Input = {
   register: UseFormRegister<FieldValues>;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   id?: string;
-  value:string
 };

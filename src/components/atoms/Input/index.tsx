@@ -8,7 +8,6 @@ const Input = ({
   register,
   onChange,
   id,
-  value,
 }: InputType | any) => {
   return (
     <input
