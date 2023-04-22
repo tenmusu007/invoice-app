@@ -1,4 +1,4 @@
-import InvoiceCard from 'src/pages/mylist/InvoiceCard';
+import InvoiceCard from '@src/pages/mylist/InvoiceCard';
 import { Grid } from '@mui/material';
 import dummyData from '../../../mocks/mylist.json';
 import { ApiInstance } from 'helper/ApiInstance';
@@ -8,8 +8,9 @@ const MylistPage = () => {
   const { list }: any = dummyData.data;
   const { action, state } = useMyListHooks()
   useEffect(() => {
-    action.hanleFetchMyList();
+    action.handleFetchMyList();
   }, []);
+
   return (
     <>
       <Grid container spacing={4} textAlign={'center'}>

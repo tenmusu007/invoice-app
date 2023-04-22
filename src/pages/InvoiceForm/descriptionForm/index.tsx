@@ -8,8 +8,11 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddIcon from '@mui/icons-material/Add';
 import { Stack } from '@mui/system';
 import { useTotalContext } from 'Context/TotalContext';
-
-const DescriptionForm = () => {
+type Props = {
+  disabled?: boolean;
+}
+const DescriptionForm = (props: Props) => {
+  const { disabled } = props;
   const totalContext = useContext(useTotalContext);
   const { register, control } = useFormContext<DescriptionType>();
 
@@ -53,24 +56,28 @@ const DescriptionForm = () => {
                   <TextField
                     {...register(`description.${index}.name`)}
                     size="small"
+                    disabled={disabled}
                   />
                 </Grid>
                 <Grid item xs={2}>
                   <TextField
                     {...register(`description.${index}.quantity`)}
                     size="small"
+                    disabled={disabled}
                   />
                 </Grid>
                 <Grid item xs={2}>
                   <TextField
                     {...register(`description.${index}.unitPrice`)}
                     size="small"
+                    disabled={disabled}
                   />
                 </Grid>
                 <Grid item xs={2}>
                   <TextField
                     {...register(`description.${index}.tax`)}
                     size="small"
+                    disabled={disabled}
                   />
                 </Grid>
                 <Grid item xs={1}>
@@ -78,12 +85,13 @@ const DescriptionForm = () => {
                     {...register(`description.${index}.amount`)}
                     size="small"
                     value={totalContext?.amount[index]}
+                    disabled={disabled}
                   />
                 </Grid>
                 <Grid item xs={1}>
-                  <IconButton aria-label="delete" onClick={() => remove(index)}>
+                  {!disabled && <IconButton aria-label="delete" onClick={() => remove(index)}>
                     <DeleteForeverIcon />
-                  </IconButton>
+                  </IconButton>}
                 </Grid>
               </Grid>
             </React.Fragment>

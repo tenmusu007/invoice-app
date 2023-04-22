@@ -29,6 +29,10 @@ const InvoiceSchema = new Schema({
     type: String,
     required: true,
   },
+  bankInfo: {
+    type: String,
+    required: true,
+  },
   items: {
     type: Array,
     required: true,

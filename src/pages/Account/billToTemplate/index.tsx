@@ -55,7 +55,6 @@ const BillToTemplate = (props: Props) => {
           >
             <BillToForm
               defRegister={template ? register : ''}
-              template={template}
             />
 
             <Box width={2}>
