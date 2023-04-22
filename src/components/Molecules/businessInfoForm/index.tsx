@@ -5,61 +5,61 @@ import { useFormContext } from 'react-hook-form';
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 import { Box } from '@mui/material';
 import { Stack } from '@mui/system';
-
-const BusinessInfoForm = () => {
+import { BusinessInfo } from 'types/template';
+type Props = {
+  template?: BusinessInfo;
+};
+const BusinessInfoForm = (props: any) => {
+  const { defRegister } = props;
   const { register } = useFormContext<BusinessInfoType>();
+  const regs = defRegister ? defRegister : register;
   return (
     <Box sx={{ width: '45%' }}>
       <h3>Business Info</h3>
       <Stack spacing={0.5}>
         <Input
-          name="user.businessName"
+          name="businessInfo.businessName"
           type="text"
           placeholder="Your/Business Name"
-          register={register}
+          register={regs}
         />
         <Input
-          name="user.addressLine1"
+          name="businessInfo.addressLine1"
           type="text"
           placeholder="Address line 1"
-          register={register}
+          register={regs}
         />
         <Input
-          name="user.city"
+          name="businessInfo.city"
           type="text"
           placeholder="City"
-          register={register}
+          register={regs}
         />
         <Input
-          name="user.province"
+          name="businessInfo.province"
           type="text"
           placeholder="Province"
-          register={register}
+          register={regs}
         />
         <Input
-          name="user.country"
+          name="businessInfo.country"
           type="text"
           placeholder="Country"
-          register={register}
+          register={regs}
         />
         <Input
-          name="user.postalCode"
+          name="businessInfo.postalCode"
           type="text"
           placeholder="Postal Code"
-          register={register}
+          register={regs}
         />
         <Input
-          name="user.phoneNumber"
+          name="businessInfo.phoneNumber"
           type="text"
           placeholder="Phone number"
-          register={register}
+          register={regs}
         />
-        <Input
-          name="user.email"
-          type="text"
-          placeholder="Email"
-          register={register}
-        />
+        <Input name="email" type="text" placeholder="Email" register={regs} />
       </Stack>
     </Box>
   );

@@ -6,6 +6,6 @@ export type Button = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | Dispatch<SetStateAction<boolean>>;
   sx?: SxProps<Theme> | undefined;
   variant?: 'text' | 'outlined' | 'contained' | undefined;
-  type?: 'submit' | undefined;
+  type?: 'submit' | undefined | 'button';
   icon?: React.ReactNode;
 };

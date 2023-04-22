@@ -15,7 +15,9 @@ export default async function createTemplate(
     const token = await getToken({ req });
     const cuurentUser = await Users.find({ accessToken: token?.accessToken });
     const userId = cuurentUser[0]._id.toString();
-    const { bankInfo, billTo, businessInfo } = req.body;
+    if (!req.body) return res.status(200).json({ result: 'template is empty' });
+    const { bankInfo, billTo, businessInfo } = await req.body;
+
     switch (true) {
       case !!bankInfo:
         const newBanckInfo = await new BankInfo({
@@ -46,14 +48,14 @@ export default async function createTemplate(
       case !!businessInfo:
         const newBusinessInfo = await new BusinessInfo({
           userId: userId,
-          name: businessInfo.user.businessName,
-          address: businessInfo.user.addressLine1,
-          city: businessInfo.user.city,
-          province: businessInfo.user.province,
-          country: businessInfo.user.country,
-          postal: businessInfo.user.postalCode,
-          phone: businessInfo.user.phoneNumber,
-          email: businessInfo.user.email,
+          name: businessInfo.businessInfo.businessName,
+          address: businessInfo.businessInfo.addressLine1,
+          city: businessInfo.businessInfo.city,
+          province: businessInfo.businessInfo.province,
+          country: businessInfo.businessInfo.country,
+          postal: businessInfo.businessInfo.postalCode,
+          phone: businessInfo.businessInfo.phoneNumber,
+          email: businessInfo.businessInfo.email,
           template: true,
         });
         await newBusinessInfo.save();
