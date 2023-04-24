@@ -12,4 +12,5 @@ describe('API', () => {
     expect(response.status).toBe(200);
   });
 });
-const hogehoge =""
+const hogehoge = ""
+const hogehoge2 = ""
