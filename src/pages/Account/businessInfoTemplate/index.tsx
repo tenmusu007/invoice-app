@@ -2,16 +2,14 @@ import { Box, Stack } from '@mui/material';
 import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
 import Button from '@src/components/atoms/Button';
 import Modal from '@src/components/organisms/Modal';
-import { Modal as ModalType } from 'types/modal';
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useBusinessTemplateHooks } from './useBusinessTemplateHooks';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import Input from '@src/components/atoms/Input';
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
-  template: any | undefined;
+  template: BusinessInfoType | undefined;
 };
 const BusinessInfoTemplate = (props: Props) => {
   const { openModal, setOpenModal, template } = props;
