@@ -42,7 +42,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "prettier --write . && eslint --fix .",
-      "pre-push": "jest"
+      "pre-push": "jest test"
     }
   },
   "lint-staged": {
