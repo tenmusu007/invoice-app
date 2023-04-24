@@ -7,7 +7,7 @@ export const useMyListHooks = () => {
       method: 'get',
       url: 'mylist/get',
     });
-    if(res.status !== 200) return console.error('fail');
+    if (res.status !== 200) return console.error('fail');
 
     setmyInvoice(res.data);
   };
@@ -18,3 +18,4 @@ export const useMyListHooks = () => {
     state: { myInvoice },
   };
 };
+

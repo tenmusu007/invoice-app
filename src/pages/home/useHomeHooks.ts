@@ -14,6 +14,8 @@ export const useHomeHooks = (props: any) => {
       url: 'user/create',
       data: data,
     });
+    console.log(res);
+    
     setUserInfo(res.data);
   };
   return {

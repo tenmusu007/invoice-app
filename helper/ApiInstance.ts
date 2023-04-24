@@ -3,7 +3,13 @@ import { Api } from '../types/api';
 
 export const ApiInstance = async (api: Api) => {
   let res: any = undefined;
-  const Url = process.env.NEXT_PUBLIC_BASE_URL + `/api/${api.url}`;
+  let Url: string = '';
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    Url = process.env.NEXT_PUBLIC_BASE_URL + `/api/${api.url}`;
+  } else {
+    Url = `http://localhost:3000/api/${api.url}`
+  }
+
   try {   
     switch (api.method) {
       case 'get':
