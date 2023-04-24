@@ -22,5 +22,6 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "helper/pdf-worker.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "parser": "@typescript-eslint/parser"
 }

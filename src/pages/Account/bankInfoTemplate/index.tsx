@@ -19,7 +19,7 @@ const BankInfoTemplate = (props: Props) => {
     template: template,
     getValues: getValues,
   };
-  const { action, state } = useBankInfoTemplateHooks(templateSet);
+  const { action } = useBankInfoTemplateHooks(templateSet);
 
   useEffect(() => {
     if (template) {

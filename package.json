@@ -10,7 +10,6 @@
     "test": "jest",
     "prepare": "husky install",
     "types:check": "tsc --pretty --noEmit"
-
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -47,9 +46,7 @@
       "stylelint --fix"
     ],
     "*.{js,css,md}": "prettier --write",
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --cache --cache-location .next/cache/eslint/ --fix"
-    ]
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   },
   "devDependencies": {
     "@types/jest": "^28.0.0",
