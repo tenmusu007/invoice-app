@@ -18,6 +18,12 @@
   },
   "rules": {
     "no-console": "error",
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "rules": {
+      "no-unused-vars": [
+        "error",
+        { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+      ]
+    }
   }
 }
