@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "types:check": "tsc --pretty --noEmit"
+
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -41,14 +43,12 @@
     "typescript": "^5.0.4"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
     "*.{css,less,sass,scss}": [
       "stylelint --fix"
     ],
     "*.{js,css,md}": "prettier --write",
-    "*.@(ts|tsx)": [
-      "yarn lint",
-      "yarn format"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --cache-location .next/cache/eslint/ --fix"
     ]
   },
   "devDependencies": {
