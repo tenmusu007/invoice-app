@@ -8,7 +8,6 @@ describe('API', () => {
       url: 'mylist/get_invoice_data',
       data: mockData,
     });
-    console.log(response.data);
     expect(response.status).toBe(200);
   });
 });
