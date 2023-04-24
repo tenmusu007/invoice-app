@@ -1,12 +1,11 @@
+import { useEffect } from 'react';
+import dummyData from '../../../mocks/mylist.json';
+import { useMyListHooks } from './useMyListHooks';
 import InvoiceCard from '@src/pages/mylist/InvoiceCard';
 import { Grid } from '@mui/material';
-import dummyData from '../../../mocks/mylist.json';
-import { ApiInstance } from 'helper/ApiInstance';
-import { useEffect } from 'react';
-import { useMyListHooks } from './useMyListHooks';
 const MylistPage = () => {
   const { list }: any = dummyData.data;
-  const { action, state } = useMyListHooks()
+  const { action } = useMyListHooks();
   useEffect(() => {
     action.handleFetchMyList();
   }, []);
