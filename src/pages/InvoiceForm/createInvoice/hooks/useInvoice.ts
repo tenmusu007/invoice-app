@@ -14,12 +14,18 @@ export const useInvoice = () => {
 
   // Connect to Mongo
   const storeInvoice = async (data: InvoiceType) => {
-    const res = await ApiInstance({
-      method: 'post',
-      url: 'invoice/create',
-      data: { invoice: data },
-    });
-    if (res.status === 400) return console.log('fail');
+    try {
+      const res = await ApiInstance({
+        method: 'post',
+        url: 'invoice/create',
+        data: { invoice: data },
+        header: { 'Content-Type': 'application/json' },
+      });
+      if (res.status === 400) return null;
+      return res.data;
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const generateInvoice: SubmitHandler<InvoiceType> = async (
@@ -27,18 +33,18 @@ export const useInvoice = () => {
     e: any
   ) => {
     e.preventDefault();
-    // console.log(`Submit`, data);
     //Cannot get total and subTotal because reset method works.
+    const res = await storeInvoice(data);
+    if (!res) return console.log('failed to store invoice');
+    const newInvoiceId: string = res.data;
+    console.log('new invoice id', newInvoiceId);
+    // console.log('res', res);
 
+    sessionStorage.setItem('invoice_id', newInvoiceId);
     try {
-      // console.log('data', data);
-      storeInvoice(data);
-      // router.push({
-      //   pathname: '/pdf-view',
-      // });
-      // setTimeout(() => {
-      //   router.reload();
-      // }, 1000);
+      router.push({
+        pathname: '/pdf-view',
+      });
     } catch (e: any) {
       console.log('Error', e.message);
     }

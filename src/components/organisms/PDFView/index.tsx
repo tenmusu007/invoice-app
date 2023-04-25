@@ -10,6 +10,9 @@ import {
 
 import dummyInvoice from 'mocks/dummyInvoice.json';
 import { Invoice as InvoiceType } from 'types/inputValue';
+import { useRouter } from 'next/router';
+import Invoice from '@models/invoice';
+import { ApiInstance } from 'helper/ApiInstance';
 
 const styles = StyleSheet.create({
   page: { paddingTop: 200 },
@@ -83,7 +86,27 @@ const styles = StyleSheet.create({
 });
 
 const PDF = () => {
-  const [invoice, setInvoice] = useState<InvoiceType>();
+  const getInvoice = async (id: string) => {
+    try {
+      const response = await ApiInstance({
+        method: 'post',
+        url: `/invoice/get`,
+        data: {invoiceId: id}
+      });
+      if(response.status === 400) return null;
+      console.log('response', response);
+    }catch (error) {
+      console.log('error', error);
+    }
+  }
+  useEffect(() => {
+    const id:string | null = sessionStorage.getItem('invoice_id');
+    console.log('id', id);
+    if (id === null) return;
+    getInvoice(id);
+  },[])
+  const [invoiceData, setInvoiceData] = useState<InvoiceType>();
+
   return (
     <Document>
       <Page size="A4">
@@ -176,10 +199,13 @@ const PDF = () => {
 };
 
 const PDFView = () => {
+  const router = useRouter();
+  console.log('router', router.query);
   const [client, setClient] = useState<boolean>(false);
 
   useEffect(() => {
     setClient(true);
+    console.log('router', router.query);
   }, []);
   return (
     <div>

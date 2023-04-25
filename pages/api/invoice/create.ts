@@ -6,6 +6,7 @@ import Users from '@models/user';
 import { Invoice as InvoiceType } from 'types/inputValue';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { JWT, getToken } from 'next-auth/jwt';
+import BankInfo from '@models/bankInfo';
 
 // Make sure we delete all the console.log
 export default async function createInvoice(
@@ -17,12 +18,9 @@ export default async function createInvoice(
     console.log('successfully connected');
     const token: JWT | null = await getToken({ req });
     const currentUser = await Users.find({ accessToken: token?.accessToken });
-    console.log('current user', currentUser, typeof currentUser);
     const currentUserId: string = await currentUser[0]._id.toString();
     // As soon as fixed the property of invoice user to businessInfo, give InvoiceType to invoiceData
     const invoiceData = await req.body.invoice;
-
-    // console.log('invoice data', invoiceData);
 
     // Bill to
     const newBillTo = await new Bills({
@@ -54,6 +52,8 @@ export default async function createInvoice(
     await newBusinessInfo.save();
     const businessInfoId: string = newBusinessInfo._id.toString();
 
+    const bankInfoId = await BankInfo.find({ userId: currentUserId });
+
     const newInvoice = await new Invoice({
       userId: currentUserId,
       invoiceNumber: invoiceData.info.invoiceNumber,
@@ -61,13 +61,16 @@ export default async function createInvoice(
       due: invoiceData.info.dueDate,
       billTo: billToId,
       businessInfo: businessInfoId,
+      bankInfo: bankInfoId[0]._id.toString(),
       items: invoiceData.description,
       total: invoiceData.total,
       subTotal: invoiceData.subTotal,
     });
 
-    // await newInvoice.save();
-    res.status(200).json({ res: 'You nailed it!!' });
+    await newInvoice.save();
+    res
+      .status(200)
+      .json({ res: 'You nailed it!!', data: newInvoice._id.toString() });
   } catch (e) {
     console.log(e);
     res.status(400).json({ res: 'Hell no!!' });

@@ -7,6 +7,7 @@ interface InvoiceSchema {
   due: string;
   billTo: string;
   businessInfo: string;
+  bankInfo: string;
   items: Array<any>;
   total: number;
   subTotal: number;
@@ -37,6 +38,10 @@ const InvoiceSchema = new Schema({
     type: String,
     required: true,
   },
+  bankInfo: {
+    type: String,
+    required: true,
+  },
   items: {
     type: Array,
     required: true,
@@ -50,5 +55,6 @@ const InvoiceSchema = new Schema({
     required: true,
   },
 });
-const Invoice = models.Invoice || model<InvoiceSchema>('Invoice', InvoiceSchema);
+const Invoice =
+  models.Invoice || model('Invoice', InvoiceSchema);
 export default Invoice;
