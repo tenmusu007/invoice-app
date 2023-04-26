@@ -37,8 +37,6 @@ export const useInvoice = () => {
     const res = await storeInvoice(data);
     if (!res) return console.log('failed to store invoice');
     const newInvoiceId: string = res.data;
-    console.log('new invoice id', newInvoiceId);
-    // console.log('res', res);
 
     sessionStorage.setItem('invoice_id', newInvoiceId);
     try {

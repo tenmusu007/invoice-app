@@ -11,7 +11,6 @@ import {
 import dummyInvoice from 'mocks/dummyInvoice.json';
 import { Invoice as InvoiceType } from 'types/inputValue';
 import { useRouter } from 'next/router';
-import Invoice from '@models/invoice';
 import { ApiInstance } from 'helper/ApiInstance';
 
 const styles = StyleSheet.create({
@@ -86,26 +85,28 @@ const styles = StyleSheet.create({
 });
 
 const PDF = () => {
+  // Put all of them in a custom hook
+  const [invoiceData, setInvoiceData] = useState<InvoiceType>();
   const getInvoice = async (id: string) => {
     try {
       const response = await ApiInstance({
         method: 'post',
         url: `/invoice/get`,
-        data: {invoiceId: id}
+        data: { invoiceId: id },
       });
-      if(response.status === 400) return null;
+      if (response.status === 400) return null;
       console.log('response', response);
-    }catch (error) {
+    } catch (error) {
       console.log('error', error);
     }
-  }
+  };
   useEffect(() => {
-    const id:string | null = sessionStorage.getItem('invoice_id');
+    const id: string | null = sessionStorage.getItem('invoice_id');
     console.log('id', id);
     if (id === null) return;
     getInvoice(id);
-  },[])
-  const [invoiceData, setInvoiceData] = useState<InvoiceType>();
+    // Pur invoice data in state
+  }, []);
 
   return (
     <Document>
