@@ -2,11 +2,11 @@ import React from 'react';
 import { FormProvider } from 'react-hook-form';
 import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import BillToForm from '@src/components/Molecules/billToForm';
-import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
+import BillToForm from '@src/components/molecules/BillToForm';
+import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
 import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
 import InfoForm from 'src/pages/InvoiceForm/infoForm';
-import BankInfoForm from '@src/components/Molecules/bankInfoForm';
+import BankInfoForm from '@src/components/molecules/BankInfoForm';
 
 import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
 import { useInvoice } from './hooks/useInvoice';

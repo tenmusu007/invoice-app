@@ -6,7 +6,7 @@ import loginImage from 'public/login.png';
 import GoogleButton from 'react-google-button';
 import { useLocale } from 'helper/useLocale';
 import LoginText from './text.json';
-import { useLoginHooks } from './hooks';
+import { useLoginHooks } from './useLoginHooks';
 const LoginPage = (props: any) => {
   const { action } = useLoginHooks();
   const { t } = useLocale(LoginText);

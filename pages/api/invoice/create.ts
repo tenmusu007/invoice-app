@@ -21,7 +21,10 @@ export default async function createInvoice(
     const currentUserId: string = await currentUser[0]._id.toString();
     // As soon as fixed the property of invoice user to businessInfo, give InvoiceType to invoiceData
     const invoiceData = await req.body.invoice;
-
+    console.log('invoiceData', invoiceData);
+    //Make sure every property is correct means no typo and matches with the model DONE
+    // push this branch and wait till finish
+    // check if each data is able to be saved in the database one by one DONE
     // Bill to
     const newBillTo = await new Bills({
       userId: currentUserId,
@@ -39,20 +42,32 @@ export default async function createInvoice(
     // Business Info
     const newBusinessInfo = await new BusinessInfo({
       userId: currentUserId,
-      name: invoiceData.user.businessName,
-      address: invoiceData.user.addressLine1,
-      city: invoiceData.user.city,
-      province: invoiceData.user.province,
-      country: invoiceData.user.country,
-      postal: invoiceData.user.postalCode,
-      phone: invoiceData.user.phoneNumber,
-      email: invoiceData.user.email,
+      name: invoiceData.businessInfo.businessName,
+      address: invoiceData.businessInfo.addressLine1,
+      city: invoiceData.businessInfo.city,
+      province: invoiceData.businessInfo.province,
+      country: invoiceData.businessInfo.country,
+      postal: invoiceData.businessInfo.postalCode,
+      phone: invoiceData.businessInfo.phoneNumber,
+      email: invoiceData.businessInfo.email,
       template: false,
     });
     await newBusinessInfo.save();
     const businessInfoId: string = newBusinessInfo._id.toString();
 
-    const bankInfoId = await BankInfo.find({ userId: currentUserId });
+    // Bank Info
+    const bankInfo = await new BankInfo({
+      userId: currentUserId,
+      bankName: invoiceData.bankInfo.bankName,
+      transitNumber: invoiceData.bankInfo.transitNumber,
+      branchNumber: invoiceData.bankInfo.branchNumber,
+      accountNumber: invoiceData.bankInfo.accountNumber,
+      accountType: invoiceData.bankInfo.accountType,
+      holderName: invoiceData.bankInfo.accountName,
+      template: false,
+    });
+    await bankInfo.save();
+    const bankInfoId: string = bankInfo._id.toString();
 
     const newInvoice = await new Invoice({
       userId: currentUserId,
@@ -61,7 +76,7 @@ export default async function createInvoice(
       due: invoiceData.info.dueDate,
       billTo: billToId,
       businessInfo: businessInfoId,
-      bankInfo: bankInfoId[0]._id.toString(),
+      bankInfo: bankInfoId,
       items: invoiceData.description,
       total: invoiceData.total,
       subTotal: invoiceData.subTotal,

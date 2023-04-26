@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { SelectType } from 'types/select';
 const SelectInput = (props: Partial<SelectType>) => {
-  const { items, name, language, template,onChange } = props;
+  const { items, name, language, template, onChange } = props;
   return (
     <FormControl sx={{ m: 1, minWidth: 200 }}>
       <>
@@ -20,17 +20,23 @@ const SelectInput = (props: Partial<SelectType>) => {
           label="Language"
           onChange={onChange}
         >
-          {items && items?.map((item: any) => {
-          return (
-            <MenuItem value={item.value} key={item.name}>
-              {item.name}
+          {items &&
+            items?.map((item: any) => {
+              return (
+                <MenuItem value={item.value} key={item.name}>
+                  {item.name}
+                </MenuItem>
+              );
+            })}
+          {template && (
+            <MenuItem value={'create'} key={'0'}>
+              {'new template'}
             </MenuItem>
-          );
-        })}
+          )}
           {template &&
             template?.map((item: any) => {
               return (
-                <MenuItem value={item._id} key={item.userId}>
+                <MenuItem value={item} key={item._id}>
                   {item.companyName}
                   {item.name}
                   {item.bankName}

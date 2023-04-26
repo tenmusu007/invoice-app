@@ -3,9 +3,15 @@ import { Box } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
+type Props = {
+  defRegister?: any;
+  disabled?: boolean;
+};
+const BankInfoForm = (props: Props) => {
+  const { defRegister ,disabled} = props;
 
-const BankInfoForm = () => {
   const { register } = useFormContext();
+  const regs = defRegister ? defRegister : register;
   return (
     <Stack spacing={2}>
       <h3>Bank Info</h3>
@@ -14,27 +20,30 @@ const BankInfoForm = () => {
           <Stack spacing={1}>
             <Input
               name="bankInfo.bankName"
-              register={register}
+              register={regs}
               placeholder="Bank name"
               type="text"
+              disabled={disabled}
             />
             <Input
               name="bankInfo.branchNumber"
-              register={register}
+              register={regs}
               placeholder="Branch number"
               type="number"
+              disabled={disabled}
             />
             <Input
               name="bankInfo.accountNumber"
-              register={register}
+              register={regs}
               placeholder="Bank account number"
               type="number"
+              disabled={disabled}
             />
           </Stack>
         </Box>
         <Box sx={{ width: '45%' }}>
           <Stack spacing={1}>
-            <select {...register('bankInfo.accountType')}>
+            <select {...regs('bankInfo.accountType')} disabled={disabled}>
               <option key="Checking" value="Checking">
                 Checking
               </option>
@@ -44,15 +53,17 @@ const BankInfoForm = () => {
             </select>
             <Input
               name="bankInfo.accountName"
-              register={register}
+              register={regs}
               placeholder="Holder name"
               type="text"
+              disabled={disabled}
             />
             <Input
               name="bankInfo.transitNumber"
-              register={register}
+              register={regs}
               placeholder="Transit number"
               type="number"
+              disabled={disabled}
             />
           </Stack>
         </Box>

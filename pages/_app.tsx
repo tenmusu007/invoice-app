@@ -39,7 +39,7 @@ export default function App({
   }, [router]);
   return (
     <SessionProvider session={pageProps.session}>
-      <Box style={{ backgroundColor: '#B8C1EC' }}>
+      <Box style={{ backgroundColor: '#B8C1EC'}}>
         <Layout>
           <ModalContext>
             <TotalContext>
