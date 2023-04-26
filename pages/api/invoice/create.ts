@@ -22,9 +22,6 @@ export default async function createInvoice(
     // As soon as fixed the property of invoice user to businessInfo, give InvoiceType to invoiceData
     const invoiceData = await req.body.invoice;
     console.log('invoiceData', invoiceData);
-    //Make sure every property is correct means no typo and matches with the model DONE
-    // push this branch and wait till finish
-    // check if each data is able to be saved in the database one by one DONE
     // Bill to
     const newBillTo = await new Bills({
       userId: currentUserId,

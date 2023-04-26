@@ -12,6 +12,7 @@ import dummyInvoice from 'mocks/dummyInvoice.json';
 import { Invoice as InvoiceType } from 'types/inputValue';
 import { useRouter } from 'next/router';
 import { ApiInstance } from 'helper/ApiInstance';
+import { json } from 'stream/consumers';
 
 const styles = StyleSheet.create({
   page: { paddingTop: 200 },
@@ -96,6 +97,7 @@ const PDF = () => {
       });
       if (response.status === 400) return null;
       console.log('response', response);
+      return response.data;
     } catch (error) {
       console.log('error', error);
     }
@@ -104,9 +106,14 @@ const PDF = () => {
     const id: string | null = sessionStorage.getItem('invoice_id');
     console.log('id', id);
     if (id === null) return;
-    getInvoice(id);
-    // Pur invoice data in state
+    getInvoice(id).then((data) => {
+      if (data !== null) {
+        console.log('data', data);
+        setInvoiceData(data);
+      }
+    });
   }, []);
+  console.log('invoiceData', invoiceData);
 
   return (
     <Document>
