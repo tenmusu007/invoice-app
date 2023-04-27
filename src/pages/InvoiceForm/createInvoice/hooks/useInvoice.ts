@@ -1,10 +1,14 @@
+import { useTotalContext } from 'Context/TotalContext';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Invoice as InvoiceType } from 'types/inputValue';
 
 export const useInvoice = () => {
   const router = useRouter();
+  const totalContext = useContext(useTotalContext);
+  
   const methods = useForm<InvoiceType>({
     defaultValues: {
       description: [{ name: '', quantity: 0, unitPrice: 0, tax: 0, amount: 0 }],
@@ -34,7 +38,10 @@ export const useInvoice = () => {
   ) => {
     e.preventDefault();
     //Cannot get total and subTotal because reset method works.
-    const res = await storeInvoice(data);
+    const total:number = totalContext.total;
+    const subTotal:number = totalContext.subTotal;
+    const invoiceData = { ...data, total, subTotal };
+    const res = await storeInvoice(invoiceData);
     if (!res) return console.log('failed to store invoice');
     const newInvoiceId: string = res.data;
 

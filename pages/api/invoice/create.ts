@@ -8,6 +8,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { JWT, getToken } from 'next-auth/jwt';
 import BankInfo from '@models/bankInfo';
 
+
 // Make sure we delete all the console.log
 export default async function createInvoice(
   req: NextApiRequest,
@@ -83,8 +84,8 @@ export default async function createInvoice(
     res
       .status(200)
       .json({ res: 'You nailed it!!', data: newInvoice._id.toString() });
-  } catch (e) {
-    console.log(e);
+  } catch (e:any) {
+    console.log(e.message);
     res.status(400).json({ res: 'Hell no!!' });
   }
 }

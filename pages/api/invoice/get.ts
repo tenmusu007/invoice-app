@@ -4,6 +4,7 @@ import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
 import Invoice from '@models/invoice';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { Invoice as InvoiceType } from 'types/inputValue';
 
 export default async function getInvoice(
   req: NextApiRequest,
@@ -11,18 +12,20 @@ export default async function getInvoice(
 ) {
   try {
     await connectMongo();
+    // Needs to be got typed (extend with each type and add useId and _id)
+    //Those console.log are for debugging
     const id = await req.body.invoiceId;
     const invoice = await Invoice.findById(id);
-    console.log('invoice', invoice);
+    // console.log('invoice', invoice);
     const billTo = await Bills.findById(invoice?.billTo);
-    console.log('billTo', billTo);
+    // console.log('billTo', billTo);
     const businessInfo = await BusinessInfo.findById(invoice?.businessInfo);
-    console.log('businessInfo', businessInfo);
+    // console.log('businessInfo', businessInfo);
     const bankInfo = await BankInfo.findById(invoice?.bankInfo);
-    console.log('bankInfo', bankInfo);
+    // console.log('bankInfo', bankInfo);
 
-    console.log('invoice', invoice);
     // Reshape the invoice
+    // Need a specific type for this, extend with InvoiceType
     const formattedInvoice = {
       id: invoice._id,
       invoiceNumber: invoice.invoiceNumber,
@@ -64,11 +67,12 @@ export default async function getInvoice(
         tax: item.tax,
         amount: item.amount,
       })),
+      subTotal: invoice.subTotal,
       total: invoice.total
     };
-    console.log('formattedInvoice', formattedInvoice);
     // send the formatted invoice
-    res.status(200).json(invoice);
+    // Success
+    res.status(200).json(formattedInvoice);
   } catch (error) {
     console.log('error', error);
     res.status(400).json(error);
