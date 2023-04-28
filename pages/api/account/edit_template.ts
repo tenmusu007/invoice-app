@@ -13,7 +13,7 @@ export default async function editTemplate(
   try {
     await connectMongo();
     const token = await getToken({ req });
-    const cuurentUser = await Users.find({ accessToken: token?.accessToken });
+    const currentUser = await Users.find({ accessToken: token?.accessToken });
     const { bankInfo, billTo, businessInfo } = req.body;
 
     switch (true) {
@@ -28,7 +28,7 @@ export default async function editTemplate(
             branchNumber: bankInfo.branchNumber,
             accountNumber: bankInfo.accountNumber,
             accountType: bankInfo.accountType,
-            holderName: bankInfo.accountName,
+            holderName: bankInfo.holderName,
           },
         });
         break;

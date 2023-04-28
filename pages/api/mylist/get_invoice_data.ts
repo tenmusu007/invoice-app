@@ -14,7 +14,7 @@ export default async function getInvoiceData(
   // If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`
   try {
     const token = await getToken({ req });
-    const cuurentUser = await Users.find({ accessToken: token?.accessToken });
+    const currentUser = await Users.find({ accessToken: token?.accessToken });
     const invoiceId = req.body.invoiceId;
     const invoice = await Invoice.findById(invoiceId);
 
@@ -23,7 +23,7 @@ export default async function getInvoiceData(
       invoice?.businessInfo
     );
     const invoiceBankInfo = await BankInfo.findById(invoice.bankInfo);
-    
+
     const invoiceData = {
       _id: invoice?._id,
       invoiceNumber: invoice?.invoiceNumber,
@@ -33,7 +33,6 @@ export default async function getInvoiceData(
       businessInfo: invoiceBusinessInfo,
       bankInfo: invoiceBankInfo,
       item: invoice?.items,
-
     };
     res.status(200).json(invoiceData);
   } catch (error) {

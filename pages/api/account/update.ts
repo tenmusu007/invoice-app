@@ -10,9 +10,9 @@ export default async function update(
   try {
     const token = await getToken({ req });
     const { locale } = await req.body;
-    const cuurentUser = await Users.find({ accessToken: token?.accessToken });
+    const currentUser = await Users.find({ accessToken: token?.accessToken });
     const userInfo = await UserInFo.findOne({
-      userId: cuurentUser[0]._id.toString(),
+      userId: currentUser[0]._id.toString(),
     });
     const updateUser = await userInfo.updateOne({
       $set: {
