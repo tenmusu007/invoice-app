@@ -1,8 +1,8 @@
 export {};
-// test('check', () => {
-//   // eslint-disable-next-line no-console
-//   console.log('OK');
-// });
+test('check', () => {
+  // eslint-disable-next-line no-console
+  console.log('OK');
+});
 
 // describe('API', () => {
 //   test('test result', () => {

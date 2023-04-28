@@ -1,4 +1,4 @@
-import UserInFo from '@models/account';
+
 import BankInfo from '@models/bankInfo';
 import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
@@ -14,7 +14,7 @@ export default async function getInvoiceData(
   // If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`
   try {
     const token = await getToken({ req });
-    const cuurentUser = await Users.find({ accessToken: token?.accessToken });
+    await Users.find({ accessToken: token?.accessToken });
     const invoiceId = req.body.invoiceId;
     const invoice = await Invoice.findById(invoiceId);
 
