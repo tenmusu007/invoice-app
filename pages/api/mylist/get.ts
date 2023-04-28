@@ -10,9 +10,9 @@ export default async function get(req: NextApiRequest, res: NextApiResponse) {
   // If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`
   try {
     const token = await getToken({ req });
-    const cuurentUser = await Users.find({ accessToken: token?.accessToken });
+    const currentUser = await Users.find({ accessToken: token?.accessToken });
     const userInvocieList = await UserInFo.findOne({
-      userId: cuurentUser[0]._id.toString(),
+      userId: currentUser[0]._id.toString(),
     });
     res.status(200).json(userInvocieList.invoice);
   } catch (error) {

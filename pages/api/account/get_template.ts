@@ -13,8 +13,8 @@ export default async function getTemplate(
   try {
     await connectMongo();
     const token = await getToken({ req });
-    const cuurentUser = await Users.find({ accessToken: token?.accessToken });
-    const userId = cuurentUser[0]._id.toString();
+    const currentUser = await Users.find({ accessToken: token?.accessToken });
+    const userId = currentUser[0]._id.toString();
 
     const billsTemplates = await Bills.find({ userId: userId, template: true });
     const bankInfoTemplates = await BankInfo.find({
@@ -31,6 +31,6 @@ export default async function getTemplate(
       businessInfo: businessInfoTemplates,
     });
   } catch (error) {
-    res.status(400).json(error)
+    res.status(400).json(error);
   }
 }

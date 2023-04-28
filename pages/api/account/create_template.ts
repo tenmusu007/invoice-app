@@ -13,8 +13,8 @@ export default async function createTemplate(
   try {
     await connectMongo();
     const token = await getToken({ req });
-    const cuurentUser = await Users.find({ accessToken: token?.accessToken });
-    const userId = cuurentUser[0]._id.toString();
+    const currentUser = await Users.find({ accessToken: token?.accessToken });
+    const userId = currentUser[0]._id.toString();
     if (!req.body) return res.status(200).json({ result: 'template is empty' });
     const { bankInfo, billTo, businessInfo } = await req.body;
 

@@ -101,7 +101,7 @@ export const useAccountHooks = () => {
       setBillToData(undefined);
     }
     if (template.name) {
-      const formatedTemplate = {
+      const formattedTemplate = {
         _id: template._id,
         businessName: template.name,
         addressLine1: template?.address,
@@ -112,9 +112,9 @@ export const useAccountHooks = () => {
         phoneNumber: template?.phone,
         email: template?.email,
       };
-      setBusinessInfoData(formatedTemplate);
+      setBusinessInfoData(formattedTemplate);
     } else if (template.bankName) {
-      const formatedTemplate = {
+      const formattedTemplate = {
         _id: template._id,
         bankName: template.bankName,
         transitNumber: template.transitNumber,
@@ -123,9 +123,9 @@ export const useAccountHooks = () => {
         accountType: template.accountType,
         accountName: template.holderName,
       };
-      setBankInfoData(formatedTemplate);
+      setBankInfoData(formattedTemplate);
     } else if (template.companyName) {
-      const formatedTemplate = {
+      const formattedTemplate = {
         _id: template._id,
         companyName: template.companyName,
         addressLine1: template.address,
@@ -135,7 +135,7 @@ export const useAccountHooks = () => {
         postalCode: template.postal,
       };
 
-      setBillToData(formatedTemplate);
+      setBillToData(formattedTemplate);
     }
   };
   return {
