@@ -4,7 +4,10 @@ import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
 import Invoice from '@models/invoice';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Invoice as InvoiceType } from 'types/inputValue';
+import { BillToDB as BillToDBType } from 'types/billTo';
+import { BusinessInfoDB as BusinessInfoDBType } from 'types/businessInfo';
+import { BankInfoDB as BankInfoDBType } from 'types/bankInfo';
+import { InvoiceDataDB as InvoiceDataDBType } from 'types/invoiceData';
 
 export default async function getInvoice(
   req: NextApiRequest,
@@ -14,15 +17,15 @@ export default async function getInvoice(
     await connectMongo();
     // Needs to be got typed (extend with each type and add useId and _id)
     //Those console.log are for debugging
-    const id = await req.body.invoiceId;
-    const invoice = await Invoice.findById(id);
-    // console.log('invoice', invoice);
-    const billTo = await Bills.findById(invoice?.billTo);
-    // console.log('billTo', billTo);
-    const businessInfo = await BusinessInfo.findById(invoice?.businessInfo);
-    // console.log('businessInfo', businessInfo);
-    const bankInfo = await BankInfo.findById(invoice?.bankInfo);
-    // console.log('bankInfo', bankInfo);
+    const id: string = await req.body.invoiceId;
+    const invoice: InvoiceDataDBType = await Invoice.findById(id);
+    if (invoice === null) return;
+    const billTo: BillToDBType =
+      invoice && (await Bills.findById(invoice.billTo))!;
+    const businessInfo: BusinessInfoDBType =
+      invoice && (await BusinessInfo.findById(invoice?.businessInfo))!;
+    const bankInfo: BankInfoDBType =
+      invoice && (await BankInfo.findById(invoice?.bankInfo))!;
 
     // Reshape the invoice
     // Need a specific type for this, extend with InvoiceType
@@ -60,16 +63,25 @@ export default async function getInvoice(
         accountType: bankInfo.accountType,
         holderName: bankInfo.holderName,
       },
-      items: invoice.items.map((item: { name: any; quantity: any; unitPrice: any; tax: any; amount: any; }) => ({
-        name: item.name,
-        quantity: item.quantity,
-        unitPrice: item.unitPrice,
-        tax: item.tax,
-        amount: item.amount,
-      })),
+      items: invoice.items.map(
+        (item: {
+          name: string;
+          quantity: string;
+          unitPrice: string;
+          tax: string;
+          amount: number;
+        }) => ({
+          name: item.name,
+          quantity: item.quantity,
+          unitPrice: item.unitPrice,
+          tax: item.tax,
+          amount: item.amount,
+        })
+      ),
       subTotal: invoice.subTotal,
-      total: invoice.total
+      total: invoice.total,
     };
+    console.log('formattedInvoice', formattedInvoice);
     // send the formatted invoice
     // Success
     res.status(200).json(formattedInvoice);

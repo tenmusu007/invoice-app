@@ -16,7 +16,6 @@ export default async function createInvoice(
 ) {
   try {
     await connectMongo();
-    console.log('successfully connected');
     const token: JWT | null = await getToken({ req });
     const currentUser = await Users.find({ accessToken: token?.accessToken });
     const currentUserId: string = await currentUser[0]._id.toString();

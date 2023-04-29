@@ -1,6 +1,6 @@
+import { Types } from 'mongoose';
+
 export type BusinessInfo = {
-  _id?: string
-  userid?:string
   businessName?: String;
   addressLine1?: String;
   city?: String;
@@ -9,5 +9,12 @@ export type BusinessInfo = {
   postalCode?: String;
   phoneNumber?: String;
   email?: String;
-  [key: string]: string |any;
+  [key: string]: string | any;
+};
+
+export type BusinessInfoDB = BusinessInfo & {
+  _id: Types.ObjectId;
+  userId?: string;
+  template: boolean;
+  __v: number;
 };

@@ -1,6 +1,6 @@
+import { Types } from 'mongoose';
+
 export type BillTo = {
-  _id?: string;
-  userid?: string;
   companyName?: String;
   addressLine1?: String;
   city?: String;
@@ -8,4 +8,11 @@ export type BillTo = {
   country?: String;
   postalCode?: String;
   [key: string]: string | any;
+};
+
+export type BillToDB = BillTo & {
+  _id: Types.ObjectId;
+  userId?: string;
+  template: boolean;
+  __v: number;
 };

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
   },
-  heading: { fontSize: '24px', fontWeight: 'black' },
+  heading: { fontSize: '20px', fontWeight: 'bold' },
   title: {
     fontSize: '32px',
     textAlign: 'left',
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   info: {
+    fontSize: '14px',
     textAlign: 'right',
     marginBottom: '32px',
   },
@@ -109,7 +110,6 @@ const PDF = () => {
       }
     });
   }, []);
-  console.log('invoiceData from mongo', invoiceData);
 
   return (
     <Document>
@@ -182,9 +182,9 @@ const PDF = () => {
                       <Text style={styles.itemContent}>{item.tax}%</Text>
                     </View>
                   ))}
-                  <View>
-                    <Text>Sub total: {invoiceData.subTotal}</Text>
-                    <Text>Sub total: {invoiceData.total}</Text>
+                  <View style={[{ textAlign: 'right', paddingTop: '16px' }]}>
+                    <Text>Sub total: ${invoiceData.subTotal}</Text>
+                    <Text>Total: ${invoiceData.total}</Text>
                   </View>
                 </View>
               </View>
@@ -196,7 +196,9 @@ const PDF = () => {
                     { padding: '8px', height: '100px' },
                   ]}
                 >
-                  <Text>NOTE/TERMS & CONDITION</Text>
+                  <Text style={[{ fontSize: '16px' }]}>
+                    NOTE/TERMS & CONDITION
+                  </Text>
                   <View>
                     <Text></Text>
                   </View>
