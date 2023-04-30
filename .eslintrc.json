@@ -17,7 +17,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "no-console": "error",
     "semi": ["error", "always"],
     "no-unused-vars": [
       "error",

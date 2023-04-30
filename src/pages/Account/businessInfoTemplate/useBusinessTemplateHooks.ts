@@ -1,9 +1,6 @@
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
-import { BusinessInfo } from 'types/template';
-import { useEffect, useState } from 'react';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
 type Props = {
   template: BusinessInfoType | undefined;
   getValues: any;
@@ -24,7 +21,7 @@ export const useBusinessTemplateHooks = (props?: Props) => {
   };
   const onSubmitEditBusinessInfo = async () => {
     const editTemplate = props?.getValues();
-    const formatedEditTemplate = {
+    const formattedEditTemplate = {
       _id: editTemplate.businessInfo._id,
       name: editTemplate.businessInfo.businessName,
       address: editTemplate.businessInfo.addressLine1,
@@ -39,7 +36,7 @@ export const useBusinessTemplateHooks = (props?: Props) => {
     const res = await ApiInstance({
       method: 'post',
       url: 'account/edit_template',
-      data: { businessInfo: formatedEditTemplate },
+      data: { businessInfo: formattedEditTemplate },
     });
     if (res.status !== 200) return console.error('fail');
     router.reload();

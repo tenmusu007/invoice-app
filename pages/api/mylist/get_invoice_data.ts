@@ -23,7 +23,7 @@ export default async function getInvoiceData(
       invoice?.businessInfo
     );
     const invoiceBankInfo = await BankInfo.findById(invoice.bankInfo);
-    
+
     const invoiceData = {
       _id: invoice?._id,
       invoiceNumber: invoice?.invoiceNumber,
@@ -33,7 +33,6 @@ export default async function getInvoiceData(
       businessInfo: invoiceBusinessInfo,
       bankInfo: invoiceBankInfo,
       item: invoice?.items,
-
     };
     res.status(200).json(invoiceData);
   } catch (error) {

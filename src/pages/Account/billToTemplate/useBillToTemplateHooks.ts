@@ -1,6 +1,4 @@
 import { BillTo as BillToType } from 'types/billTo';
-import { BusinessInfo } from 'types/template';
-import { useEffect, useState } from 'react';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
 type Props = {
@@ -23,7 +21,7 @@ export const useBillToTemplateHooks = (props: Props) => {
   };
   const onSubmitEditBillTo = async () => {
     const editTemplate = await props?.getValues();
-    const formatedEditTemplate = {
+    const formattedEditTemplate = {
       _id: editTemplate.billTo._id,
       companyName: editTemplate.billTo.companyName,
       address: editTemplate.billTo.addressLine1,
@@ -35,7 +33,7 @@ export const useBillToTemplateHooks = (props: Props) => {
     const res = await ApiInstance({
       method: 'post',
       url: 'account/edit_template',
-      data: { billTo: formatedEditTemplate },
+      data: { billTo: formattedEditTemplate },
     });
     if (res.status !== 200) return console.error('fail');
 

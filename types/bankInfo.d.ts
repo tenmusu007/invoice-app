@@ -1,6 +1,6 @@
+import { Types } from 'mongoose';
+
 export type BankInfo = {
-  _id?: string;
-  userid?: string;
   bankName?: string;
   branchNumber?: number;
   accountNumber?: number;
@@ -8,4 +8,11 @@ export type BankInfo = {
   accountName?: string;
   transitNumber?: number;
   [key: string]: string | any;
+};
+
+export type BankInfoDB = BankInfo & {
+  _id: Types.ObjectId;
+  userId?: string;
+  template: boolean;
+  __v: number;
 };

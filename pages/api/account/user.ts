@@ -7,17 +7,20 @@ import Users from '@models/user';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getToken } from 'next-auth/jwt';
 
-export default async function getUserData(req: NextApiRequest, res: NextApiResponse) {
+export default async function getUserData(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   try {
     await connectMongo();
     const token = await getToken({ req });
-    const cuurentUser = await Users.find({ accessToken: token?.accessToken });
+    const currentUser = await Users.find({ accessToken: token?.accessToken });
     const userInfo = await UserInFo.findOne({
-      userId: cuurentUser[0]._id.toString(),
+      userId: currentUser[0]._id.toString(),
     });
-    const businessInfo = []
-    const billTo = []
-    const bankInfo = []
+    const businessInfo = [];
+    const billTo = [];
+    const bankInfo = [];
     for (const i of userInfo.businessInfo) {
       const temp = await BusinessInfo.findById(userInfo.businessInfo[i]);
       businessInfo.push(temp);
@@ -32,8 +35,8 @@ export default async function getUserData(req: NextApiRequest, res: NextApiRespo
     }
     //TODO テンプレートの各idを取ってくる
     res.status(200).json({
-      name: cuurentUser[0].name,
-      image: cuurentUser[0].image,
+      name: currentUser[0].name,
+      image: currentUser[0].image,
       language: userInfo.language,
     });
   } catch (error) {

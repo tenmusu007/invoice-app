@@ -8,8 +8,7 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 
-import dummyInvoice from 'mocks/dummyInvoice.json';
-import { Invoice as InvoiceType } from 'types/inputValue';
+import { ApiInstance } from 'helper/ApiInstance';
 
 const styles = StyleSheet.create({
   page: { paddingTop: 200 },
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
   },
-  heading: { fontSize: '24px', fontWeight: 'black' },
+  heading: { fontSize: '20px', fontWeight: 'bold' },
   title: {
     fontSize: '32px',
     textAlign: 'left',
@@ -27,6 +26,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   info: {
+    fontSize: '14px',
     textAlign: 'right',
     marginBottom: '32px',
   },
@@ -83,20 +83,46 @@ const styles = StyleSheet.create({
 });
 
 const PDF = () => {
-  const [invoice, setInvoice] = useState<InvoiceType>();
+  // Put all of them in a custom hook
+  // Type them
+  const [invoiceData, setInvoiceData] = useState<any>();
+  const getInvoice = async (id: string) => {
+    try {
+      const response = await ApiInstance({
+        method: 'post',
+        url: `/invoice/get`,
+        data: { invoiceId: id },
+      });
+      if (response.status === 400) return null;
+      console.log('response', response);
+      return response.data;
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
+  useEffect(() => {
+    const id: string | null = sessionStorage.getItem('invoice_id');
+    if (id === null) return;
+    getInvoice(id).then((data) => {
+      if (data !== null) {
+        setInvoiceData(data);
+      }
+    });
+  }, []);
+
   return (
     <Document>
       <Page size="A4">
-        <View style={styles.section}>
-          {dummyInvoice.invoice.data.map((data) => (
-            <View key={data.invocieNumber} style={styles.body}>
+        {typeof invoiceData !== 'undefined' && (
+          <View style={styles.section}>
+            <View style={styles.body}>
               <View>
                 <Text style={styles.title}>Invoice</Text>
               </View>
               <View style={[styles.info]}>
-                <Text>Invoice: #{data.invocieNumber}</Text>
-                <Text>Issued: {data.issued}</Text>
-                <Text>Due: {data.due}</Text>
+                <Text>Invoice: # {invoiceData.invoiceNumber?.toString()} </Text>
+                <Text>Issued: {invoiceData.issuedDate}</Text>
+                <Text>Due: {invoiceData.dueDate}</Text>
               </View>
               <View
                 style={[styles.flex, styles.paymentInfo, styles.centralize]}
@@ -106,11 +132,12 @@ const PDF = () => {
                     <Text>Bill To:</Text>
                   </View>
                   <View style={[styles.smallText, styles.flexColumn]}>
-                    <Text>{data.billTo.companyName}</Text>
-                    <Text>{data.billTo.addressLine1}</Text>
-                    <Text>{data.billTo.city}</Text>
-                    <Text>{data.billTo.province}</Text>
-                    <Text>{data.billTo.country}</Text>
+                    <Text>{invoiceData.billTo.companyName}</Text>
+                    <Text>{invoiceData.billTo.address}</Text>
+                    <Text>{invoiceData.billTo.city}</Text>
+                    <Text>{invoiceData.billTo.province}</Text>
+                    <Text>{invoiceData.billTo.country}</Text>
+                    <Text>{invoiceData.billTo.postal}</Text>
                   </View>
                 </View>
                 <View style={[styles.width45, styles.flexColumn]}>
@@ -118,11 +145,12 @@ const PDF = () => {
                     <Text>Business Info:</Text>
                   </View>
                   <View style={[styles.smallText, styles.flexColumn]}>
-                    <Text>{data.businessInfo.companyName}</Text>
-                    <Text>{data.businessInfo.address}</Text>
-                    <Text>{data.businessInfo.city}</Text>
-                    <Text>{data.businessInfo.province}</Text>
-                    <Text>{data.businessInfo.country}</Text>
+                    <Text>{invoiceData.businessInfo.name}</Text>
+                    <Text>{invoiceData.businessInfo.address}</Text>
+                    <Text>{invoiceData.businessInfo.city}</Text>
+                    <Text>{invoiceData.businessInfo.province}</Text>
+                    <Text>{invoiceData.businessInfo.country}</Text>
+                    <Text>{invoiceData.businessInfo.postal}</Text>
                   </View>
                 </View>
               </View>
@@ -131,8 +159,8 @@ const PDF = () => {
                   <Text style={styles.itemTitle}>Description</Text>
                   <Text style={styles.itemTitle}>Qty</Text>
                   <Text style={styles.itemTitle}>Unit Price</Text>
-                  <Text style={styles.itemTitle}>Tax</Text>
                   <Text style={styles.itemTitle}>Amount</Text>
+                  <Text style={styles.itemTitle}>Tax</Text>
                 </View>
                 <View
                   style={[
@@ -142,15 +170,21 @@ const PDF = () => {
                     styles.flexColumn,
                   ]}
                 >
-                  {data.items.map((item, index) => (
+                  {invoiceData.items.map((item: any, index: any) => (
                     <View key={index} style={styles.item}>
                       <Text style={styles.itemContent}>{item.name}</Text>
                       <Text style={styles.itemContent}>{item.quantity}</Text>
                       <Text style={styles.itemContent}>${item.unitPrice}</Text>
+                      <Text style={styles.itemContent}>
+                        $ {Number(item.quantity) * Number(item.unitPrice)}{' '}
+                      </Text>
                       <Text style={styles.itemContent}>{item.tax}%</Text>
-                      <Text style={styles.itemContent}>${item.amount} </Text>
                     </View>
                   ))}
+                  <View style={[{ textAlign: 'right', paddingTop: '16px' }]}>
+                    <Text>Sub total: ${invoiceData.subTotal}</Text>
+                    <Text>Total: ${invoiceData.total}</Text>
+                  </View>
                 </View>
               </View>
               <View>
@@ -161,21 +195,24 @@ const PDF = () => {
                     { padding: '8px', height: '100px' },
                   ]}
                 >
-                  <Text>NOTE/TERMS & CONDITION</Text>
+                  <Text style={[{ fontSize: '16px' }]}>
+                    NOTE/TERMS & CONDITION
+                  </Text>
                   <View>
                     <Text></Text>
                   </View>
                 </View>
               </View>
             </View>
-          ))}
-        </View>
+          </View>
+        )}
       </Page>
     </Document>
   );
 };
 
 const PDFView = () => {
+  // eslint-disable-next-line no-unused-vars
   const [client, setClient] = useState<boolean>(false);
 
   useEffect(() => {

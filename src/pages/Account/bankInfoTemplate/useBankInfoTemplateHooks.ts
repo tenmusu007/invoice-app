@@ -22,7 +22,7 @@ export const useBankInfoTemplateHooks = (props: Props) => {
   };
   const onSubmitEditBankInfo = async () => {
     const editTemplate = props?.getValues();
-    const formatedEditTemplate = {
+    const formattedEditTemplate = {
       _id: editTemplate.bankInfo._id,
       bankName: editTemplate.bankInfo.bankName,
       transitNumber: editTemplate.bankInfo.transitNumber,
@@ -34,7 +34,7 @@ export const useBankInfoTemplateHooks = (props: Props) => {
     const res = await ApiInstance({
       method: 'post',
       url: 'account/edit_template',
-      data: { bankInfo: formatedEditTemplate },
+      data: { bankInfo: formattedEditTemplate },
     });
     if (res.status !== 200) return; 
     router.reload();
