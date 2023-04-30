@@ -5,14 +5,13 @@ import { SessionProvider } from 'next-auth/react';
 import Layout from '@src/components/template/Layout';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Loader from './loader';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { Box } from '@mui/material';
-import "../styles/styles.css"
+import "../styles/styles.css";
 export default function App({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps: {  ...pageProps },
 }: AppProps) {
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState(false);
