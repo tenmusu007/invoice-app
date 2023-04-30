@@ -1,5 +1,16 @@
 import { Schema, model, models } from 'mongoose';
-const BillsSchema = new Schema({
+
+interface BillToSchema {
+  userId: string;
+  companyName: string;
+  address: string;
+  city: string;
+  province: string;
+  country: string;
+  postal: string;
+  template: boolean;
+}
+const BillsSchema = new Schema<BillToSchema>({
   userId: {
     type: String,
     required: true,
@@ -27,5 +38,5 @@ const BillsSchema = new Schema({
     default: false,
   },
 });
-const Bills = models.Bills || model('Bills', BillsSchema);
+const Bills = models.Bills || model<BillToSchema>('Bills', BillsSchema);
 export default Bills;

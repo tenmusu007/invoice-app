@@ -1,7 +1,17 @@
-import { BillTo } from "./billTo";
-import { BusinessInfo } from "./businessInfo";
+import { BillTo } from './billTo';
+import { BusinessInfo } from './businessInfo';
+import { Types } from 'mongoose';
+import { InvoiceInfo } from './invoiceInfo';
 
-export type invoiceData = {
+export type Items = {
+  name: string;
+  quantity: string;
+  unitPrice: string;
+  tax: string;
+  amount: number;
+}[];
+
+export type InvoiceData = {
   _id: string;
   invoiceNumber: number;
   issued: string;
@@ -9,6 +19,19 @@ export type invoiceData = {
   billTo: BillTo;
   businessInfo: BusinessInfo;
   bankInfo: BusinessInfo | null;
-  item: any[];
-
+  item: items;
 };
+
+export type InvoiceDataDB =
+  | (InvoiceInfo & {
+      _id: Types.ObjectId;
+      userId: string;
+      billTo: string;
+      businessInfo: string;
+      bankInfo: string;
+      items: Items;
+      total: number;
+      subTotal: number;
+      __v: number;
+    })
+  | null;

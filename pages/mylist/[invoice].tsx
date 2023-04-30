@@ -4,36 +4,51 @@ import { useRouter } from 'next/router';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
-import InfoForm from 'src/pages/invoiceForm/InfoForm';
+import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
+import InfoForm from 'src/pages/InvoiceForm/infoForm';
 import { Invoice as InvoiceType } from 'types/inputValue';
 import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import BillToForm from '@src/components/molecules/BillToForm';
 import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
-import TermsAndConditionForm from '@src/pages/invoiceForm/termsConditionForm';
+import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
 import { useInvoice } from './useInvoice';
 import { ApiInstance } from 'helper/ApiInstance';
-import { invoiceData } from 'types/invoiceData';
+import { InvoiceData as InvoiceDataType } from 'types/invoiceData';
+import { Items as ItemsType } from 'types/invoiceData';
+
 type Props = {
-  data: invoiceData;
+  data: InvoiceDataType;
 };
 
+// Needs a type
 const InvoiceCard = (props: Props) => {
   const { bankInfo, businessInfo, billTo, item } = props.data;
+
+  // Should be removed
   const invoiceInfo = {
     invoiceNumber: props.data.invoiceNumber,
     issued: props.data.issued,
     due: props.data.due,
   };
-  const items = item.map((item) => {
-    return {
-      name: item.name,
-      quantity: item.quantity,
-      unitPrice: item.unitPrice,
-      tax: item.tax,
-      amount: item.amount,
-    };
-  });
+
+  //Type should be defined
+  const items: ItemsType = item.map(
+    (item: {
+      name: string;
+      quantity: string;
+      unitPrice: string;
+      tax: string;
+      amount: number;
+    }) => {
+      return {
+        name: item.name,
+        quantity: item.quantity,
+        unitPrice: item.unitPrice,
+        tax: item.tax,
+        amount: item.amount,
+      };
+    }
+  );
   const methods = useForm<InvoiceType | any>({
     defaultValues: {
       info: {
@@ -95,7 +110,7 @@ export default InvoiceCard;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const query = context.query.invoice;
-  
+
   const res = await ApiInstance({
     method: 'post',
     url: 'mylist/get_invoice_data',
