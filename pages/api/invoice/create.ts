@@ -3,7 +3,6 @@ import Invoice from '@models/invoice';
 import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
 import Users from '@models/user';
-import { Invoice as InvoiceType } from 'types/inputValue';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { JWT, getToken } from 'next-auth/jwt';
 import BankInfo from '@models/bankInfo';

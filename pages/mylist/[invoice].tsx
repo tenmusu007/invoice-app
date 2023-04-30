@@ -1,16 +1,15 @@
 import { GetServerSideProps } from 'next/types';
 import React from 'react';
-import { useRouter } from 'next/router';
-import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import Button from '@src/components/atoms/Button';
 import { Box, Stack } from '@mui/material';
-import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
-import InfoForm from 'src/pages/InvoiceForm/infoForm';
+import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
+import InfoForm from 'src/pages/invoiceForm/InfoForm';
 import { Invoice as InvoiceType } from 'types/inputValue';
 import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import BillToForm from '@src/components/molecules/BillToForm';
 import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
-import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
+import TermsAndConditionForm from '@src/pages/invoiceForm/termsConditionForm';
 import { ApiInstance } from 'helper/ApiInstance';
 import { InvoiceData as InvoiceDataType } from 'types/invoiceData';
 import { Items as ItemsType } from 'types/invoiceData';
@@ -23,12 +22,6 @@ type Props = {
 const InvoiceCard = (props: Props) => {
   const { bankInfo, businessInfo, billTo, item } = props.data;
 
-  // Should be removed
-  const invoiceInfo = {
-    invoiceNumber: props.data.invoiceNumber,
-    issued: props.data.issued,
-    due: props.data.due,
-  };
 
   //Type should be defined
   const items: ItemsType = item.map(

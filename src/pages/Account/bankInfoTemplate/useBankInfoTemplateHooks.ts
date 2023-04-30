@@ -1,6 +1,4 @@
 import { BankInfo as BankInfoType } from 'types/bankInfo';
-import { BusinessInfo } from 'types/template';
-import { useEffect, useState } from 'react';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
 type Props = {
@@ -12,14 +10,14 @@ export const useBankInfoTemplateHooks = (props: Props) => {
 
   const onSubmitBankInfo = async (data: BankInfoType) => {
     if (!data.bankInfo.bankName) {
-      return console.log('data is undifined');
+      return;
     }
     const res = await ApiInstance({
       method: 'post',
       url: 'account/create_template',
       data: { bankInfo: data },
     });
-    if (res.status !== 200) return console.error('fail');
+    if (res.status !== 200) return; 
     router.reload();
   };
   const onSubmitEditBankInfo = async () => {
@@ -38,7 +36,7 @@ export const useBankInfoTemplateHooks = (props: Props) => {
       url: 'account/edit_template',
       data: { bankInfo: formattedEditTemplate },
     });
-    if (res.status !== 200) return console.error('fail');
+    if (res.status !== 200) return; 
     router.reload();
   };
 

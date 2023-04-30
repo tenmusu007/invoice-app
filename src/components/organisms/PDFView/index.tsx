@@ -8,7 +8,6 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 
-import { Invoice as InvoiceType } from 'types/inputValue';
 import { ApiInstance } from 'helper/ApiInstance';
 
 const styles = StyleSheet.create({
@@ -213,6 +212,7 @@ const PDF = () => {
 };
 
 const PDFView = () => {
+  // eslint-disable-next-line no-unused-vars
   const [client, setClient] = useState<boolean>(false);
 
   useEffect(() => {

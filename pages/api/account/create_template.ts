@@ -17,10 +17,12 @@ export default async function createTemplate(
     const userId = currentUser[0]._id.toString();
     if (!req.body) return res.status(200).json({ result: 'template is empty' });
     const { bankInfo, billTo, businessInfo } = await req.body;
-
+    let newBanckInfo = null;
+    let newBillTo = null;
+    let newBusinessInfo = null;
     switch (true) {
       case !!bankInfo:
-        const newBanckInfo = await new BankInfo({
+        newBanckInfo = await new BankInfo({
           userId: userId,
           bankName: bankInfo.bankInfo.bankName,
           transitNumber: bankInfo.bankInfo.transitNumber,
@@ -33,7 +35,7 @@ export default async function createTemplate(
         await newBanckInfo.save();
         break;
       case !!billTo:
-        const newBillTo = await new Bills({
+        newBillTo = await new Bills({
           userId: userId,
           companyName: billTo.billTo.companyName,
           address: billTo.billTo.addressLine1,
@@ -46,7 +48,7 @@ export default async function createTemplate(
         await newBillTo.save();
         break;
       case !!businessInfo:
-        const newBusinessInfo = await new BusinessInfo({
+        newBusinessInfo = await new BusinessInfo({
           userId: userId,
           name: businessInfo.businessInfo.businessName,
           address: businessInfo.businessInfo.addressLine1,

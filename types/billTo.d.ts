@@ -1,12 +1,12 @@
 import { Types } from 'mongoose';
 
 export type BillTo = {
-  companyName?: String;
-  addressLine1?: String;
-  city?: String;
-  province?: String;
-  country?: String;
-  postalCode?: String;
+  companyName?: string;
+  addressLine1?: string;
+  city?: string;
+  province?: string;
+  country?: string;
+  postalCode?: string;
   [key: string]: string | any;
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import connectMongo from '@db/connectMongo';
 import BankInfo from '@models/bankInfo';
 import Bills from '@models/bills';
@@ -13,7 +14,7 @@ export default async function editTemplate(
   try {
     await connectMongo();
     const token = await getToken({ req });
-    const currentUser = await Users.find({ accessToken: token?.accessToken });
+    await Users.find({ accessToken: token?.accessToken });
     const { bankInfo, billTo, businessInfo } = req.body;
 
     switch (true) {
@@ -21,7 +22,7 @@ export default async function editTemplate(
         const editBankInfoTemplate = await BankInfo.findById(bankInfo._id);
         if (!editBankInfoTemplate)
           return res.status(200).json({ result: 'template is empty' });
-        const updateBankInfo = await editBankInfoTemplate.updateOne({
+        await editBankInfoTemplate.updateOne({
           $set: {
             bankName: bankInfo.bankName,
             transitNumber: bankInfo.transitNumber,
@@ -36,7 +37,7 @@ export default async function editTemplate(
         const editBillToTemplate = await Bills.findById(billTo._id);
         if (!editBillToTemplate)
           return res.status(200).json({ result: 'template is empty' });
-        const updateBillTo = await editBillToTemplate.updateOne({
+        await editBillToTemplate.updateOne({
           $set: {
             companyName: billTo.companyName,
             address: billTo.addressLine1,
@@ -53,7 +54,7 @@ export default async function editTemplate(
         );
         if (!editBusinessInfoTemplate)
           return res.status(200).json({ result: 'template is empty' });
-        const updateBusinessInfo = await editBusinessInfoTemplate.updateOne({
+        await editBusinessInfoTemplate.updateOne({
           $set: {
             name: businessInfo.name,
             address: businessInfo.address,

@@ -1,14 +1,14 @@
 import { Types } from 'mongoose';
 
 export type BusinessInfo = {
-  businessName?: String;
-  addressLine1?: String;
-  city?: String;
-  province?: String;
-  country?: String;
-  postalCode?: String;
-  phoneNumber?: String;
-  email?: String;
+  businessName?: string;
+  addressLine1?: string;
+  city?: string;
+  province?: string;
+  country?: string;
+  postalCode?: string;
+  phoneNumber?: string;
+  email?: string;
   [key: string]: string | any;
 };
 

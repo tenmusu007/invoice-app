@@ -18,6 +18,6 @@ export const ApiInstance = async (api: Api) => {
     }
     return res;
   } catch (error) {
-    return error
+    return error;
   }
 };

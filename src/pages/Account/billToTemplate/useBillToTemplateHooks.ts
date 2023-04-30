@@ -1,6 +1,4 @@
 import { BillTo as BillToType } from 'types/billTo';
-import { BusinessInfo } from 'types/template';
-import { useEffect, useState } from 'react';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
 type Props = {

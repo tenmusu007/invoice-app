@@ -14,7 +14,6 @@ export const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<any>('');
   const [userTemplate, setUserTemplate] = useState<any>([]);
-  const [progress, setProgress] = useState(0);
   const textAline = { textAlign: 'center' } as const;
   const textStyle = {
     width: '45%',

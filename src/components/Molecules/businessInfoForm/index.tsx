@@ -5,7 +5,6 @@ import { useFormContext } from 'react-hook-form';
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 import { Box } from '@mui/material';
 import { Stack } from '@mui/system';
-import { BusinessInfo } from 'types/template';
 type Props = {
   defRegister?: any;
   disabled?: boolean;

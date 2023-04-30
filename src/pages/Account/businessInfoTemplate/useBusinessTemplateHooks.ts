@@ -1,9 +1,6 @@
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
-import { BusinessInfo } from 'types/template';
-import { useEffect, useState } from 'react';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
 type Props = {
   template: BusinessInfoType | undefined;
   getValues: any;
