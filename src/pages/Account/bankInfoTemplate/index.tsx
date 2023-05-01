@@ -1,23 +1,40 @@
 import { Box, Stack } from '@mui/material';
-import BankInfoForm from '@src/components/molecules/BankInfoForm';
+
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
+import useBankInfoTemplateHooks from './useBankInfoTemplateHooks';
+
 import Button from '@src/components/atoms/Button';
+import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import Modal from '@src/components/organisms/Modal';
 import { BankInfo as BankInfoType } from 'types/bankInfo';
-import { FormProvider, useForm } from 'react-hook-form';
-import { useBankInfoTemplateHooks } from './useBankInfoTemplateHooks';
-import { Dispatch, SetStateAction, useEffect } from 'react';
 
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
   template: BankInfoType | undefined;
 };
+
+const formStyle = {
+  background: '#FFF5F5',
+  p: 10,
+} as const;
+
+const buttonStyle = {
+  background: '#EEBBC3',
+  color: '#232946',
+  borderRadius: 2,
+  fontWeight: 'bold',
+} as const;
+
 const BankInfoTemplate = (props: Props) => {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const { openModal, setOpenModal, template } = props;
   const { register, setValue, getValues } = useForm();
   const templateSet = {
-    template: template,
-    getValues: getValues,
+    template,
+    getValues,
   };
   const { action } = useBankInfoTemplateHooks(templateSet);
 
@@ -74,15 +91,3 @@ const BankInfoTemplate = (props: Props) => {
 };
 
 export default BankInfoTemplate;
-
-const formStyle = {
-  background: '#FFF5F5',
-  p: 10,
-} as const;
-
-const buttonStyle = {
-  background: '#EEBBC3',
-  color: '#232946',
-  borderRadius: 2,
-  fontWeight: 'bold',
-} as const;

@@ -1,12 +1,9 @@
 import HomePage from '@src/pages/home';
 
-
-const Home = (props: any) => {
-  return (
-    <>
-      <HomePage />
-    </>
-  );
-};
+const Home = () => (
+  <>
+    <HomePage />
+  </>
+);
 
 export default Home;

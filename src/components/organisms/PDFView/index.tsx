@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable unused-imports/no-unused-vars */
 import {
   PDFViewer,
   Document,
@@ -7,6 +7,7 @@ import {
   View,
   StyleSheet,
 } from '@react-pdf/renderer';
+import React, { useState, useEffect } from 'react';
 
 import { ApiInstance } from 'helper/ApiInstance';
 
@@ -86,6 +87,7 @@ const PDF = () => {
   // Put all of them in a custom hook
   // Type them
   const [invoiceData, setInvoiceData] = useState<any>();
+  // eslint-disable-next-line consistent-return
   const getInvoice = async (id: string) => {
     try {
       const response = await ApiInstance({
@@ -94,7 +96,6 @@ const PDF = () => {
         data: { invoiceId: id },
       });
       if (response.status === 400) return null;
-      console.log('response', response);
       return response.data;
     } catch (error) {
       console.log('error', error);
@@ -102,6 +103,7 @@ const PDF = () => {
   };
   useEffect(() => {
     const id: string | null = sessionStorage.getItem('invoice_id');
+    // when user re-generate the PDF, grab the invoice id from mongoDB
     if (id === null) return;
     getInvoice(id).then((data) => {
       if (data !== null) {
@@ -212,7 +214,7 @@ const PDF = () => {
 };
 
 const PDFView = () => {
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/naming-convention
   const [client, setClient] = useState<boolean>(false);
 
   useEffect(() => {

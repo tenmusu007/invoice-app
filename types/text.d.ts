@@ -3,9 +3,9 @@ import { ReactNode } from 'react';
 
 export type TypographyType = {
   label: TypographyTypeMap['props']['variant'];
-  labelText: String;
+  labelText: string;
   variant: TypographyTypeMap['props']['variant'];
-  text: String | null;
+  text: string | null;
   style: any;
   children: ReactNode;
 };

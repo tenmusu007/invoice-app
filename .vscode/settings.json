@@ -5,7 +5,8 @@
   "editor.formatOnSave": true,
   // Automatic formatting by ESLint when saving files
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": true,
+    "source.fixAll.eslint": true,
   },
   "cSpell.words": ["Atsuya"]
 }

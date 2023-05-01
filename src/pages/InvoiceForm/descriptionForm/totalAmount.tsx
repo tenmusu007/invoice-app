@@ -1,8 +1,9 @@
+import { Grid, TextField, Typography } from '@mui/material';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { Control, useFormContext, useWatch } from 'react-hook-form';
-import { Description as DescriptionType } from 'types/description';
+
 import { useTotalContext } from 'Context/TotalContext';
-import { Grid, TextField, Typography } from '@mui/material';
+import { Description as DescriptionType } from 'types/description';
 
 type Props = {
   control: Control<DescriptionType>;
@@ -22,32 +23,39 @@ const TotalAmount = ({ control }: Props) => {
     control,
   });
 
-  const subTotal = useMemo(() => {
-    return formValues?.reduce(
-      (acc, { unitPrice, quantity }) =>
-        acc + Math.floor((unitPrice || 0) * (quantity || 0)),
-      0
-    );
-  }, [formValues]);
+  const subTotal = useMemo(
+    () =>
+      formValues?.reduce(
+        (acc, { unitPrice, quantity }) =>
+          acc + Math.floor((unitPrice || 0) * (quantity || 0)),
+        0
+      ),
+    [formValues]
+  );
 
-  const total = useMemo(() => {
-    return formValues?.reduce(
-      (acc, { unitPrice, quantity, tax }) =>
-        acc + Math.floor((unitPrice || 0) * (quantity || 0) * (1 + tax / 100)),
-      0
-    );
-  }, [formValues]);
+  const total = useMemo(
+    () =>
+      formValues?.reduce(
+        (acc, { unitPrice, quantity, tax }) =>
+          acc +
+          Math.floor((unitPrice || 0) * (quantity || 0) * (1 + tax / 100)),
+        0
+      ),
+    [formValues]
+  );
 
-  const amount = useMemo(() => {
-    return formValues?.map((value) => {
-      const eachAmount = Math.floor(
-        (value.unitPrice || 0) *
-          (value.quantity || 0) *
-          (1 + value.tax / 100 || 1)
-      );
-      return eachAmount;
-    });
-  }, [formValues]);
+  const amount = useMemo(
+    () =>
+      formValues?.map((value) => {
+        const eachAmount = Math.floor(
+          (value.unitPrice || 0) *
+            (value.quantity || 0) *
+            (1 + value.tax / 100 || 1)
+        );
+        return eachAmount;
+      }),
+    [formValues]
+  );
 
   useEffect(() => {
     totalContext?.setTotal(total);

@@ -1,8 +1,10 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+import { getToken } from 'next-auth/jwt';
+
 import UserInFo from '@models/account';
 
 import Users from '@models/user';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { getToken } from 'next-auth/jwt';
 
 export default async function get(req: NextApiRequest, res: NextApiResponse) {
   // If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`

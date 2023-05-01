@@ -1,16 +1,17 @@
-import BoxLayout from 'src/components/atoms/Box';
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
+
 import { Children } from '../../../../types/children';
 import Header from '../Header';
-const Layout = ({ children }: Children) => {
-  return (
-    <>
-      <Header />
-      <Container component="main" fixed>
-        <BoxLayout>{children}</BoxLayout>
-      </Container>
-    </>
-  );
-};
+
+import BoxLayout from 'src/components/atoms/Box';
+
+const Layout = ({ children }: Children) => (
+  <>
+    <Header />
+    <Container component="main" fixed>
+      <BoxLayout>{children}</BoxLayout>
+    </Container>
+  </>
+);
 
 export default Layout;

@@ -1,30 +1,34 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 import connectMongo from '@db/connectMongo';
 import BankInfo from '@models/bankInfo';
 import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
 import Invoice from '@models/invoice';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { BankInfoDB as BankInfoDBType } from 'types/bankInfo';
 import { BillToDB as BillToDBType } from 'types/billTo';
 import { BusinessInfoDB as BusinessInfoDBType } from 'types/businessInfo';
-import { BankInfoDB as BankInfoDBType } from 'types/bankInfo';
 import { InvoiceDataDB as InvoiceDataDBType } from 'types/invoiceData';
 
 export default async function getInvoice(
   req: NextApiRequest,
   res: NextApiResponse
-) {
+): Promise<void> {
   try {
     await connectMongo();
     // Needs to be got typed (extend with each type and add useId and _id)
-    //Those console.log are for debugging
+    // Those console.log are for debugging
     const id: string = await req.body.invoiceId;
     const invoice: InvoiceDataDBType = await Invoice.findById(id);
     if (invoice === null) return;
     const billTo: BillToDBType =
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       invoice && (await Bills.findById(invoice.billTo))!;
     const businessInfo: BusinessInfoDBType =
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       invoice && (await BusinessInfo.findById(invoice?.businessInfo))!;
     const bankInfo: BankInfoDBType =
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       invoice && (await BankInfo.findById(invoice?.bankInfo))!;
 
     // Reshape the invoice
@@ -81,12 +85,10 @@ export default async function getInvoice(
       subTotal: invoice.subTotal,
       total: invoice.total,
     };
-    console.log('formattedInvoice', formattedInvoice);
     // send the formatted invoice
     // Success
     res.status(200).json(formattedInvoice);
   } catch (error) {
-    console.log('error', error);
     res.status(400).json(error);
   }
 }

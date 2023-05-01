@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import { LinkType } from 'types/link';
+
 const LinkTag = (props: LinkType) => {
   const { children, path, text } = props;
   return (

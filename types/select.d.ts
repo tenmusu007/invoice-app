@@ -1,7 +1,7 @@
 export type SelectType = {
   items: Array;
-  name: String;
-  language?: String;
+  name: string;
+  language?: string;
   template?: Array;
   onChange?: (lang: any) => void;
 };

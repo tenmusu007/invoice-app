@@ -1,16 +1,18 @@
-import React from 'react';
-import { Box, Button, Grid } from '@mui/material';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import LinkTag from 'src/components/atoms/Link';
-import GoogleButton from 'react-google-button';
-import Text from 'src/components/atoms/Text';
+import { Box, Grid } from '@mui/material';
+
 import Image from 'next/image';
-import Illustrationtop from 'public/Illustrationtop.jpg';
-import { useLocale } from 'helper/useLocale';
+import { signIn } from 'next-auth/react';
+import React from 'react';
+import GoogleButton from 'react-google-button';
+
 import SignupText from './text.json';
-import BoxLayout from 'src/components/atoms/Box';
+
+import { useLocale } from 'helper/useLocale';
+import Illustrationtop from 'public/Illustrationtop.jpg';
+import Text from 'src/components/atoms/Text';
+
 const SignUp = () => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const handleGoggle = () => {
     signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_BASE_URL });
   };

@@ -1,16 +1,18 @@
 /* eslint-disable no-case-declarations */
+import { NextApiRequest, NextApiResponse } from 'next/types';
+import { getToken } from 'next-auth/jwt';
+
 import connectMongo from '@db/connectMongo';
 import BankInfo from '@models/bankInfo';
 import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
 import Users from '@models/user';
-import { getToken } from 'next-auth/jwt';
-import { NextApiRequest, NextApiResponse } from 'next/types';
 
+// eslint-disable-next-line consistent-return
 export default async function editTemplate(
   req: NextApiRequest,
   res: NextApiResponse
-) {
+): Promise<void> {
   try {
     await connectMongo();
     const token = await getToken({ req });

@@ -1,15 +1,18 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+import { getToken } from 'next-auth/jwt';
+
 import connectMongo from '@db/connectMongo';
 import BankInfo from '@models/bankInfo';
 import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
 import Users from '@models/user';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { getToken } from 'next-auth/jwt';
 
+// eslint-disable-next-line consistent-return
 export default async function createTemplate(
   req: NextApiRequest,
   res: NextApiResponse
-) {
+): Promise<void> {
   try {
     await connectMongo();
     const token = await getToken({ req });
@@ -23,7 +26,7 @@ export default async function createTemplate(
     switch (true) {
       case !!bankInfo:
         newBanckInfo = await new BankInfo({
-          userId: userId,
+          userId,
           bankName: bankInfo.bankInfo.bankName,
           transitNumber: bankInfo.bankInfo.transitNumber,
           branchNumber: bankInfo.bankInfo.branchNumber,
@@ -36,7 +39,7 @@ export default async function createTemplate(
         break;
       case !!billTo:
         newBillTo = await new Bills({
-          userId: userId,
+          userId,
           companyName: billTo.billTo.companyName,
           address: billTo.billTo.addressLine1,
           city: billTo.billTo.city,
@@ -49,7 +52,7 @@ export default async function createTemplate(
         break;
       case !!businessInfo:
         newBusinessInfo = await new BusinessInfo({
-          userId: userId,
+          userId,
           name: businessInfo.businessInfo.businessName,
           address: businessInfo.businessInfo.addressLine1,
           city: businessInfo.businessInfo.city,

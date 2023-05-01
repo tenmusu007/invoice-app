@@ -1,8 +1,9 @@
 import { Modal as MUIModal } from '@mui/material';
 import Box from '@mui/material/Box';
+
 import { Modal as ModalType } from 'types/modal';
-import { Dispatch, SetStateAction, useEffect } from 'react';
-import { Children } from 'types/children';
+
+
 
 const style = {
   position: 'absolute',
@@ -14,8 +15,9 @@ const style = {
   border: '1px solid #000',
 } as const;
 
-//Background color needs to be changed but even if I changed the style, it never updated
+// Background color needs to be changed but even if I changed the style, it never updated
 const Modal = (props: ModalType) => {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const { openModal, setOpenModal, contents } = props;
   return (
     <MUIModal open={openModal} onClose={setOpenModal}>

@@ -1,12 +1,15 @@
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
-import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
+
+import { ApiInstance } from 'helper/ApiInstance';
+import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+
 type Props = {
   template: BusinessInfoType | undefined;
   getValues: any;
 };
-export const useBusinessTemplateHooks = (props?: Props) => {
+const useBusinessTemplateHooks = (props?: Props) => {
   const router = useRouter();
+  // eslint-disable-next-line consistent-return
   const onSubmitBusinessInfo = async (data: BusinessInfoType) => {
     if (!data.businessInfo.businessName) {
       return console.log('data is undifined');
@@ -19,6 +22,7 @@ export const useBusinessTemplateHooks = (props?: Props) => {
     if (res.status !== 200) return console.error('fail');
     router.reload();
   };
+  // eslint-disable-next-line consistent-return
   const onSubmitEditBusinessInfo = async () => {
     const editTemplate = props?.getValues();
     const formattedEditTemplate = {
@@ -47,3 +51,5 @@ export const useBusinessTemplateHooks = (props?: Props) => {
     state: {},
   };
 };
+
+export default useBusinessTemplateHooks;

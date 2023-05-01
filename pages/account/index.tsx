@@ -1,25 +1,21 @@
-import AccountPage from '@src/pages/account';
 import { GetServerSideProps } from 'next/types';
-type Props = {
-  data : String
-}
-const Account = (props: Props) => {
 
-  return (
+import AccountPage from '@src/pages/account';
+
+type Props = {
+  data : string
+}
+const Account = (props: Props) => (
     <>
       <AccountPage locale={props.data} />
     </>
   );
-};
 
 export default Account;
 
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-
-  return {
+export const getServerSideProps: GetServerSideProps = async (context) => ({
     props: {
       data: context.locale,
     },
-  };
-};
+  });

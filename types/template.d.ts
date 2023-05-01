@@ -40,5 +40,5 @@ export type BillTo = {
 export type Templates = {
   businessInfo: BusinessInfoType[];
   bills: BillToType[];
-  banckInfo: BankInfoType[];
+  bankInfo: BankInfoType[];
 };

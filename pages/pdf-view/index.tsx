@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import dynamic from 'next/dynamic';
 
 import React, { useEffect, useState } from 'react';
@@ -15,6 +16,7 @@ const frameStyle = {
 } as const;
 
 const PDFViewTest = () => {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const [client, setClient] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,6 +25,7 @@ const PDFViewTest = () => {
 
   return (
     <div style={frameStyle}>
+      {/* // Need to change the name */}
       <TestPDF />
     </div>
   );

@@ -1,17 +1,21 @@
-import Input from '@src/components/atoms/Input';
 import { Box } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Stack } from '@mui/system';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
+
+import Input from '@src/components/atoms/Input';
+
 type Props = {
   defRegister?: any;
   disabled?: boolean;
 };
 const BankInfoForm = (props: Props) => {
-  const { defRegister ,disabled} = props;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const { defRegister, disabled } = props;
 
   const { register } = useFormContext();
-  const regs = defRegister ? defRegister : register;
+  const regs = defRegister || register;
   return (
     <Stack spacing={2}>
       <h3>Bank Info</h3>
