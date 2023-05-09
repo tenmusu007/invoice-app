@@ -1,13 +1,18 @@
-import React from 'react';
 import { Box, Grid } from '@mui/material';
-import Text from 'src/components/atoms/Text';
+
 import Image from 'next/image';
-import loginImage from 'public/login.png';
+import React from 'react';
+
 import GoogleButton from 'react-google-button';
-import { useLocale } from 'helper/useLocale';
+
 import LoginText from './text.json';
-import { useLoginHooks } from './useLoginHooks';
-const LoginPage = (props: any) => {
+import useLoginHooks from './useLoginHooks';
+
+import { useLocale } from 'helper/useLocale';
+import loginImage from 'public/login.png';
+import Text from 'src/components/atoms/Text';
+
+const LoginPage = () => {
   const { action } = useLoginHooks();
   const { t } = useLocale(LoginText);
   return (

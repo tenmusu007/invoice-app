@@ -1,7 +1,10 @@
+import Card from '@mui/material/Card';
+
+import CardContent from '@mui/material/CardContent';
+
 import Link from 'src/components/atoms/Link';
 import Text from 'src/components/atoms/Text';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+
 const InvoiceCard = (props: any) => {
   const TextStyle = { textAlign: 'center', marginY: 2 };
   const { businessInfo, invocieNumber, issued } = props.list;

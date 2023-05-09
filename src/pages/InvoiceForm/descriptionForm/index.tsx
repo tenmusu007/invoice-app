@@ -1,22 +1,30 @@
+import AddIcon from '@mui/icons-material/Add';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Grid, IconButton, TextField, Typography } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Stack } from '@mui/system';
 import React, { useContext } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
-import { Description as DescriptionType } from 'types/description';
-import { Grid, IconButton, TextField, Typography } from '@mui/material';
-import Button from '@src/components/atoms/Button';
+
 import TotalAmount from './totalAmount';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import AddIcon from '@mui/icons-material/Add';
-import { Stack } from '@mui/system';
+
+import Button from '@src/components/atoms/Button';
+
+
+
 import { useTotalContext } from 'Context/TotalContext';
+import { Description as DescriptionType } from 'types/description';
+
 type Props = {
   disabled?: boolean;
 }
 const DescriptionForm = (props: Props) => {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const { disabled } = props;
   const totalContext = useContext(useTotalContext);
   const { register, control } = useFormContext<DescriptionType>();
 
-  //Append: Add new element to field
+  // Append: Add new element to field
   const { fields, append, remove } = useFieldArray({
     name: 'description',
     control,
@@ -43,8 +51,7 @@ const DescriptionForm = (props: Props) => {
         </Grid>
       </Grid>
       <Stack spacing={1}>
-        {fields.map((field, index) => {
-          return (
+        {fields.map((field, index) => (
             <React.Fragment key={field.id}>
               <Grid
                 container
@@ -95,8 +102,7 @@ const DescriptionForm = (props: Props) => {
                 </Grid>
               </Grid>
             </React.Fragment>
-          );
-        })}
+          ))}
       </Stack>
       <Button
         text={'Add row'}

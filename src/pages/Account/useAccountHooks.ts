@@ -1,15 +1,18 @@
 import { SelectChangeEvent } from '@mui/material';
+
+import router from 'next/router';
+import { useContext, useState } from 'react';
+
+import AccountText from './text.json';
+
 import { useModalContext } from 'Context/ModalContext';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useLocale } from 'helper/useLocale';
-import router from 'next/router';
-import { useContext, useState } from 'react';
-import AccountText from './text.json';
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 import { BankInfo as BankInfoType } from 'types/bankInfo';
 import { BillTo as BillToType } from 'types/billTo';
-import { UserInfo } from 'types/user';
+import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 import { Templates } from 'types/template';
+import { UserInfo } from 'types/user';
 
 type buttonArr = {
   text: string;
@@ -17,7 +20,8 @@ type buttonArr = {
   data: any;
   name: string;
 }[];
-export const useAccountHooks = () => {
+
+const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<UserInfo>();
   const [userTemplate, setUserTemplate] = useState<Templates>();
@@ -34,8 +38,11 @@ export const useAccountHooks = () => {
     marginY: '30px',
   } as const;
   const {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     openBillToModal,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     openBusinessInfoModal,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     openBankInfoModal,
     handleBillToOpen,
     handleBillToClose,
@@ -61,7 +68,7 @@ export const useAccountHooks = () => {
       name: 'BankInfo',
       text: bankInfoData ? `${t.setting.edit}` : `${t.setting.bank}`,
       clickEvent: handleBankInfoOpen,
-      data: userTemplate?.banckInfo,
+      data: userTemplate?.bankInfo,
     },
   ];
   const handleChangeLanguage = async (event: SelectChangeEvent) => {
@@ -69,9 +76,10 @@ export const useAccountHooks = () => {
     const res = await ApiInstance({
       method: 'post',
       url: 'account/update',
-      data: { locale: locale },
+      data: { locale },
     });
     if (res.status !== 200) return;
+    // eslint-disable-next-line consistent-return
     return router.push(router.pathname, router.asPath, { locale });
   };
   const handleFetchUserData = async () => {
@@ -166,3 +174,5 @@ export const useAccountHooks = () => {
     style: { textAline, textStyle },
   };
 };
+
+export default useAccountHooks;

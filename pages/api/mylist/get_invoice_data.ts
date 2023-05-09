@@ -1,11 +1,13 @@
 
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+import { getToken } from 'next-auth/jwt';
+
 import BankInfo from '@models/bankInfo';
 import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
 import Invoice from '@models/invoice';
 import Users from '@models/user';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { getToken } from 'next-auth/jwt';
 
 export default async function getInvoiceData(
   req: NextApiRequest,
@@ -15,7 +17,7 @@ export default async function getInvoiceData(
   try {
     const token = await getToken({ req });
     await Users.find({ accessToken: token?.accessToken });
-    const invoiceId = req.body.invoiceId;
+    const {invoiceId} = req.body;
     const invoice = await Invoice.findById(invoiceId);
 
     const invoiceBillTo = await Bills.findById(invoice?.billTo);

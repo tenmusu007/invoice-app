@@ -1,13 +1,17 @@
-import { ApiInstance } from 'helper/ApiInstance';
 import { useState } from 'react';
-export const useInvoice = (props: string) => {
+
+import { ApiInstance } from 'helper/ApiInstance';
+
+const useInvoice = (props: string) => {
   const invoiceId = props;
+  // Needs a type for myInvoice
   const [myInvoice, setmyInvoice] = useState<any[]>([]);
+  // eslint-disable-next-line consistent-return
   const handleFetchInvoiceData = async () => {
     const res = await ApiInstance({
       method: 'get',
       url: 'mylist/get_invoice_data',
-      data: { invoiceId: invoiceId },
+      data: { invoiceId },
     });
     if (res.status !== 200) return console.error('fail');
 
@@ -20,3 +24,5 @@ export const useInvoice = (props: string) => {
     state: { myInvoice },
   };
 };
+
+export default useInvoice;

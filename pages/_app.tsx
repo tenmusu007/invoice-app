@@ -1,17 +1,22 @@
 import type { AppProps } from 'next/app';
-import TotalContext from 'Context/TotalContext';
-import ModalContext from 'Context/ModalContext';
-import { SessionProvider } from 'next-auth/react';
-import Layout from '@src/components/template/Layout';
+
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { SessionProvider } from 'next-auth/react';
+
 import NProgress from 'nprogress';
+import { useEffect, useState } from 'react';
+
+import Layout from '@src/components/template/Layout';
+import ModalContext from 'Context/ModalContext';
+import TotalContext from 'Context/TotalContext';
+
 import 'nprogress/nprogress.css';
 import { Box } from '@mui/material';
-import "../styles/styles.css";
+import '../styles/styles.css';
+
 export default function App({
   Component,
-  pageProps: {  ...pageProps },
+  pageProps: { ...pageProps },
 }: AppProps) {
   const router = useRouter();
   const [pageLoading, setPageLoading] = useState(false);
@@ -38,7 +43,7 @@ export default function App({
   }, [router]);
   return (
     <SessionProvider session={pageProps.session}>
-      <Box style={{ backgroundColor: '#B8C1EC'}}>
+      <Box style={{ backgroundColor: '#B8C1EC' }}>
         <Layout>
           <ModalContext>
             <TotalContext>

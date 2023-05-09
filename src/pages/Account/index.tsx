@@ -1,20 +1,22 @@
-import SelectInput from '@src/components/atoms/Select';
-import Text from 'src/components/atoms/Text';
-import { useEffect } from 'react';
 import { Grid } from '@mui/material';
+import { useEffect } from 'react';
+
+import useAccountHooks from './useAccountHooks';
+
 import Button from '@src/components/atoms/Button';
-import BillToTemplate from '@src/pages/account/billToTemplate';
-import BusinessInfoTemplate from '@src/pages/account/businessInfoTemplate';
-import BankInfoTemplate from '@src/pages/account/bankInfoTemplate';
-import { useAccountHooks } from './useAccountHooks';
+import SelectInput from '@src/components/atoms/Select';
+import BankInfoTemplate from '@src/pages/Account/bankInfoTemplate';
+import BillToTemplate from '@src/pages/Account/billToTemplate';
+import BusinessInfoTemplate from '@src/pages/Account/businessInfoTemplate';
+import Text from 'src/components/atoms/Text';
 
 type Props = {
-  locale: String;
+  locale: string;
 };
 const AccountPage = (props: Props) => {
   const { locale } = props;
   const { state, action, style } = useAccountHooks();
-  const t = state.t;
+  const { t } = state;
   useEffect(() => {
     action.handleFetchUserData();
     action.handleFetchUserTemplate();
@@ -74,30 +76,28 @@ const AccountPage = (props: Props) => {
           />
         </Grid>
         <Grid item alignItems="center" display="flex" md={12}>
-          {state.templates.map((template, index) => {
-            return (
-              <>
-                <Grid item textAlign={'center'} md={4}>
-                  <Grid item md={12}>
-                    <SelectInput
-                      template={template.data}
-                      name={template.name}
-                      onChange={action.handleDisplayTemplate}
-                    />
-                  </Grid>
-                  <Grid item md={12}>
-                    <Button
-                      key={index}
-                      variant={'outlined'}
-                      sx={style.textAline}
-                      text={template.text}
-                      onClick={template.clickEvent}
-                    />
-                  </Grid>
+          {state.templates.map((template, index) => (
+            <>
+              <Grid item textAlign={'center'} md={4}>
+                <Grid item md={12}>
+                  <SelectInput
+                    template={template.data}
+                    name={template.name}
+                    onChange={action.handleDisplayTemplate}
+                  />
                 </Grid>
-              </>
-            );
-          })}
+                <Grid item md={12}>
+                  <Button
+                    key={index}
+                    variant={'outlined'}
+                    sx={style.textAline}
+                    text={template.text}
+                    onClick={template.clickEvent}
+                  />
+                </Grid>
+              </Grid>
+            </>
+          ))}
         </Grid>
       </Grid>
     </>

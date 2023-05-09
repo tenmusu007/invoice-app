@@ -1,18 +1,23 @@
+import { Box } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Stack } from '@mui/system';
 import React from 'react';
-import Input from '@src/components/atoms/Input';
+
 import { useFormContext } from 'react-hook-form';
 
+import Input from '@src/components/atoms/Input';
+
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
-import { Box } from '@mui/material';
-import { Stack } from '@mui/system';
+
 type Props = {
   defRegister?: any;
   disabled?: boolean;
 };
 const BusinessInfoForm = (props: Props) => {
-  const { defRegister,disabled } = props;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const { defRegister, disabled } = props;
   const { register } = useFormContext<BusinessInfoType>();
-  const regs = defRegister ? defRegister : register;
+  const regs = defRegister || register;
   return (
     <Box sx={{ width: '45%' }}>
       <h3>Business Info</h3>

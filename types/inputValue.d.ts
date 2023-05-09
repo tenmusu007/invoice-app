@@ -1,7 +1,7 @@
-import { InvoiceInfo } from './invoiceInfo';
-import { BusinessInfo } from './businessInfo';
-import { BillTo } from './billTo';
 import { BankInfo } from './bankInfo';
+import { BillTo } from './billTo';
+import { BusinessInfo } from './businessInfo';
+import { InvoiceInfo } from './invoiceInfo';
 
 export type Invoice = {
   InvoiceInfo: InvoiceInfo;

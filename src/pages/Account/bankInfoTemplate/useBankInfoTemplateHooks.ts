@@ -1,11 +1,13 @@
-import { BankInfo as BankInfoType } from 'types/bankInfo';
-import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
+
+import { ApiInstance } from 'helper/ApiInstance';
+import { BankInfo as BankInfoType } from 'types/bankInfo';
+
 type Props = {
   template: BankInfoType | undefined;
   getValues: any;
 };
-export const useBankInfoTemplateHooks = (props: Props) => {
+const useBankInfoTemplateHooks = (props: Props) => {
   const router = useRouter();
 
   const onSubmitBankInfo = async (data: BankInfoType) => {
@@ -17,7 +19,7 @@ export const useBankInfoTemplateHooks = (props: Props) => {
       url: 'account/create_template',
       data: { bankInfo: data },
     });
-    if (res.status !== 200) return; 
+    if (res.status !== 200) return;
     router.reload();
   };
   const onSubmitEditBankInfo = async () => {
@@ -36,7 +38,7 @@ export const useBankInfoTemplateHooks = (props: Props) => {
       url: 'account/edit_template',
       data: { bankInfo: formattedEditTemplate },
     });
-    if (res.status !== 200) return; 
+    if (res.status !== 200) return;
     router.reload();
   };
 
@@ -45,3 +47,5 @@ export const useBankInfoTemplateHooks = (props: Props) => {
     state: {},
   };
 };
+
+export default useBankInfoTemplateHooks;

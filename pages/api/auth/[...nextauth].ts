@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+
 const clientId: string | undefined =
   process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID;
 const clientSecret: string | undefined =
@@ -16,15 +16,17 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token, account }: any) {
-      // Persist the OAuth access_token to the token right after signin
+      // Persist the OAuth access_token to the token right after sign in
       if (account) {
+        // eslint-disable-next-line no-param-reassign
         token.accessToken = account.access_token;
       }
       return token;
     },
 
-    async session({ session, token, user }: any) {
+    async session({ session, token }: any) {
       // Send properties to the client, like an access_token from a provider.
+      // eslint-disable-next-line no-param-reassign
       session.accessToken = token.accessToken;
       return session;
     },

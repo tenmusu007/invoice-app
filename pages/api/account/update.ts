@@ -1,7 +1,9 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+import { getToken } from 'next-auth/jwt';
+
 import UserInFo from '@models/account';
 import Users from '@models/user';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { getToken } from 'next-auth/jwt';
 
 export default async function update(
   req: NextApiRequest,

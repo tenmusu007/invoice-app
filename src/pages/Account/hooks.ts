@@ -1,15 +1,21 @@
 import { SelectChangeEvent } from '@mui/material';
+
+import router from 'next/router';
+
+import { useContext, useState } from 'react';
+
+import AccountText from './text.json';
+
 import { useModalContext } from 'Context/ModalContext';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useLocale } from 'helper/useLocale';
-import router from 'next/router';
-import { useContext, useState } from 'react';
-import AccountText from './text.json';
+
 
 type buttonArr = {
   text: string;
   clickEvent: () => void;
 }[];
+// eslint-disable-next-line import/prefer-default-export
 export const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<any>('');
@@ -24,8 +30,11 @@ export const useAccountHooks = () => {
     marginY: '30px',
   } as const;
   const {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     openBillToModal,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     openBusinessInfoModal,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     openBankInfoModal,
     handleBillToOpen,
     handleBillToClose,
@@ -73,7 +82,7 @@ export const useAccountHooks = () => {
     const res = await ApiInstance({
       method: 'post',
       url: 'account/update',
-      data: { locale: locale },
+      data: { locale },
     });
     setUserData(res.data);
 

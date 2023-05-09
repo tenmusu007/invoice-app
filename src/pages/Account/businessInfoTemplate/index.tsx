@@ -1,23 +1,41 @@
 import { Box, Stack } from '@mui/material';
-import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
+
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
+import useBusinessTemplateHooks from './useBusinessTemplateHooks';
+
 import Button from '@src/components/atoms/Button';
+import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
 import Modal from '@src/components/organisms/Modal';
 import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
-import { FormProvider, useForm } from 'react-hook-form';
-import { useBusinessTemplateHooks } from './useBusinessTemplateHooks';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
   template: BusinessInfoType | undefined;
 };
+
+const formStyle = {
+  background: '#FFF5F5',
+  p: 10,
+} as const;
+
+const buttonStyle = {
+  background: '#EEBBC3',
+  color: '#232946',
+  borderRadius: 2,
+  fontWeight: 'bold',
+} as const;
+
 const BusinessInfoTemplate = (props: Props) => {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const { openModal, setOpenModal, template } = props;
 
   const { register, setValue, getValues } = useForm();
   const templateSet = {
-    template: template,
-    getValues: getValues,
+    template,
+    getValues,
   };
   const { action } = useBusinessTemplateHooks(templateSet);
   useEffect(() => {
@@ -64,6 +82,7 @@ const BusinessInfoTemplate = (props: Props) => {
                   onClick={action.onSubmitEditBusinessInfo}
                 />
               ) : (
+                // eslint-disable-next-line @typescript-eslint/no-use-before-define
                 <Button text={'Submit'} type="submit" sx={buttonStyle} />
               )}
             </Box>
@@ -75,14 +94,3 @@ const BusinessInfoTemplate = (props: Props) => {
 };
 
 export default BusinessInfoTemplate;
-const formStyle = {
-  background: '#FFF5F5',
-  p: 10,
-} as const;
-
-const buttonStyle = {
-  background: '#EEBBC3',
-  color: '#232946',
-  borderRadius: 2,
-  fontWeight: 'bold',
-} as const;

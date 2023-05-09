@@ -1,19 +1,22 @@
-import React from 'react';
-import Input from '@src/components/atoms/Input';
-import { useForm, useFormContext } from 'react-hook-form';
-import { BillTo as BillToType } from 'types/billTo';
 import { Box } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Stack } from '@mui/system';
+import React from 'react';
+
+import { useForm, useFormContext } from 'react-hook-form';
+
+import Input from '@src/components/atoms/Input';
+
 type Props = {
   defRegister?: any;
   disabled?: boolean;
 };
 const BillToForm = (props: Props) => {
-  const { defRegister,disabled } = props;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const { defRegister, disabled } = props;
 
-  const methods = useForm();
   const { register } = useFormContext();
-  const regs = defRegister ? defRegister : register;
+  const regs = defRegister || register;
 
   return (
     <Box sx={{ width: '45%' }}>

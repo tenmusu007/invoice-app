@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 
-export const useLoginHooks = () => {
+const useLoginHooks = () => {
   const handleGoggle = () => {
     signIn('google', {
       callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/home`,
@@ -14,3 +13,5 @@ export const useLoginHooks = () => {
     state: {},
   };
 };
+
+export default useLoginHooks;

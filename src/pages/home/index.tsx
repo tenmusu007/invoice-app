@@ -1,22 +1,26 @@
-import BoxLayout from 'src/components/atoms/Box';
-import Text from 'src/components/atoms/Text';
-import Button from '@src/components/atoms/Button';
-import { Container, Grid } from '@mui/material';
-import { useLocale } from 'helper/useLocale';
-import { getCsrfToken, getSession, useSession } from 'next-auth/react';
+import { Grid } from '@mui/material';
+
 import Image from 'next/image';
-import { GetServerSideProps } from 'next/types';
+import { useSession } from 'next-auth/react';
+
+import { useEffect } from 'react';
+
+import HomeText from './text.json';
+
+import Button from '@src/components/atoms/Button';
+import useHomeHooks from '@src/pages/home/useHomeHooks';
+import { useLocale } from 'helper/useLocale';
 import Illustrationsec from 'public/Illustrationsec.png';
 import Illustrationtop from 'public/Illustrationtop.jpg';
-import HomeText from './text.json';
-import { useEffect } from 'react';
-import { useHomeHooks } from '@src/pages/home/useHomeHooks';
-const HomePage = (props: any) => {
+
+import Text from 'src/components/atoms/Text';
+
+const HomePage = () => {
   const handleGetStarted = () => {};
   const { t } = useLocale(HomeText);
   const { data } = useSession();
-  const user = { data: data };
-  const { action, state } = useHomeHooks(user);
+  const user = { data };
+  const { action } = useHomeHooks(user);
 
   useEffect(() => {
     action.UserCheck();

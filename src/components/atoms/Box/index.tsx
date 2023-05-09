@@ -1,7 +1,8 @@
 import { Box } from '@mui/material';
+
 import { Children } from '../../../../types/children';
-const BoxLayout = ({ children }: Children) => {
-  return (
+
+const BoxLayout = ({ children }: Children) => (
     <Box
       display={'grid'}
       justifyContent={'center'}
@@ -12,6 +13,5 @@ const BoxLayout = ({ children }: Children) => {
       {children}
     </Box>
   );
-};
 
 export default BoxLayout;

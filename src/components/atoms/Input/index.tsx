@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Input as InputType } from 'types/input';
 
 const Input = ({
@@ -9,9 +10,7 @@ const Input = ({
   onChange,
   id,
   disabled,
-}: InputType) => {
-
-  return (
+}: InputType) => (
     <input
       type={type}
       {...register(name)}
@@ -22,6 +21,5 @@ const Input = ({
       disabled={disabled}
     />
   );
-};
 
 export default Input;

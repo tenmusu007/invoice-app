@@ -22,6 +22,9 @@ const nextConfig = {
       defaultLocale: 'jp',
     },
   ],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack: (config) => {
     config.module.rules.unshift({
       test: /pdf\.worker\.(min\.)?js/,

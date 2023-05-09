@@ -1,18 +1,19 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import { Box, Stack } from '@mui/material';
 import { GetServerSideProps } from 'next/types';
 import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
+
 import Button from '@src/components/atoms/Button';
-import { Box, Stack } from '@mui/material';
-import DescriptionForm from 'src/pages/invoiceForm/DescriptionForm';
-import InfoForm from 'src/pages/invoiceForm/InfoForm';
-import { Invoice as InvoiceType } from 'types/inputValue';
 import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import BillToForm from '@src/components/molecules/BillToForm';
 import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
-import TermsAndConditionForm from '@src/pages/invoiceForm/termsConditionForm';
+import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
 import { ApiInstance } from 'helper/ApiInstance';
-import { InvoiceData as InvoiceDataType } from 'types/invoiceData';
-import { Items as ItemsType } from 'types/invoiceData';
+import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
+import InfoForm from 'src/pages/InvoiceForm/infoForm';
+import { Invoice as InvoiceType } from 'types/inputValue';
+import { InvoiceData as InvoiceDataType , Items as ItemsType } from 'types/invoiceData';
 
 type Props = {
   data: InvoiceDataType;
@@ -22,24 +23,22 @@ type Props = {
 const InvoiceCard = (props: Props) => {
   const { bankInfo, businessInfo, billTo, item } = props.data;
 
-
-  //Type should be defined
+  // Type should be defined
   const items: ItemsType = item.map(
-    (item: {
+  // Type should be defined. invoice/invoiceData Items might be a good reference
+    (content: {
       name: string;
       quantity: string;
       unitPrice: string;
       tax: string;
       amount: number;
-    }) => {
-      return {
-        name: item.name,
-        quantity: item.quantity,
-        unitPrice: item.unitPrice,
-        tax: item.tax,
-        amount: item.amount,
-      };
-    }
+    }) => ({
+        name: content.name,
+        quantity: content.quantity,
+        unitPrice: content.unitPrice,
+        tax: content.tax,
+        amount: content.amount,
+      })
   );
   const methods = useForm<InvoiceType | any>({
     defaultValues: {
@@ -90,7 +89,9 @@ const InvoiceCard = (props: Props) => {
         <DescriptionForm disabled={true} />
         <BankInfoForm disabled={true} />
         <TermsAndConditionForm />
+        {/* // Convert into re-generate a PDF */}
         <Box width={2}>
+          {/* // eslint-disable-next-line @typescript-eslint/no-use-before-define */}
           <Button text={'Submit'} type="submit" sx={buttonStyle} />
         </Box>
       </Stack>

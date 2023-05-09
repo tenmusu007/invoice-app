@@ -1,12 +1,15 @@
-import { BillTo as BillToType } from 'types/billTo';
-import { ApiInstance } from 'helper/ApiInstance';
 import { useRouter } from 'next/router';
+
+import { ApiInstance } from 'helper/ApiInstance';
+import { BillTo as BillToType } from 'types/billTo';
+
 type Props = {
   template: BillToType | undefined;
   getValues: any;
 };
-export const useBillToTemplateHooks = (props: Props) => {
+const useBillToTemplateHooks = (props: Props) => {
   const router = useRouter();
+  // eslint-disable-next-line consistent-return
   const onSubmitBillTo = async (data: BillToType) => {
     if (!data.billTo.companyName) {
       console.log('data is undifined');
@@ -19,6 +22,7 @@ export const useBillToTemplateHooks = (props: Props) => {
     if (res.status !== 200) return console.error('fail');
     router.reload();
   };
+  // eslint-disable-next-line consistent-return
   const onSubmitEditBillTo = async () => {
     const editTemplate = await props?.getValues();
     const formattedEditTemplate = {
@@ -45,3 +49,5 @@ export const useBillToTemplateHooks = (props: Props) => {
     state: {},
   };
 };
+
+export default useBillToTemplateHooks;

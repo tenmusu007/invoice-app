@@ -1,11 +1,10 @@
 import { Button, Grid } from '@mui/material';
-import { useContext } from 'react';
-import { signOut, useSession } from 'next-auth/react';
-import Text from 'src/components/atoms/Text';
-import { title } from 'process';
-import LinkTag from 'src/components/atoms/Link';
 import { useRouter } from 'next/router';
+import { signOut, useSession } from 'next-auth/react';
+
 import { useRouting } from 'helper/useRouting';
+import LinkTag from 'src/components/atoms/Link';
+import Text from 'src/components/atoms/Text';
 
 const Header = () => {
   const { data: session } = useSession();
@@ -104,7 +103,7 @@ const Header = () => {
                 </Grid>
                 <Grid item sm={4}>
                   <LinkTag path={'/signup'}>
-                    <Button> signup</Button>
+                    <Button> sign up</Button>
                   </LinkTag>
                 </Grid>
               </>

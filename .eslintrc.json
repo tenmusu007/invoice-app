@@ -1,12 +1,33 @@
 {
+  // Specifies the base configurations to extend
   "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
     "next/core-web-vitals",
     "prettier",
+    "next",
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@next/next/recommended"
   ],
+  // Specifies the parser to be used for TypeScript
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+
+  // Lists the ESLint plugins to be used
+  "plugins": ["@typescript-eslint", "import", "unused-imports"],
+  // Specifies the patterns to be ignored by ESLint
+  "ignorePatterns": [
+    ".eslintrc.js",
+    "next.config.js",
+    "tailwind.config.js",
+    "postcss.config.js",
+    "babel.config.js",
+    ".next/",
+    "node_modules/",
+    "_document.tsx",
+    "pages/_app.tsx",
+    "pages/index.tsx"
+  ],
   "root": true,
   "env": {
     "browser": true,
@@ -14,13 +35,43 @@
   },
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    // Indicates the location of the TypeScript configuration file
+    "project": "tsconfig.json"
   },
   "rules": {
+    "no-underscore-dangle": "off",
     "semi": ["error", "always"],
-    "no-unused-vars": [
+    "unused-imports/no-unused-vars": [
       "error",
       { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "parameter",
+        "format": ["camelCase"]
+      },
+      // Requires boolean variables to have one of the specified prefixes
+      {
+        "selector": "variable",
+        "format": null,
+        "types": ["boolean"],
+        "prefix": ["is", "should", "has", "can", "did", "will"]
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        // Configure the alphabetization settings
+        "alphabetize": {
+          // Enforce ascending alphabetical order
+          "order": "asc",
+          "caseInsensitive": false
+        },
+        // Enforce newlines between different groups and inside groups of imports
+        "newlines-between": "always-and-inside-groups"
+      }
     ]
   }
 }

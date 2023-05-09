@@ -1,6 +1,8 @@
+import { Types } from 'mongoose';
+
 import { BillTo } from './billTo';
 import { BusinessInfo } from './businessInfo';
-import { Types } from 'mongoose';
+
 import { InvoiceInfo } from './invoiceInfo';
 
 export type Items = {

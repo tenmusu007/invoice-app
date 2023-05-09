@@ -1,18 +1,19 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+import { JWT, getToken } from 'next-auth/jwt';
+
 import connectMongo from '@db/connectMongo';
-import Invoice from '@models/invoice';
+import BankInfo from '@models/bankInfo';
 import Bills from '@models/bills';
 import BusinessInfo from '@models/businessInfo';
+import Invoice from '@models/invoice';
 import Users from '@models/user';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { JWT, getToken } from 'next-auth/jwt';
-import BankInfo from '@models/bankInfo';
-
 
 // Make sure we delete all the console.log
 export default async function createInvoice(
   req: NextApiRequest,
   res: NextApiResponse
-) {
+): Promise<void> {
   try {
     await connectMongo();
     const token: JWT | null = await getToken({ req });
@@ -20,7 +21,7 @@ export default async function createInvoice(
     const currentUserId: string = await currentUser[0]._id.toString();
     // As soon as fixed the property of invoice user to businessInfo, give InvoiceType to invoiceData
     const invoiceData = await req.body.invoice;
-    console.log('invoiceData', invoiceData);
+
     // Bill to
     const newBillTo = await new Bills({
       userId: currentUserId,
@@ -82,8 +83,8 @@ export default async function createInvoice(
     res
       .status(200)
       .json({ res: 'You nailed it!!', data: newInvoice._id.toString() });
-  } catch (e:any) {
-    console.log(e.message);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (e: any) {
     res.status(400).json({ res: 'Hell no!!' });
   }
 }
