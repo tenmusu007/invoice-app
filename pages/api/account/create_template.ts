@@ -20,12 +20,12 @@ export default async function createTemplate(
     const userId = currentUser[0]._id.toString();
     if (!req.body) return res.status(200).json({ result: 'template is empty' });
     const { bankInfo, billTo, businessInfo } = await req.body;
-    let newBanckInfo = null;
+    let newBankInfo = null;
     let newBillTo = null;
     let newBusinessInfo = null;
     switch (true) {
       case !!bankInfo:
-        newBanckInfo = await new BankInfo({
+        newBankInfo = await new BankInfo({
           userId,
           bankName: bankInfo.bankInfo.bankName,
           transitNumber: bankInfo.bankInfo.transitNumber,
@@ -35,7 +35,7 @@ export default async function createTemplate(
           holderName: bankInfo.bankInfo.accountName,
           template: true,
         });
-        await newBanckInfo.save();
+        await newBankInfo.save();
         break;
       case !!billTo:
         newBillTo = await new Bills({
