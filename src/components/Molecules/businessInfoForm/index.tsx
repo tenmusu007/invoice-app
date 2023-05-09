@@ -7,13 +7,18 @@ import { useFormContext } from 'react-hook-form';
 
 import Input from '@src/components/atoms/Input';
 
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import type {
+  BusinessInfo as BusinessInfoType,
+  TemplateBusinessInfo,
+} from 'types/businessInfo';
 
 type Props = {
   defRegister?: any;
   disabled?: boolean;
+  templateBusinessInfoData?: TemplateBusinessInfo;
 };
 const BusinessInfoForm = (props: Props) => {
+  console.log('business info form', props.templateBusinessInfoData);
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { defRegister, disabled } = props;
   const { register } = useFormContext<BusinessInfoType>();

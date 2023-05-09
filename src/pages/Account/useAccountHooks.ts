@@ -8,11 +8,11 @@ import AccountText from './text.json';
 import { useModalContext } from 'Context/ModalContext';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useLocale } from 'helper/useLocale';
-import { BankInfo as BankInfoType } from 'types/bankInfo';
-import { BillTo as BillToType } from 'types/billTo';
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
-import { Templates } from 'types/template';
-import { UserInfo } from 'types/user';
+import type { BankInfo as BankInfoType } from 'types/bankInfo';
+import type { BillTo as BillToType } from 'types/billTo';
+import type { BusinessInfo as BusinessInfoType, TemplateBusinessInfo } from 'types/businessInfo';
+import type { Templates } from 'types/template';
+import type { UserInfo } from 'types/user';
 
 type buttonArr = {
   text: string;
@@ -21,22 +21,23 @@ type buttonArr = {
   name: string;
 }[];
 
+const textAline = { textAlign: 'center' } as const;
+const textStyle = {
+  width: '45%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginX: 'auto',
+  marginY: '30px',
+} as const;
+
 const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<UserInfo>();
   const [userTemplate, setUserTemplate] = useState<Templates>();
-  const [businessInfoData, setBusinessInfoData] = useState<BusinessInfoType>();
+  const [businessInfoData, setBusinessInfoData] = useState<TemplateBusinessInfo>();
   const [billTooData, setBillToData] = useState<BillToType>();
   const [bankInfoData, setBankInfoData] = useState<BankInfoType>();
-  const textAline = { textAlign: 'center' } as const;
-  const textStyle = {
-    width: '45%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginX: 'auto',
-    marginY: '30px',
-  } as const;
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     openBillToModal,
@@ -101,14 +102,16 @@ const useAccountHooks = () => {
     setUserTemplate(res.data);
   };
   const handleDisplayTemplate = async (event: SelectChangeEvent) => {
+    // Absolutely need to be typed
     const template: any = event.target.value;
+    console.log(template);
     if (!template) return;
     if (template === 'create') {
       setBusinessInfoData(undefined);
       setBankInfoData(undefined);
       setBillToData(undefined);
     }
-    if (template.name) {
+    if (typeof template.name !== undefined) {
       const formattedTemplate = {
         _id: template._id,
         businessName: template.name,
@@ -121,7 +124,7 @@ const useAccountHooks = () => {
         email: template?.email,
       };
       setBusinessInfoData(formattedTemplate);
-    } else if (template.bankName) {
+    } else if (typeof template.bankName !== undefined) {
       const formattedTemplate = {
         _id: template._id,
         bankName: template.bankName,
@@ -132,7 +135,7 @@ const useAccountHooks = () => {
         accountName: template.holderName,
       };
       setBankInfoData(formattedTemplate);
-    } else if (template.companyName) {
+    } else if (typeof template.companyName !==undefined) {
       const formattedTemplate = {
         _id: template._id,
         companyName: template.companyName,
