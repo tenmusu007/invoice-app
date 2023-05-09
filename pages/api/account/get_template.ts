@@ -28,7 +28,7 @@ export default async function getTemplate(
     });
     res.status(200).json({
       bills: billsTemplates,
-      banckInfo: bankInfoTemplates,
+      bankInfo: bankInfoTemplates,
       businessInfo: businessInfoTemplates,
     });
   } catch (error) {

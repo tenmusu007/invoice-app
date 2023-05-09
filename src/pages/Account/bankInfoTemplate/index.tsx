@@ -38,6 +38,7 @@ const BankInfoTemplate = (props: Props) => {
   };
   const { action } = useBankInfoTemplateHooks(templateSet);
 
+  // Use this code in createInvoice
   useEffect(() => {
     if (template) {
       Object.keys(template).forEach((key) => {
