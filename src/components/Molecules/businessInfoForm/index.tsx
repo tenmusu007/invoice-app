@@ -33,6 +33,8 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Your/Business Name"
           register={regs}
           disabled={disabled}
+          // value shows up when user select a template
+          value={props.templateBusinessInfoData?.businessName || ''}
         />
         <Input
           name="businessInfo.addressLine1"
@@ -40,6 +42,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Address line 1"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.addressLine1 || ''}
         />
         <Input
           name="businessInfo.city"
@@ -47,6 +50,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="City"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.city || ''}
         />
         <Input
           name="businessInfo.province"
@@ -54,6 +58,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Province"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.province || ''}
         />
         <Input
           name="businessInfo.country"
@@ -61,6 +66,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Country"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.country || ''}
         />
         <Input
           name="businessInfo.postalCode"
@@ -68,6 +74,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Postal Code"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.postalCode || ''}
         />
         <Input
           name="businessInfo.phoneNumber"
@@ -75,6 +82,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Phone number"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.phoneNumber || ''}
         />
         <Input
           name="businessInfo.email"
@@ -82,6 +90,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Email"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.email || ''}
         />
       </Stack>
     </Box>
