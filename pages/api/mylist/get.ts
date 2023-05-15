@@ -4,6 +4,8 @@ import { getToken } from 'next-auth/jwt';
 
 import UserInFo from '@models/account';
 
+import Bills from '@models/bills';
+import Invoice from '@models/invoice';
 import Users from '@models/user';
 
 export default async function get(req: NextApiRequest, res: NextApiResponse) {
@@ -14,7 +16,22 @@ export default async function get(req: NextApiRequest, res: NextApiResponse) {
     const userInvocieList = await UserInFo.findOne({
       userId: currentUser[0]._id.toString(),
     });
-    res.status(200).json(userInvocieList.invoice);
+
+    const invoiceData = await Promise.all(
+      userInvocieList.invoice.map(async (invoiceId: string[]) => {
+        const invoice = await Invoice.findById(invoiceId);
+        const invoiceBillTo = await Bills.findById(invoice?.billTo);
+        const data = {
+          invoiceId: invoice?._id,
+          invoiceNumber: invoice?.invoiceNumber,
+          issued: invoice?.issued,
+          billTo: invoiceBillTo,
+        };
+        return data;
+      })
+    );
+    
+    res.status(200).json(invoiceData);
   } catch (error) {
     res.status(400).json(error);
   }
