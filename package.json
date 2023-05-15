@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "yarn lint --fix",
+    "lint:css": "stylelint --fix './**/*.{css,less,sass,scss}'",
     "test": "jest",
     "prepare": "husky install",
     "types:check": "tsc --pretty --noEmit",

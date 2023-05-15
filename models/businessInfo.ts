@@ -1,6 +1,6 @@
 import { Schema, model, models } from 'mongoose';
 
-interface BusinessInfoSchema {
+interface BusinessInfoSchemaType {
   userId: string;
   name: string;
   address: string;
@@ -12,7 +12,7 @@ interface BusinessInfoSchema {
   email: string;
   template: boolean;
 }
-const BusinessInfoSchema = new Schema<BusinessInfoSchema>({
+const BusinessInfoSchema = new Schema<BusinessInfoSchemaType>({
   userId: {
     type: String,
     required: true,
@@ -47,5 +47,6 @@ const BusinessInfoSchema = new Schema<BusinessInfoSchema>({
   },
 });
 const BusinessInfo =
-  models.BusinessInfo || model<BusinessInfoSchema>('BusinessInfo', BusinessInfoSchema);
+  models.BusinessInfo ||
+  model<BusinessInfoSchemaType>('BusinessInfo', BusinessInfoSchema);
 export default BusinessInfo;

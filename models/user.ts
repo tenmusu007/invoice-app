@@ -1,4 +1,5 @@
 import { Schema, model, models } from 'mongoose';
+
 const UsersSchema = new Schema({
   name: {
     type: String,
@@ -10,7 +11,7 @@ const UsersSchema = new Schema({
   },
   image: {
     type: String,
-    required:true
+    required: true,
   },
   accessToken: {
     type: String,

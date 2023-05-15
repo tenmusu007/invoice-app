@@ -1,17 +1,18 @@
 import { Schema, model, models } from 'mongoose';
 
-interface InvoiceSchema {
-  userId: string;
-  invoiceNumber: number;
-  issued: string;
-  due: string;
-  billTo: string;
-  businessInfo: string;
-  bankInfo: string;
-  items: Array<any>;
-  total: number;
-  subTotal: number;
-}
+// Needs to be applied to the invoice
+// interface InvoiceSchemaType {
+//   userId: string;
+//   invoiceNumber: number;
+//   issued: string;
+//   due: string;
+//   billTo: string;
+//   businessInfo: string;
+//   bankInfo: string;
+//   items: Array<any>;
+//   total: number;
+//   subTotal: number;
+// }
 
 const InvoiceSchema = new Schema({
   userId: {

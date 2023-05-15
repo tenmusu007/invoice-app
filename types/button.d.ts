@@ -6,6 +6,7 @@ export type Button = {
   onClick?: () =>
     | void
     | Dispatch<SetStateAction<boolean>>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | ((e: any) => Promise<void>);
   sx?: SxProps<Theme> | undefined;
   variant?: 'text' | 'outlined' | 'contained' | undefined;
