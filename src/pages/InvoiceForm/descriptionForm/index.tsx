@@ -10,14 +10,12 @@ import TotalAmount from './totalAmount';
 
 import Button from '@src/components/atoms/Button';
 
-
-
 import { useTotalContext } from 'Context/TotalContext';
-import { Description as DescriptionType } from 'types/description';
+import type { Description as DescriptionType } from 'types/description';
 
 type Props = {
   disabled?: boolean;
-}
+};
 const DescriptionForm = (props: Props) => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { disabled } = props;
@@ -50,59 +48,61 @@ const DescriptionForm = (props: Props) => {
           <Typography>Amount</Typography>
         </Grid>
       </Grid>
-      <Stack spacing={1}>
+      <Stack spacing={1} alignItems="baseline">
         {fields.map((field, index) => (
-            <React.Fragment key={field.id}>
-              <Grid
-                container
-                spacing={1}
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Grid item xs={4}>
-                  <TextField
-                    {...register(`description.${index}.name`)}
-                    size="small"
-                    disabled={disabled}
-                  />
-                </Grid>
-                <Grid item xs={2}>
-                  <TextField
-                    {...register(`description.${index}.quantity`)}
-                    size="small"
-                    disabled={disabled}
-                  />
-                </Grid>
-                <Grid item xs={2}>
-                  <TextField
-                    {...register(`description.${index}.unitPrice`)}
-                    size="small"
-                    disabled={disabled}
-                  />
-                </Grid>
-                <Grid item xs={2}>
-                  <TextField
-                    {...register(`description.${index}.tax`)}
-                    size="small"
-                    disabled={disabled}
-                  />
-                </Grid>
-                <Grid item xs={1}>
-                  <TextField
-                    {...register(`description.${index}.amount`)}
-                    size="small"
-                    value={totalContext?.amount[index]}
-                    disabled={disabled}
-                  />
-                </Grid>
-                <Grid item xs={1}>
-                  {!disabled && <IconButton aria-label="delete" onClick={() => remove(index)}>
-                    <DeleteForeverIcon />
-                  </IconButton>}
-                </Grid>
+          <React.Fragment key={field.id}>
+            <Grid
+              container
+              spacing={1}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Grid item xs={4}>
+                <TextField
+                  {...register(`description.${index}.name`)}
+                  size="small"
+                  disabled={disabled}
+                />
               </Grid>
-            </React.Fragment>
-          ))}
+              <Grid item xs={2}>
+                <TextField
+                  {...register(`description.${index}.quantity`)}
+                  size="small"
+                  disabled={disabled}
+                />
+              </Grid>
+              <Grid item xs={2}>
+                <TextField
+                  {...register(`description.${index}.unitPrice`)}
+                  size="small"
+                  disabled={disabled}
+                />
+              </Grid>
+              <Grid item xs={2}>
+                <TextField
+                  {...register(`description.${index}.tax`)}
+                  size="small"
+                  disabled={disabled}
+                />
+              </Grid>
+              <Grid item xs={1}>
+                <TextField
+                  {...register(`description.${index}.amount`)}
+                  size="small"
+                  value={totalContext?.amount[index]}
+                  disabled={disabled}
+                />
+              </Grid>
+              <Grid item xs={1}>
+                {!disabled && (
+                  <IconButton aria-label="delete" onClick={() => remove(index)}>
+                    <DeleteForeverIcon />
+                  </IconButton>
+                )}
+              </Grid>
+            </Grid>
+          </React.Fragment>
+        ))}
       </Stack>
       <Button
         text={'Add row'}

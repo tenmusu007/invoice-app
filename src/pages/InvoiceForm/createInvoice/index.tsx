@@ -19,6 +19,7 @@ const buttonStyle = {
   color: '#232946',
   borderRadius: 2,
   fontWeight: 'bold',
+  width: 'fit-content',
 } as const;
 
 const CreateInvoiceForm = () => {
@@ -53,6 +54,7 @@ const CreateInvoiceForm = () => {
         component="form"
         onSubmit={handleSubmit(generateInvoice)}
         paddingTop={5}
+        gap={4}
       >
         <InfoForm />
         <Stack direction="row" spacing={2}>
@@ -62,7 +64,7 @@ const CreateInvoiceForm = () => {
         <DescriptionForm />
         <BankInfoForm templateBankInfo={state.bankInfoData} />
         <TermsAndConditionForm />
-        <Box width={2}>
+        <Box sx={{ width: '8rem' }}>
           <Button text={'Generate PDF'} type="submit" sx={buttonStyle} />
         </Box>
       </Stack>

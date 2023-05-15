@@ -62,7 +62,11 @@ const BankInfoForm = (props: Props) => {
         </Box>
         <Box sx={{ width: '45%' }}>
           <Stack spacing={1}>
-            <select {...regs('bankInfo.accountType')} disabled={disabled}>
+            <select
+              {...regs('bankInfo.accountType')}
+              disabled={disabled}
+              style={{ borderRadius: 4, padding: 8, cursor: 'pointer' }}
+            >
               <option
                 key="Checking"
                 value={props.templateBankInfo?.accountType || 'Checking'}

@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useTotalContext } from 'Context/TotalContext';
 import { ApiInstance } from 'helper/ApiInstance';
-import { Invoice as InvoiceType } from 'types/inputValue';
+import type { Invoice as InvoiceType } from 'types/inputValue';
 
 const useInvoice = () => {
   const router = useRouter();
