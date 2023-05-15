@@ -5,29 +5,29 @@ import CardContent from '@mui/material/CardContent';
 import Link from 'src/components/atoms/Link';
 import Text from 'src/components/atoms/Text';
 
-const InvoiceCard = (props: any) => {
+type Props = {
+  list: {
+    invoiceNumber: string;
+    issued: string;
+    billTo: any;
+    invoiceId: number;
+  };
+};
+const InvoiceCard = (props: Props) => {
   const TextStyle = { textAlign: 'center', marginY: 2 };
-  const { businessInfo, invocieNumber, issued } = props.list;
+
+  const { invoiceNumber, issued, billTo, invoiceId } = props.list;
   return (
     // <Link path={`/mylist/${encodeURIComponent(invocieNumber as string)}`}>/
-    <Link
-      path={`/mylist/${encodeURIComponent(
-        '6443617ceb584c09d26e6a19' as string
-      )}`}
-    >
-      
+    <Link path={`/mylist/${encodeURIComponent(`${invoiceId}` as string)}`}>
       <Card sx={{ width: 150, height: 180, margin: 'auto' }}>
         <CardContent>
           <Text
-            text={`No${invocieNumber}`}
+            text={`No${invoiceNumber}`}
             variant={'body1'}
             style={TextStyle}
           />
-          <Text
-            text={businessInfo.companyName}
-            variant={'body1'}
-            style={TextStyle}
-          />
+          <Text text={billTo.companyName} variant={'body1'} style={TextStyle} />
           <Text text={issued} variant={'body1'} style={TextStyle} />
         </CardContent>
       </Card>

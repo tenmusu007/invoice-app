@@ -14,7 +14,7 @@ type Props = {
   defoReg?: any;
 };
 const InfoForm = (props: Props) => {
-  const { register } = useFormContext<InvoiceInfoType>();
+  const { register } = useFormContext();
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { disabled } = props;
   return (

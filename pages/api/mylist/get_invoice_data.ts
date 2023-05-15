@@ -13,7 +13,7 @@ export default async function getInvoiceData(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`
+
   try {
     const token = await getToken({ req });
     await Users.find({ accessToken: token?.accessToken });
