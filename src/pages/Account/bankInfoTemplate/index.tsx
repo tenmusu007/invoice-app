@@ -5,10 +5,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import useBankInfoTemplateHooks from './useBankInfoTemplateHooks';
 
+import BankInfoForm from '@src/components/Molecules/bankInfoForm';
 import Button from '@src/components/atoms/Button';
-import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import Modal from '@src/components/organisms/Modal';
-import { BankInfo as BankInfoType } from 'types/bankInfo';
+import type { BankInfo as BankInfoType } from 'types/bankInfo';
 
 type Props = {
   openModal: boolean;
@@ -38,7 +38,6 @@ const BankInfoTemplate = (props: Props) => {
   };
   const { action } = useBankInfoTemplateHooks(templateSet);
 
-  // Use this code in createInvoice
   useEffect(() => {
     if (template) {
       Object.keys(template).forEach((key) => {

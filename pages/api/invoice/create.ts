@@ -63,6 +63,7 @@ export default async function createInvoice(
       holderName: invoiceData.bankInfo.accountName,
       template: false,
     });
+
     await bankInfo.save();
     const bankInfoId: string = bankInfo._id.toString();
 
@@ -85,6 +86,7 @@ export default async function createInvoice(
       .json({ res: 'You nailed it!!', data: newInvoice._id.toString() });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
+    console.log(e.message);
     res.status(400).json({ res: 'Hell no!!' });
   }
 }

@@ -17,5 +17,5 @@ export type Input = {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   id?: string;
   disabled?: boolean;
-  value?: string;
+  value?: string | number;
 };

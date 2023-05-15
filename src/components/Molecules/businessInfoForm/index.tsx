@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Stack } from '@mui/system';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
@@ -18,11 +18,22 @@ type Props = {
   templateBusinessInfoData?: TemplateBusinessInfo;
 };
 const BusinessInfoForm = (props: Props) => {
-  console.log('business info form', props.templateBusinessInfoData);
+  // concerns need to be separated (use Custom hook)
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { defRegister, disabled } = props;
-  const { register } = useFormContext<BusinessInfoType>();
+  const { register, setValue } = useFormContext<BusinessInfoType>();
   const regs = defRegister || register;
+
+  useEffect(() => {
+    if (props.templateBusinessInfoData) {
+      Object.entries(props.templateBusinessInfoData).forEach(
+        ([name, value]) => {
+          setValue(`businessInfo.${name}`, value);
+        }
+      );
+    }
+  }, [props.templateBusinessInfoData, setValue]);
+
   return (
     <Box sx={{ width: '45%' }}>
       <h3>Business Info</h3>
@@ -34,7 +45,11 @@ const BusinessInfoForm = (props: Props) => {
           register={regs}
           disabled={disabled}
           // value shows up when user select a template
-          value={props.templateBusinessInfoData?.businessName || ''}
+          value={
+            typeof props.templateBusinessInfoData === undefined
+              ? ''
+              : props.templateBusinessInfoData?.businessName
+          }
         />
         <Input
           name="businessInfo.addressLine1"

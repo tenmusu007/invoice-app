@@ -8,9 +8,9 @@ import AccountText from './text.json';
 import { useModalContext } from 'Context/ModalContext';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useLocale } from 'helper/useLocale';
-import type { BankInfo as BankInfoType } from 'types/bankInfo';
-import type { BillTo as BillToType } from 'types/billTo';
-import type { BusinessInfo as BusinessInfoType, TemplateBusinessInfo } from 'types/businessInfo';
+import type { TemplateBankInfo } from 'types/bankInfo';
+import type { TemplateBillTo } from 'types/billTo';
+import type { TemplateBusinessInfo } from 'types/businessInfo';
 import type { Templates } from 'types/template';
 import type { UserInfo } from 'types/user';
 
@@ -35,9 +35,10 @@ const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<UserInfo>();
   const [userTemplate, setUserTemplate] = useState<Templates>();
-  const [businessInfoData, setBusinessInfoData] = useState<TemplateBusinessInfo>();
-  const [billTooData, setBillToData] = useState<BillToType>();
-  const [bankInfoData, setBankInfoData] = useState<BankInfoType>();
+  const [businessInfoData, setBusinessInfoData] =
+    useState<TemplateBusinessInfo>();
+  const [billTooData, setBillToData] = useState<TemplateBillTo>();
+  const [bankInfoData, setBankInfoData] = useState<TemplateBankInfo>();
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     openBillToModal,
@@ -102,7 +103,7 @@ const useAccountHooks = () => {
     setUserTemplate(res.data);
   };
   const handleDisplayTemplate = async (event: SelectChangeEvent) => {
-    // Absolutely need to be typed
+    // Absolutely needs to be typed
     const template: any = event.target.value;
     console.log(template);
     if (!template) return;
@@ -111,7 +112,7 @@ const useAccountHooks = () => {
       setBankInfoData(undefined);
       setBillToData(undefined);
     }
-    if (typeof template.name !== undefined) {
+    if (template.name) {
       const formattedTemplate = {
         _id: template._id,
         businessName: template.name,
@@ -124,7 +125,7 @@ const useAccountHooks = () => {
         email: template?.email,
       };
       setBusinessInfoData(formattedTemplate);
-    } else if (typeof template.bankName !== undefined) {
+    } else if (template.bankName) {
       const formattedTemplate = {
         _id: template._id,
         bankName: template.bankName,
@@ -135,7 +136,7 @@ const useAccountHooks = () => {
         accountName: template.holderName,
       };
       setBankInfoData(formattedTemplate);
-    } else if (typeof template.companyName !==undefined) {
+    } else if (template.companyName) {
       const formattedTemplate = {
         _id: template._id,
         companyName: template.companyName,

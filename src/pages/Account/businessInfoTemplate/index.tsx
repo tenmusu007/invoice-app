@@ -5,10 +5,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import useBusinessTemplateHooks from './useBusinessTemplateHooks';
 
+import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
 import Button from '@src/components/atoms/Button';
-import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
 import Modal from '@src/components/organisms/Modal';
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import type { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 
 type Props = {
   openModal: boolean;
@@ -44,7 +44,7 @@ const BusinessInfoTemplate = (props: Props) => {
         setValue(`businessInfo.${key}`, template[key]);
       });
     }
-  }, [template]);
+  }, [setValue, template]);
   const methods = useForm<BusinessInfoType>({
     defaultValues: {
       businessInfo: {
