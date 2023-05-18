@@ -1,18 +1,20 @@
 import { useRouter } from 'next/router';
 
+import { FieldValues, UseFormGetValues } from 'react-hook-form';
+
 import { ApiInstance } from 'helper/ApiInstance';
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import type { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 
 type Props = {
   template: BusinessInfoType | undefined;
-  getValues: any;
+  getValues: UseFormGetValues<FieldValues>;
 };
-const useBusinessTemplateHooks = (props?: Props) => {
+const useBusinessTemplateHooks = (props: Props) => {
   const router = useRouter();
   // eslint-disable-next-line consistent-return
   const onSubmitBusinessInfo = async (data: BusinessInfoType) => {
     if (!data.businessInfo.businessName) {
-      return console.log('data is undifined');
+      return console.log('data is undefined');
     }
     const res = await ApiInstance({
       method: 'post',
@@ -25,6 +27,7 @@ const useBusinessTemplateHooks = (props?: Props) => {
   // eslint-disable-next-line consistent-return
   const onSubmitEditBusinessInfo = async () => {
     const editTemplate = props?.getValues();
+
     const formattedEditTemplate = {
       _id: editTemplate.businessInfo._id,
       name: editTemplate.businessInfo.businessName,

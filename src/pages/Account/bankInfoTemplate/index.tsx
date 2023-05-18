@@ -44,7 +44,7 @@ const BankInfoTemplate = (props: Props) => {
         setValue(`bankInfo.${key}`, template[key]);
       });
     }
-  }, [template]);
+  }, [setValue, template]);
   const methods = useForm<BankInfoType>({
     defaultValues: {
       bankInfo: {

@@ -1,18 +1,20 @@
 import { useRouter } from 'next/router';
 
+import { FieldValues, UseFormGetValues } from 'react-hook-form';
+
 import { ApiInstance } from 'helper/ApiInstance';
-import { BillTo as BillToType } from 'types/billTo';
+import type { BillTo as BillToType } from 'types/billTo';
 
 type Props = {
   template: BillToType | undefined;
-  getValues: any;
+  getValues: UseFormGetValues<FieldValues>;
 };
 const useBillToTemplateHooks = (props: Props) => {
   const router = useRouter();
   // eslint-disable-next-line consistent-return
   const onSubmitBillTo = async (data: BillToType) => {
     if (!data.billTo.companyName) {
-      console.log('data is undifined');
+      console.log('data is undefined');
     }
     const res = await ApiInstance({
       method: 'post',
@@ -24,7 +26,7 @@ const useBillToTemplateHooks = (props: Props) => {
   };
   // eslint-disable-next-line consistent-return
   const onSubmitEditBillTo = async () => {
-    const editTemplate = await props?.getValues();
+    const editTemplate = props?.getValues();
     const formattedEditTemplate = {
       _id: editTemplate.billTo._id,
       companyName: editTemplate.billTo.companyName,
