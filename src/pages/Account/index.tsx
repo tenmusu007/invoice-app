@@ -76,6 +76,7 @@ const AccountPage = (props: Props) => {
           />
         </Grid>
         <Grid item alignItems="center" display="flex" md={12}>
+          {/* // TODO: Refactor this to separate component */}
           {state.templates.map((template, index) => (
             <>
               <Grid item textAlign={'center'} md={4}>

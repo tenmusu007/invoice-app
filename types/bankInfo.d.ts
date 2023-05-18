@@ -1,12 +1,12 @@
 import { Types } from 'mongoose';
 
 export type BankInfo = {
-  bankName?: string;
-  branchNumber?: number;
-  accountNumber?: number;
-  accountType?: string;
-  accountName?: string;
-  transitNumber?: number;
+  bankName: string;
+  branchNumber: number;
+  accountNumber: number;
+  accountType: string;
+  accountName: string;
+  transitNumber: number;
   [key: string]: string | any;
 };
 
@@ -16,3 +16,7 @@ export type BankInfoDB = BankInfo & {
   template: boolean;
   __v: number;
 };
+
+export type TemplateBankInfo = BankInfo & {
+  _id: Types.ObjectId;
+}

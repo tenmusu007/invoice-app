@@ -1,12 +1,13 @@
 import React, { createContext, useReducer } from 'react';
+
 import { Children } from 'types/children';
-import { ModalContext as ModalContextType } from 'types/modalContext';
+import type { ModalContext as ModalContextType } from 'types/modalContext';
 
 export const useModalContext = createContext<ModalContextType>(
   {} as ModalContextType
 );
 
-//Action types for Reducer
+// Action types for Reducer
 export type Action =
   | { type: 'OPEN_BILL_TO_MODAL' }
   | { type: 'CLOSE_BILL_TO_MODAL' }
@@ -27,10 +28,12 @@ export const initialState: State = {
   openBankInfoModal: false,
 };
 
+// eslint-disable-next-line consistent-return
 export const modalReducer = (state: State, action: Action) => {
+  // eslint-disable-next-line default-case
   switch (action.type) {
     case 'OPEN_BILL_TO_MODAL':
-      //change only one state based on case, others should not be changed (...state)
+      // change only one state based on case, others should not be changed (...state)
       return {
         ...state,
         openBillToModal: true,

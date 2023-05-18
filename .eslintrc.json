@@ -26,7 +26,8 @@
     "node_modules/",
     "_document.tsx",
     "pages/_app.tsx",
-    "pages/index.tsx"
+    "pages/index.tsx",
+    "styles.css"
   ],
   "root": true,
   "env": {

@@ -5,10 +5,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import useBillToTemplateHooks from './useBillToTemplateHooks';
 
+import BillToForm from '@src/components/Molecules/billToForm';
 import Button from '@src/components/atoms/Button';
-import BillToForm from '@src/components/molecules/BillToForm';
 import Modal from '@src/components/organisms/Modal';
-import { BillTo as BillToType } from 'types/billTo';
+import type { BillTo as BillToType } from 'types/billTo';
 
 type Props = {
   openModal: boolean;
@@ -44,7 +44,7 @@ const BillToTemplate = (props: Props) => {
         setValue(`billTo.${key}`, template[key]);
       });
     }
-  }, [template]);
+  }, [setValue, template]);
 
   const methods = useForm<BillToType>({
     defaultValues: {

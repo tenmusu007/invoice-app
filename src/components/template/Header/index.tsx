@@ -1,7 +1,8 @@
-import { Button, Grid } from '@mui/material';
+import { Button as MuiButton, Grid } from '@mui/material';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
+import Button from '@src/components/atoms/Button';
 import { useRouting } from 'helper/useRouting';
 import LinkTag from 'src/components/atoms/Link';
 import Text from 'src/components/atoms/Text';
@@ -16,21 +17,36 @@ const Header = () => {
   const router = useRouter();
   const { isInvoice } = useRouting(router);
 
-  const navigateToHome = async (e: any) => {
-    e.preventDefault();
+  const navigateToHome = async () => {
+    try {
+      router.push('/');
 
-    router.push('/home');
-
-    setTimeout(() => {
-      router.reload();
-    }, 1000);
+      setTimeout(() => {
+        router.reload();
+      }, 1000);
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  const buttonStyle = {
+    background: '#EEBBC3',
+    color: '#232946',
+    borderRadius: 2,
+    padding: 2,
+    fontWeight: 'bold',
+    width: 'fit-content',
+    cursor: 'pointer',
+    '&:hover, &:focus': {
+      background: '#ecdde0',
+    },
+  } as const;
 
   return (
     <>
       {isInvoice ? (
-        <LinkTag path={'/home'}>
-          <button onClick={navigateToHome}>Home</button>
+        <LinkTag path={'/'}>
+          <Button text="Home" onClick={navigateToHome} sx={buttonStyle} />
         </LinkTag>
       ) : (
         <Grid
@@ -56,7 +72,7 @@ const Header = () => {
               <>
                 <Grid item sm={3} style={{ textAlign: 'center' }}>
                   <LinkTag path={'/invoice'}>
-                    <Button>create</Button>
+                    <MuiButton>create</MuiButton>
                   </LinkTag>
                 </Grid>
                 <Grid item sm={3}>
@@ -91,19 +107,19 @@ const Header = () => {
                   />
                 </Grid>
                 <Grid item sm={6} style={{ textAlign: 'center' }}>
-                  <Button onClick={nextAuthLogout}>Logout</Button>
+                  <MuiButton onClick={nextAuthLogout}>Logout</MuiButton>
                 </Grid>
               </>
             ) : (
               <>
                 <Grid item sm={4}>
                   <LinkTag path={'/login'}>
-                    <Button> login</Button>
+                    <MuiButton> login</MuiButton>
                   </LinkTag>
                 </Grid>
                 <Grid item sm={4}>
                   <LinkTag path={'/signup'}>
-                    <Button> sign up</Button>
+                    <MuiButton> sign up</MuiButton>
                   </LinkTag>
                 </Grid>
               </>

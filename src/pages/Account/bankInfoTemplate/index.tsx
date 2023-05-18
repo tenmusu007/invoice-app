@@ -5,10 +5,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import useBankInfoTemplateHooks from './useBankInfoTemplateHooks';
 
+import BankInfoForm from '@src/components/Molecules/bankInfoForm';
 import Button from '@src/components/atoms/Button';
-import BankInfoForm from '@src/components/molecules/BankInfoForm';
 import Modal from '@src/components/organisms/Modal';
-import { BankInfo as BankInfoType } from 'types/bankInfo';
+import type { BankInfo as BankInfoType } from 'types/bankInfo';
 
 type Props = {
   openModal: boolean;
@@ -44,7 +44,7 @@ const BankInfoTemplate = (props: Props) => {
         setValue(`bankInfo.${key}`, template[key]);
       });
     }
-  }, [template]);
+  }, [setValue, template]);
   const methods = useForm<BankInfoType>({
     defaultValues: {
       bankInfo: {

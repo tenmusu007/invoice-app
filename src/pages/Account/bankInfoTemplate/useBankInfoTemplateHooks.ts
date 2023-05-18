@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
 
+import { FieldValues, UseFormGetValues } from 'react-hook-form';
+
 import { ApiInstance } from 'helper/ApiInstance';
-import { BankInfo as BankInfoType } from 'types/bankInfo';
+import type { BankInfo as BankInfoType } from 'types/bankInfo';
 
 type Props = {
   template: BankInfoType | undefined;
-  getValues: any;
+  getValues: UseFormGetValues<FieldValues>;
 };
 const useBankInfoTemplateHooks = (props: Props) => {
   const router = useRouter();

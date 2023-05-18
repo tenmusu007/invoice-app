@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
-import { Children } from 'types/children';
-import { Total as TotalType } from 'types/total';
+
+import type { Children } from 'types/children';
+import type { Total as TotalType } from 'types/total';
 
 export const useTotalContext = createContext<TotalType>({} as TotalType);
 

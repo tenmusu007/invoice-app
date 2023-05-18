@@ -1,12 +1,6 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-import { SelectType } from 'types/select';
+import type { SelectType } from 'types/select';
 
 const SelectInput = (props: Partial<SelectType>) => {
   const { items, name, language, template, onChange } = props;
@@ -24,10 +18,10 @@ const SelectInput = (props: Partial<SelectType>) => {
         >
           {items &&
             items?.map((item: any) => (
-                <MenuItem value={item.value} key={item.name}>
-                  {item.name}
-                </MenuItem>
-              ))}
+              <MenuItem value={item.value} key={item.name}>
+                {item.name}
+              </MenuItem>
+            ))}
           {template && (
             <MenuItem value={'create'} key={'0'}>
               {'new template'}
@@ -35,12 +29,12 @@ const SelectInput = (props: Partial<SelectType>) => {
           )}
           {template &&
             template?.map((item: any) => (
-                <MenuItem value={item} key={item._id}>
-                  {item.companyName}
-                  {item.name}
-                  {item.bankName}
-                </MenuItem>
-              ))}
+              <MenuItem value={item} key={item._id}>
+                {item.companyName}
+                {item.name}
+                {item.bankName}
+              </MenuItem>
+            ))}
         </Select>
       </>
     </FormControl>

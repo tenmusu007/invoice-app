@@ -1,23 +1,14 @@
-import { Grid } from "@mui/material";
-import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import dayjs, { Dayjs } from "dayjs";
-import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import { useState } from "react";
-
-import { ApiInstance } from "../helper/ApiInstance";
-
+import { Grid } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import dayjs, { Dayjs } from 'dayjs';
+import { useState } from 'react';
 
 export default function Home(props: any) {
-  // login user data
-  const { data: session, status } = useSession();
-  const router = useRouter();
-
   const [value, setValue] = useState<Dayjs | null>(dayjs());
   const [start, setStart] = useState<Dayjs | null>();
   const [end, setEnd] = useState<Dayjs | null>();
@@ -57,7 +48,6 @@ export default function Home(props: any) {
           </Grid>
         </Stack>
       </LocalizationProvider>
-      
     </>
   );
 }

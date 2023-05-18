@@ -8,11 +8,11 @@ import AccountText from './text.json';
 import { useModalContext } from 'Context/ModalContext';
 import { ApiInstance } from 'helper/ApiInstance';
 import { useLocale } from 'helper/useLocale';
-import { BankInfo as BankInfoType } from 'types/bankInfo';
-import { BillTo as BillToType } from 'types/billTo';
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
-import { Templates } from 'types/template';
-import { UserInfo } from 'types/user';
+import type { TemplateBankInfo } from 'types/bankInfo';
+import type { TemplateBillTo } from 'types/billTo';
+import type { TemplateBusinessInfo } from 'types/businessInfo';
+import type { Templates } from 'types/template';
+import type { UserInfo } from 'types/user';
 
 type buttonArr = {
   text: string;
@@ -21,22 +21,24 @@ type buttonArr = {
   name: string;
 }[];
 
+const textAline = { textAlign: 'center' } as const;
+const textStyle = {
+  width: '45%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginX: 'auto',
+  marginY: '30px',
+} as const;
+
 const useAccountHooks = () => {
   const { t } = useLocale(AccountText);
   const [userData, setUserData] = useState<UserInfo>();
   const [userTemplate, setUserTemplate] = useState<Templates>();
-  const [businessInfoData, setBusinessInfoData] = useState<BusinessInfoType>();
-  const [billTooData, setBillToData] = useState<BillToType>();
-  const [bankInfoData, setBankInfoData] = useState<BankInfoType>();
-  const textAline = { textAlign: 'center' } as const;
-  const textStyle = {
-    width: '45%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginX: 'auto',
-    marginY: '30px',
-  } as const;
+  const [businessInfoData, setBusinessInfoData] =
+    useState<TemplateBusinessInfo>();
+  const [billTooData, setBillToData] = useState<TemplateBillTo>();
+  const [bankInfoData, setBankInfoData] = useState<TemplateBankInfo>();
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     openBillToModal,
@@ -101,7 +103,9 @@ const useAccountHooks = () => {
     setUserTemplate(res.data);
   };
   const handleDisplayTemplate = async (event: SelectChangeEvent) => {
+    // Absolutely needs to be typed
     const template: any = event.target.value;
+    console.log(template);
     if (!template) return;
     if (template === 'create') {
       setBusinessInfoData(undefined);

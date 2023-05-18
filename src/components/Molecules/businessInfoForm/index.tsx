@@ -1,23 +1,39 @@
 import { Box } from '@mui/material';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Stack } from '@mui/system';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
 import Input from '@src/components/atoms/Input';
 
-import { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
+import type {
+  BusinessInfo as BusinessInfoType,
+  TemplateBusinessInfo,
+} from 'types/businessInfo';
 
 type Props = {
   defRegister?: any;
   disabled?: boolean;
+  templateBusinessInfoData?: TemplateBusinessInfo;
 };
 const BusinessInfoForm = (props: Props) => {
+  // concerns need to be separated (use Custom hook)
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { defRegister, disabled } = props;
-  const { register } = useFormContext<BusinessInfoType>();
+  const { register, setValue } = useFormContext<BusinessInfoType>();
   const regs = defRegister || register;
+
+  useEffect(() => {
+    if (props.templateBusinessInfoData) {
+      Object.entries(props.templateBusinessInfoData).forEach(
+        ([name, value]) => {
+          setValue(`businessInfo.${name}`, value);
+        }
+      );
+    }
+  }, [props.templateBusinessInfoData, setValue]);
+
   return (
     <Box sx={{ width: '45%' }}>
       <h3>Business Info</h3>
@@ -28,6 +44,12 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Your/Business Name"
           register={regs}
           disabled={disabled}
+          // value shows up when user select a template
+          value={
+            typeof props.templateBusinessInfoData === undefined
+              ? ''
+              : props.templateBusinessInfoData?.businessName
+          }
         />
         <Input
           name="businessInfo.addressLine1"
@@ -35,6 +57,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Address line 1"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.addressLine1 || ''}
         />
         <Input
           name="businessInfo.city"
@@ -42,6 +65,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="City"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.city || ''}
         />
         <Input
           name="businessInfo.province"
@@ -49,6 +73,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Province"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.province || ''}
         />
         <Input
           name="businessInfo.country"
@@ -56,6 +81,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Country"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.country || ''}
         />
         <Input
           name="businessInfo.postalCode"
@@ -63,6 +89,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Postal Code"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.postalCode || ''}
         />
         <Input
           name="businessInfo.phoneNumber"
@@ -70,6 +97,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Phone number"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.phoneNumber || ''}
         />
         <Input
           name="businessInfo.email"
@@ -77,6 +105,7 @@ const BusinessInfoForm = (props: Props) => {
           placeholder="Email"
           register={regs}
           disabled={disabled}
+          value={props.templateBusinessInfoData?.email || ''}
         />
       </Stack>
     </Box>

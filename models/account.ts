@@ -1,4 +1,5 @@
 import { Schema, model, models } from 'mongoose';
+
 const AccountSchema = new Schema({
   userId: {
     type: String,

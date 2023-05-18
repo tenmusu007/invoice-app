@@ -16,3 +16,7 @@ export type BillToDB = BillTo & {
   template: boolean;
   __v: number;
 };
+
+export type TemplateBillTo = BillTo & {
+  _id: Types.ObjectId;
+};

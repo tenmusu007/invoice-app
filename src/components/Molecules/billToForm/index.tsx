@@ -1,22 +1,32 @@
 import { Box } from '@mui/material';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Stack } from '@mui/system';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useForm, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import Input from '@src/components/atoms/Input';
+import type { TemplateBillTo } from 'types/billTo';
 
 type Props = {
   defRegister?: any;
   disabled?: boolean;
+  templateBIllToData?: TemplateBillTo;
 };
 const BillToForm = (props: Props) => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { defRegister, disabled } = props;
 
-  const { register } = useFormContext();
+  const { register, setValue } = useFormContext();
   const regs = defRegister || register;
+
+  useEffect(() => {
+    if (props.templateBIllToData) {
+      Object.entries(props.templateBIllToData).forEach(([name, value]) => {
+        setValue(`billTo.${name}`, value);
+      });
+    }
+  }, [props.templateBIllToData, setValue]);
 
   return (
     <Box sx={{ width: '45%' }}>
@@ -28,6 +38,7 @@ const BillToForm = (props: Props) => {
           placeholder="Company/Client Name"
           type="text"
           disabled={disabled}
+          value={props.templateBIllToData?.companyName || ''}
         />
         <Input
           name="billTo.addressLine1"
@@ -35,6 +46,7 @@ const BillToForm = (props: Props) => {
           placeholder="Address Line 1"
           type="text"
           disabled={disabled}
+          value={props.templateBIllToData?.addressLine1 || ''}
         />
         <Input
           name="billTo.city"
@@ -42,6 +54,7 @@ const BillToForm = (props: Props) => {
           placeholder="City"
           type="text"
           disabled={disabled}
+          value={props.templateBIllToData?.city || ''}
         />
         <Input
           name="billTo.province"
@@ -49,6 +62,7 @@ const BillToForm = (props: Props) => {
           placeholder="Province"
           type="text"
           disabled={disabled}
+          value={props.templateBIllToData?.province || ''}
         />
         <Input
           name="billTo.country"
@@ -56,6 +70,7 @@ const BillToForm = (props: Props) => {
           placeholder="Country"
           type="text"
           disabled={disabled}
+          value={props.templateBIllToData?.country || ''}
         />
         <Input
           name="billTo.postalCode"
@@ -63,6 +78,7 @@ const BillToForm = (props: Props) => {
           placeholder="Postal Code"
           type="text"
           disabled={disabled}
+          value={props.templateBIllToData?.postalCode || ''}
         />
       </Stack>
     </Box>
