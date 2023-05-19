@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import useMyListHooks from './useMyListHooks';
 
-import InvoiceCard from '@src/pages/mylist/InvoiceCard';
+import InvoiceCard from '@src/pages/mylits/InvoiceCard';
 
 const style = {
   marginTop: 12,

@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next/types';
 
-import MylistPage from '../../src/pages/mylist';
-
+import MylistPage from '@src/pages/mylits';
 
 const Mylist = () => (
   <>
