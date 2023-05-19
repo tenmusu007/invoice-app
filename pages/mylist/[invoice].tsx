@@ -5,13 +5,13 @@ import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 
 import Button from '@src/components/atoms/Button';
-import BankInfoForm from '@src/components/molecules/BankInfoForm';
-import BillToForm from '@src/components/molecules/BillToForm';
-import BusinessInfoForm from '@src/components/molecules/BusinessInfoForm';
-import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
+import BankInfoForm from '@src/components/formComponents/BankInfoForm';
+import BillToForm from '@src/components/formComponents/BillToForm';
+import BusinessInfoForm from '@src/components/formComponents/BusinessInfoForm';
+import DescriptionForm from '@src/pages/invoice/DescriptionForm';
+import InfoForm from '@src/pages/invoice/InfoForm';
+import TermsAndConditionForm from '@src/pages/invoice/termsConditionForm';
 import { ApiInstance } from 'helper/ApiInstance';
-import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
-import InfoForm from 'src/pages/InvoiceForm/infoForm';
 import type { Invoice as InvoiceType } from 'types/inputValue';
 import type {
   InvoiceData as InvoiceDataType,

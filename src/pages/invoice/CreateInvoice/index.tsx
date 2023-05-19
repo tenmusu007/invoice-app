@@ -1,18 +1,19 @@
 import { Box, Grid, Stack } from '@mui/material';
+
 import React, { useEffect } from 'react';
 import { FormProvider } from 'react-hook-form';
 
-import useInvoice from './hooks/useInvoice';
+import useInvoiceHooks from './useInvoiceHooks';
 
-import BankInfoForm from '@src/components/Molecules/bankInfoForm';
-import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
 import Button from '@src/components/atoms/Button';
 import SelectInput from '@src/components/atoms/Select';
+import BankInfoForm from '@src/components/formComponents/BankInfoForm';
+import BusinessInfoForm from '@src/components/formComponents/BusinessInfoForm';
 import BillToForm from '@src/components/molecules/BillToForm';
-import useAccountHooks from '@src/pages/Account/useAccountHooks';
-import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
-import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
-import InfoForm from 'src/pages/InvoiceForm/infoForm';
+import useAccountHooks from '@src/pages/account/useAccountHooks';
+import DescriptionForm from '@src/pages/invoice/DescriptionForm';
+import InfoForm from '@src/pages/invoice/InfoForm';
+import TermsAndConditionForm from '@src/pages/invoice/termsConditionForm';
 
 const buttonStyle = {
   background: '#EEBBC3',
@@ -23,7 +24,7 @@ const buttonStyle = {
 } as const;
 
 const CreateInvoiceForm = () => {
-  const { methods, generateInvoice, handleSubmit } = useInvoice();
+  const { methods, generateInvoice, handleSubmit } = useInvoiceHooks();
   const { state, action } = useAccountHooks();
 
   useEffect(() => {
