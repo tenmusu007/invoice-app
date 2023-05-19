@@ -10,7 +10,7 @@ import SelectInput from '@src/components/atoms/Select';
 import BankInfoForm from '@src/components/formComponents/BankInfoForm';
 import BusinessInfoForm from '@src/components/formComponents/BusinessInfoForm';
 import BillToForm from '@src/components/molecules/BillToForm';
-import useAccountHooks from '@src/pages/account/useAccountHooks';
+import useAccountHooks from '@src/pages/accounts/useAccountHooks';
 import DescriptionForm from '@src/pages/invoice/DescriptionForm';
 import InfoForm from '@src/pages/invoice/InfoForm';
 import TermsAndConditionForm from '@src/pages/invoice/termsConditionForm';

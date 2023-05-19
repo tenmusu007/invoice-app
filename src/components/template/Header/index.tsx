@@ -85,7 +85,7 @@ const Header = () => {
                   </LinkTag>
                 </Grid>
                 <Grid item sm={3}>
-                  <LinkTag path={'/account'}>
+                  <LinkTag path={'/accounts'}>
                     <Text
                       variant={'h6'}
                       text={'Account'}

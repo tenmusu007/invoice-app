@@ -5,9 +5,9 @@ import useAccountHooks from './useAccountHooks';
 
 import Button from '@src/components/atoms/Button';
 import SelectInput from '@src/components/atoms/Select';
-import BankInfoTemplate from '@src/pages/account/bankInfoTemplate';
-import BillToTemplate from '@src/pages/account/billToTemplate';
-import BusinessInfoTemplate from '@src/pages/account/businessInfoTemplate';
+import BankInfoTemplate from '@src/pages/accounts/bankInfoTemplate';
+import BillToTemplate from '@src/pages/accounts/billToTemplate';
+import BusinessInfoTemplate from '@src/pages/accounts/businessInfoTemplate';
 import Text from 'src/components/atoms/Text';
 
 type Props = {

@@ -3,7 +3,7 @@ import { Box, Stack } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import useBusinessTemplateHooks from './useBusinessTemplateHooks';
+import useBusinessTemplateHooks from '../useBusinessTemplateHooks';
 
 import Button from '@src/components/atoms/Button';
 import BusinessInfoForm from '@src/components/formComponents/BusinessInfoForm';
