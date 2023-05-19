@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next/types';
 
-import AccountPage from '@src/pages/accounts';
+// import AccountPage from '@src/pages/accounts';
+import AccountPage from '../../src/pages/accounts';
 
 type Props = {
   data: string;
