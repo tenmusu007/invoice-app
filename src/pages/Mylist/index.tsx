@@ -13,13 +13,12 @@ const MylistPage = () => {
   useEffect(() => {
     action.handleFetchMyList();
   }, []);
-console.log(state.myInvoice);
 
   return (
     <>
       <Grid container spacing={4} textAlign={'center'}>
         {state.myInvoice.map((item: any) => (
-          <Grid item xs={3} key={item.invocieNumber}>
+          <Grid item xs={4} key={item.invocieNumber}>
             <InvoiceCard list={item} key={item.invocieNumber} />
           </Grid>
         ))}
