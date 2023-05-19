@@ -5,8 +5,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import useBusinessTemplateHooks from './useBusinessTemplateHooks';
 
-import BusinessInfoForm from '@src/components/Molecules/businessInfoForm';
 import Button from '@src/components/atoms/Button';
+import BusinessInfoForm from '@src/components/formComponents/BusinessInfoForm';
 import Modal from '@src/components/organisms/Modal';
 import type { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 

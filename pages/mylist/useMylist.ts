@@ -5,7 +5,7 @@ import { ApiInstance } from 'helper/ApiInstance';
 const useInvoice = (props: string) => {
   const invoiceId = props;
   // Needs a type for myInvoice
-  const [myInvoice, setmyInvoice] = useState<any[]>([]);
+  const [myInvoice, setmyInvoice] = useState<[]>([]);
   // eslint-disable-next-line consistent-return
   const handleFetchInvoiceData = async () => {
     const res = await ApiInstance({

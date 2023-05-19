@@ -1,11 +1,11 @@
 import React from 'react';
 
-import CreateInvoiceForm from '@src/pages/InvoiceForm/createInvoice';
+import CreateInvoiceForm from '@src/pages/invoice/CreateInvoice';
 
 const InvoiceForm = () => (
-    <>
-      <CreateInvoiceForm />
-    </>
-  );
+  <>
+    <CreateInvoiceForm />
+  </>
+);
 
 export default InvoiceForm;

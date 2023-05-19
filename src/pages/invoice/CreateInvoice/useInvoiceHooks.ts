@@ -6,7 +6,7 @@ import { useTotalContext } from 'Context/TotalContext';
 import { ApiInstance } from 'helper/ApiInstance';
 import type { Invoice as InvoiceType } from 'types/inputValue';
 
-const useInvoice = () => {
+const useInvoiceHooks = () => {
   const router = useRouter();
   const totalContext = useContext(useTotalContext);
 
@@ -62,4 +62,4 @@ const useInvoice = () => {
   return { methods, generateInvoice, handleSubmit, reset };
 };
 
-export default useInvoice;
+export default useInvoiceHooks;
