@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     fontSize: '14px',
     textAlign: 'right',
     marginBottom: '32px',
+    gap: 8,
   },
   width45: {
     width: '45%',
@@ -79,7 +80,15 @@ const styles = StyleSheet.create({
     border: '1 solid black',
   },
   smallText: {
-    fontSize: '16px',
+    fontSize: '14px',
+  },
+  fontBold: {
+    fontWeight: 700,
+  },
+  bankInfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 6,
   },
 });
 
@@ -108,6 +117,7 @@ const PDF = () => {
     getInvoice(id).then((data) => {
       if (data !== null) {
         setInvoiceData(data);
+        console.log('data', data.bankInfo);
       }
     });
   }, []);
@@ -189,6 +199,52 @@ const PDF = () => {
                   </View>
                 </View>
               </View>
+              {invoiceData.bankInfo && (
+                <View
+                  style={[
+                    styles.flex,
+                    styles.centralize,
+                    styles.smallText,
+                    {
+                      flexBasis: 100,
+                      gap: 16,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    },
+                  ]}
+                >
+                  <View style={[styles.bankInfo, { width: '50%' }]}>
+                    <View style={[styles.flex]}>
+                      <Text style={[styles.fontBold]}>BankName:</Text>
+                      <Text>{invoiceData.bankInfo.bankName}</Text>
+                    </View>
+                    <View style={[styles.flex]}>
+                      <Text>Holder Name:</Text>
+                      <Text>{invoiceData.bankInfo.holderName}</Text>
+                    </View>
+                    <View style={[styles.flex]}>
+                      <Text>Account Number:</Text>
+                      <Text>{invoiceData.bankInfo.accountNumber}</Text>
+                    </View>
+                  </View>
+                  <View style={[styles.bankInfo, { width: '50%' }]}>
+                    <View style={[styles.flex]}>
+                      <Text>Branch Number:</Text>
+                      <Text>{invoiceData.bankInfo.branchNumber}</Text>
+                    </View>
+                    <View style={[styles.flex]}>
+                      <Text>Account Type:</Text>
+                      <Text>{invoiceData.bankInfo.accountType}</Text>
+                    </View>
+                    {invoiceData.bankInfo.transitNumber && (
+                      <View style={[styles.flex]}>
+                        <Text>Transit Number:</Text>
+                        <Text>{invoiceData.bankInfo.transitNumber}</Text>
+                      </View>
+                    )}
+                  </View>
+                </View>
+              )}
               <View>
                 <View
                   style={[

@@ -12,8 +12,11 @@ import TermsAndConditionForm from '@src/pages/InvoiceForm/termsConditionForm';
 import { ApiInstance } from 'helper/ApiInstance';
 import DescriptionForm from 'src/pages/InvoiceForm/descriptionForm';
 import InfoForm from 'src/pages/InvoiceForm/infoForm';
-import { Invoice as InvoiceType } from 'types/inputValue';
-import { InvoiceData as InvoiceDataType , Items as ItemsType } from 'types/invoiceData';
+import type { Invoice as InvoiceType } from 'types/inputValue';
+import type {
+  InvoiceData as InvoiceDataType,
+  Items as ItemsType,
+} from 'types/invoiceData';
 
 type Props = {
   data: InvoiceDataType;
@@ -25,7 +28,7 @@ const InvoiceCard = (props: Props) => {
 
   // Type should be defined
   const items: ItemsType = item.map(
-  // Type should be defined. invoice/invoiceData Items might be a good reference
+    // Type should be defined. invoice/invoiceData Items might be a good reference
     (content: {
       name: string;
       quantity: string;
@@ -33,12 +36,12 @@ const InvoiceCard = (props: Props) => {
       tax: string;
       amount: number;
     }) => ({
-        name: content.name,
-        quantity: content.quantity,
-        unitPrice: content.unitPrice,
-        tax: content.tax,
-        amount: content.amount,
-      })
+      name: content.name,
+      quantity: content.quantity,
+      unitPrice: content.unitPrice,
+      tax: content.tax,
+      amount: content.amount,
+    })
   );
   const methods = useForm<InvoiceType | any>({
     defaultValues: {

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import CircularProgressWithLabel from '@src/pages/loader';
 
 const Loader = () => {
+  // Logic needs to be separated
   const [progress, setProgress] = useState<number>(10);
   useEffect(() => {
     const timer = setInterval(() => {
