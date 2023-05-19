@@ -6,7 +6,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import useBillToTemplateHooks from './useBillToTemplateHooks';
 
 import Button from '@src/components/atoms/Button';
-import BillToForm from '@src/components/molecules/BillToForm';
+import BillToForm from '@src/components/formComponents/BillToForm';
 import Modal from '@src/components/organisms/Modal';
 import type { BillTo as BillToType } from 'types/billTo';
 
