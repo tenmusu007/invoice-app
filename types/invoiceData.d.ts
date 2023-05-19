@@ -37,3 +37,17 @@ export type InvoiceDataDB =
       __v: number;
     })
   | null;
+
+export type MyInvoice = {
+  invoiceNumber: string;
+  issued: string;
+  billTo: { companyName: string };
+  invoiceId: string;
+};
+
+export type MyInvoiceCard = {
+  invoiceNumber: string;
+  issued: string;
+  billTo: { companyName: string };
+  invoiceId: string;
+};

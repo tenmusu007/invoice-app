@@ -1,17 +1,11 @@
 import { useState } from 'react';
 
 import { ApiInstance } from 'helper/ApiInstance';
-
-type myInvoice = {
-  invoiceNumber: string;
-  issued: string;
-  billTo: any;
-  invoiceId: number[];
-};
+import type { MyInvoice } from 'types/invoiceData';
 
 const useMyListHooks = () => {
   // Needs a type for myInvoice
-  const [myInvoice, setmyInvoice] = useState<myInvoice[]>([]);
+  const [myInvoice, setMyInvoice] = useState<MyInvoice[]>([]);
   // eslint-disable-next-line consistent-return
   const handleFetchMyList = async () => {
     const res = await ApiInstance({
@@ -21,7 +15,7 @@ const useMyListHooks = () => {
     // eslint-disable-next-line no-console
     if (res.status !== 200) return console.error('fail');
 
-    setmyInvoice(res.data);
+    setMyInvoice(res.data);
   };
   return {
     action: {
