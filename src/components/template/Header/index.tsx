@@ -63,7 +63,7 @@ const Header = () => {
             sx={{ justifyContent: 'space-around' }}
             textAlign={'center'}
           >
-            <LinkTag path={'/home'}>
+            <LinkTag path={'/'}>
               <Text variant={'h5'} text={'Invoicer'} />
             </LinkTag>
           </Grid>
