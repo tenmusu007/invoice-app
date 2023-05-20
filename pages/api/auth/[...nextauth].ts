@@ -8,15 +8,10 @@ const clientSecret: string | undefined =
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
-    process.env.VERCEL_ENV === 'preview'
-      ? GoogleProvider({
+      GoogleProvider({
           clientId: clientId as string,
           clientSecret: clientSecret as string,
         })
-      : GoogleProvider({
-          clientId: clientId as string,
-          clientSecret: clientSecret as string,
-        }),
     // ...add more providers here
   ],
   secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
