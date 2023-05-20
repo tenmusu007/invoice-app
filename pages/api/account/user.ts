@@ -14,10 +14,11 @@ export default async function getUserData(
   res: NextApiResponse
 ): Promise<void> {
   try {
-    console.log('log checkingf');
-    
+
     await connectMongo();
     const token = await getToken({ req });
+    console.log(`token: ${token}`);
+    
     const currentUser = await Users.find({ accessToken: token?.accessToken });
     console.log(currentUser);
     const userInfo = await UserInFo.findOne({
