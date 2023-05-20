@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 
-import { ApiInstance } from 'helper/ApiInstance';
+import  ApiInstance  from 'helper/ApiInstance';
 import type { BankInfo as BankInfoType } from 'types/bankInfo';
 
 type Props = {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ApiInstance } from 'helper/ApiInstance';
+import  ApiInstance  from 'helper/ApiInstance';
 
 const useHomeHooks = (props: any) => {
   const { data } = props;

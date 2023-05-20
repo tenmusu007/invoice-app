@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 
-import { ApiInstance } from 'helper/ApiInstance';
+import  ApiInstance from 'helper/ApiInstance';
 import type { BillTo as BillToType } from 'types/billTo';
 
 type Props = {

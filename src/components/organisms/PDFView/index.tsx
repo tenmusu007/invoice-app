@@ -9,7 +9,7 @@ import {
 } from '@react-pdf/renderer';
 import React, { useState, useEffect } from 'react';
 
-import { ApiInstance } from 'helper/ApiInstance';
+import  ApiInstance  from 'helper/ApiInstance';
 
 const styles = StyleSheet.create({
   page: { paddingTop: 200 },

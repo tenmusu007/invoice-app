@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ApiInstance } from 'helper/ApiInstance';
+import ApiInstance  from 'helper/ApiInstance';
 import type { MyInvoice } from 'types/invoiceData';
 
 const useMyListHooks = () => {
