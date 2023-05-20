@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const invoiceRoute = '/invoice' as const;
 
-export const useRouting = (router: NextRouter) => {
+const useRouting = (router: NextRouter) => {
   const [isInvoice, setIsInvoice] = useState<boolean>(false);
 
   useEffect(() => {
@@ -14,3 +14,5 @@ export const useRouting = (router: NextRouter) => {
 
   return { isInvoice };
 };
+
+export default useRouting;

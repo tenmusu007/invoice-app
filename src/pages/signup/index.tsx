@@ -7,7 +7,7 @@ import GoogleButton from 'react-google-button';
 
 import SignupText from './text.json';
 
-import { useLocale } from 'helper/useLocale';
+import useLocale from 'helper/useLocale';
 import Illustrationtop from 'public/Illustrationtop.jpg';
 import Text from 'src/components/atoms/Text';
 

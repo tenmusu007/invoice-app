@@ -1,35 +1,50 @@
-import NextAuth from 'next-auth';
+import NextAuth, { Account, Session, NextAuthOptions } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 import GoogleProvider from 'next-auth/providers/google';
 
 const clientId: string | undefined =
   process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID;
 const clientSecret: string | undefined =
   process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_SECRET;
-export const authOptions = {
+
+type UpdatedSession = Session & { accessToken: string | undefined };
+
+export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
-      GoogleProvider({
-          clientId: clientId as string,
-          clientSecret: clientSecret as string,
-        })
+    GoogleProvider({
+      clientId: clientId as string,
+      clientSecret: clientSecret as string,
+    }),
     // ...add more providers here
   ],
   secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, account }: any) {
+    async jwt({
+      token,
+      account,
+    }: {
+      token: JWT;
+      account?: Account | null | undefined;
+    }) {
       // Persist the OAuth access_token to the token right after sign in
+
+      const updatedToken = { ...token } as JWT;
       if (account) {
-        // eslint-disable-next-line no-param-reassign
-        token.accessToken = account.access_token;
+        updatedToken.accessToken = account.access_token;
       }
-      return token;
+      return updatedToken;
     },
 
-    async session({ session, token }: any) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       // Send properties to the client, like an access_token from a provider.
-      // eslint-disable-next-line no-param-reassign
-      session.accessToken = token.accessToken;
-      return session;
+
+      const updatedSession: UpdatedSession = {
+        ...session,
+        accessToken: token.accessToken,
+      };
+
+      return updatedSession;
     },
   },
   jwt: {

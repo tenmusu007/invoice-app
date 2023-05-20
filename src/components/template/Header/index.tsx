@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 
 import Button from '@src/components/atoms/Button';
-import { useRouting } from 'helper/useRouting';
+import useRouting from 'helper/useRouting';
 import LinkTag from 'src/components/atoms/Link';
 import Text from 'src/components/atoms/Text';
 

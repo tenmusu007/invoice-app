@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Box } from '@mui/system';
 
-import { TypographyType } from 'types/text';
+import type { TypographyType } from 'types/text';
 
 const Text = (props: Partial<TypographyType>) => {
   const { label, labelText, variant, text, style, children } = props;
