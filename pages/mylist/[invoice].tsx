@@ -11,7 +11,7 @@ import BusinessInfoForm from '@src/components/formComponents/BusinessInfoForm';
 import DescriptionForm from '@src/pages/invoice/DescriptionForm';
 import InfoForm from '@src/pages/invoice/InfoForm';
 import TermsAndConditionForm from '@src/pages/invoice/termsConditionForm';
-import { ApiInstance } from 'helper/ApiInstance';
+import ApiInstance from 'helper/ApiInstance';
 import type { Invoice as InvoiceType } from 'types/inputValue';
 import type {
   InvoiceData as InvoiceDataType,
