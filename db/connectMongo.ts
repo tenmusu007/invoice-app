@@ -6,7 +6,6 @@ const connectMongo = async () => {
     .connect(process.env.NEXT_PUBLIC_MONGO_URL as string)
     .then(() => {
       console.log('DB connect');
-      return;
     })
     .catch((error) => {
       console.log('DB not connect');
