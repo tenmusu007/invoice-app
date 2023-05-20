@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 
-import { ApiInstance } from 'helper/ApiInstance';
+import  ApiInstance  from 'helper/ApiInstance';
 import type { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 
 type Props = {

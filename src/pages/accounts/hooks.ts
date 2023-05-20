@@ -7,7 +7,7 @@ import { useContext, useState } from 'react';
 import AccountText from './text.json';
 
 import { useModalContext } from 'Context/ModalContext';
-import { ApiInstance } from 'helper/ApiInstance';
+import  ApiInstance  from 'helper/ApiInstance';
 import { useLocale } from 'helper/useLocale';
 
 
