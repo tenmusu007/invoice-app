@@ -3,5 +3,10 @@
     "headline": "Welcome back",
     "desc": "Glad to see you again!!",
     "btn": "Please Sign-in with your Google here."
+  },
+  "ja": {
+    "headline": "おかえりなさい",
+    "desc": "おまたせしました！",
+    "btn": "Googleでサインインしてください。"
   }
 }
