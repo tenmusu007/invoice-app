@@ -14,6 +14,8 @@ export default async function getUserData(
   res: NextApiResponse
 ): Promise<void> {
   try {
+    console.log('log checkingf');
+    
     await connectMongo();
     const token = await getToken({ req });
     const currentUser = await Users.find({ accessToken: token?.accessToken });
