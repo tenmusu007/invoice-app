@@ -14,11 +14,11 @@ const nextConfig = {
   },
   domains: [
     {
-      domain: process.env.NEXT_PUBLIC_URL,
+      domain: process.env.NEXT_PUBLIC_BASE_URL,
       defaultLocale: 'en',
     },
     {
-      domain: process.env.NEXT_PUBLIC_URL / 'jp',
+      domain: `${process.env.NEXT_PUBLIC_BASE_URL}jp`,
       defaultLocale: 'jp',
     },
   ],
