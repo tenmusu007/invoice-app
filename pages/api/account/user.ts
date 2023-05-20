@@ -17,6 +17,7 @@ export default async function getUserData(
     await connectMongo();
     const token = await getToken({ req });
     const currentUser = await Users.find({ accessToken: token?.accessToken });
+    console.log(currentUser);
     const userInfo = await UserInFo.findOne({
       userId: currentUser[0]._id.toString(),
     });
