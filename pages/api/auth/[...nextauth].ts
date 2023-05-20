@@ -8,12 +8,18 @@ const clientSecret: string | undefined =
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
-    GoogleProvider({
-      clientId: clientId as string,
-      clientSecret: clientSecret as string,
-    }),
+    process.env.VERCEL_ENV === 'preview'
+      ? GoogleProvider({
+          clientId: clientId as string,
+          clientSecret: clientSecret as string,
+        })
+      : GoogleProvider({
+          clientId: clientId as string,
+          clientSecret: clientSecret as string,
+        }),
     // ...add more providers here
   ],
+  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, account }: any) {
       // Persist the OAuth access_token to the token right after sign in
