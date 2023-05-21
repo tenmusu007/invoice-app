@@ -1,5 +1,5 @@
 import { TypographyTypeMap } from '@mui/material/Typography';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export type TypographyType = {
   label: TypographyTypeMap['props']['variant'];

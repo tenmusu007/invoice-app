@@ -1,4 +1,4 @@
-import { Children } from './children';
+import type { Children } from './children';
 
 export type Modal = {
   contents?: Children | string | element;

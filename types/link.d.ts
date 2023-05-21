@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export type LinkType = {
   children: ReactNode;
-  path: any;
+  path: string | object;
   text?: string;
 };

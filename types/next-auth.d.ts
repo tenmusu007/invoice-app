@@ -1,4 +1,4 @@
-import { DefaultSession } from 'next-auth';
+import { DefaultSession, Session } from 'next-auth';
 
 declare module 'next-auth' {
   interface Session {
@@ -12,3 +12,5 @@ declare module 'next-auth/jwt' {
     accessToken?: string;
   }
 }
+
+type UpdatedSession = Session & { accessToken: string | undefined };

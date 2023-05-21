@@ -2,12 +2,14 @@ import NextAuth, { Account, Session, NextAuthOptions } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 import GoogleProvider from 'next-auth/providers/google';
 
+import type { UpdatedSession } from 'types/next-auth';
+
 const clientId: string | undefined =
   process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID;
 const clientSecret: string | undefined =
   process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_SECRET;
 
-type UpdatedSession = Session & { accessToken: string | undefined };
+
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers

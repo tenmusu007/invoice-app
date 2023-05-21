@@ -1,4 +1,4 @@
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import type { FieldValues, UseFormRegister } from 'react-hook-form';
 
 export type Input = {
   name: string;
