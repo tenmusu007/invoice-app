@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import useMyListHooks from './useMyListHooks';
 
+import PageTitle from '@src/components/atoms/Title';
 import InvoiceCard from '@src/pages/mylits/InvoiceCard';
 
 const style = {
@@ -18,13 +19,17 @@ const MylistPage = () => {
 
   return (
     <>
-      <Grid container spacing={4} textAlign={'center'} sx={style}>
-        {state.myInvoice.map((item, index: number) => (
-          <Grid item xs={3} key={index}>
-            <InvoiceCard list={item} key={item.invoiceNumber} />
-          </Grid>
-        ))}
-      </Grid>
+      {state.myInvoice.length !== 0 ? (
+        <Grid container spacing={4} textAlign={'center'} sx={style}>
+          {state.myInvoice.map((item, index: number) => (
+            <Grid item xs={3} key={index}>
+              <InvoiceCard list={item} key={item.invoiceNumber} />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <PageTitle content={'No Invoice'} variant={'h1'} component={'symbol'}/>
+      )}
     </>
   );
 };

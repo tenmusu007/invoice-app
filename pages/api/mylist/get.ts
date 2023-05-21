@@ -22,7 +22,10 @@ type InvoiceType = {
 export default async function get(req: NextApiRequest, res: NextApiResponse) {
   // If you don't have NEXTAUTH_SECRET set, you will have to pass your secret as `secret` to `getToken`
   try {
-    const token = await getToken({ req });
+    const token = await getToken({
+      req,
+      secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    });
     const currentUser = await Users.find({ accessToken: token?.accessToken });
     const userInvocieList = await Invoice.find({
       userId: currentUser[0]._id.toString(),
