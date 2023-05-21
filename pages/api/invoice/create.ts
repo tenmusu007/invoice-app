@@ -16,7 +16,10 @@ export default async function createInvoice(
 ): Promise<void> {
   try {
     await connectMongo();
-    const token: JWT | null = await getToken({ req });
+    const token: JWT | null = await getToken({
+      req,
+      secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    });
     const currentUser = await Users.find({ accessToken: token?.accessToken });
     const currentUserId: string = await currentUser[0]._id.toString();
     // As soon as fixed the property of invoice user to businessInfo, give InvoiceType to invoiceData

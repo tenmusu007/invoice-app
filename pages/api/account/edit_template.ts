@@ -15,7 +15,10 @@ export default async function editTemplate(
 ): Promise<void> {
   try {
     await connectMongo();
-    const token = await getToken({ req });
+    const token = await getToken({
+      req,
+      secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    });
     await Users.find({ accessToken: token?.accessToken });
     const { bankInfo, billTo, businessInfo } = req.body;
 

@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
       clientId: clientId as string,
       clientSecret: clientSecret as string,
     }),
-    // ...add more providers here
+    // ...add more providers here if you need
   ],
   secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
   callbacks: {

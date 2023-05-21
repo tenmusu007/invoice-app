@@ -14,7 +14,10 @@ export default async function create(
   try {
     await connectMongo();
     if (!req.body) return res.status(200).json('no data');
-    const token = await getToken({ req });
+    const token = await getToken({
+      req,
+      secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    });
     const { email, name, image } = await req.body.user;
     const { accessToken } = await req.body;
 

@@ -13,7 +13,10 @@ export default async function getTemplate(
 ): Promise<void> {
   try {
     await connectMongo();
-    const token = await getToken({ req });
+    const token = await getToken({
+      req,
+      secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    });
     const currentUser = await Users.find({ accessToken: token?.accessToken });
     const userId = currentUser[0]._id.toString();
 
