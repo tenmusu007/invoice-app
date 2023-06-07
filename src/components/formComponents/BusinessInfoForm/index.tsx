@@ -13,6 +13,7 @@ import type {
 } from 'types/businessInfo';
 
 type Props = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defRegister?: any;
   disabled?: boolean;
   templateBusinessInfoData?: TemplateBusinessInfo;
@@ -52,12 +53,12 @@ const BusinessInfoForm = (props: Props) => {
           }
         />
         <Input
-          name="businessInfo.addressLine1"
+          name="businessInfo.address"
           type="text"
           placeholder="Address line 1"
           register={regs}
           disabled={disabled}
-          value={props.templateBusinessInfoData?.addressLine1 || ''}
+          value={props.templateBusinessInfoData?.address || ''}
         />
         <Input
           name="businessInfo.city"

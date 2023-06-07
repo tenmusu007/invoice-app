@@ -9,6 +9,7 @@ import Input from '@src/components/atoms/Input';
 import type { TemplateBankInfo } from 'types/bankInfo';
 
 type Props = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defRegister?: any;
   disabled?: boolean;
   templateBankInfo?: TemplateBankInfo;

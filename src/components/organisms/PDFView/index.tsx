@@ -117,7 +117,7 @@ const PDF = () => {
     getInvoice(id).then((data) => {
       if (data !== null) {
         setInvoiceData(data);
-        console.log('data', data.bankInfo);
+        console.log('data', data ,data.bankInfo);
       }
     });
   }, []);

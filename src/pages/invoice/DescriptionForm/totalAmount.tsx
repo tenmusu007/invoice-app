@@ -61,6 +61,7 @@ const TotalAmount = ({ control }: Props) => {
     totalContext?.setTotal(total);
     totalContext?.setSubTotal(subTotal);
     totalContext?.setAmount(amount);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formValues, subTotal, total, totalContext]);
 
   return (

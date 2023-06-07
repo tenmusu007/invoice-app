@@ -116,7 +116,7 @@ const useAccountHooks = () => {
       const formattedTemplate = {
         _id: template._id,
         businessName: template.name,
-        addressLine1: template?.address,
+        address: template?.address,
         city: template?.city,
         province: template?.province,
         country: template?.country,
@@ -140,7 +140,7 @@ const useAccountHooks = () => {
       const formattedTemplate = {
         _id: template._id,
         companyName: template.companyName,
-        addressLine1: template.address,
+        address: template.address,
         city: template.city,
         province: template.province,
         country: template.country,

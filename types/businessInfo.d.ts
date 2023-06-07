@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 
 export type BusinessInfo = {
   businessName: string;
-  addressLine1: string;
+  address: string;
   city: string;
   province: string;
   country: string;
@@ -21,4 +21,4 @@ export type BusinessInfoDB = BusinessInfo & {
 
 export type TemplateBusinessInfo = BusinessInfo & {
   _id: Types.ObjectId;
-}
+};

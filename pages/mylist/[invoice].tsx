@@ -48,7 +48,7 @@ const InvoiceCard = (props: Props) => {
       },
       billTo: {
         companyName: billTo.companyName,
-        addressLine1: billTo.address,
+        address: billTo.address,
         city: billTo.city,
         state: billTo.state,
         postalCode: billTo.postal,
@@ -57,7 +57,7 @@ const InvoiceCard = (props: Props) => {
       },
       businessInfo: {
         businessName: businessInfo.name,
-        addressLine1: businessInfo.address,
+        address: businessInfo.address,
         city: businessInfo.city,
         province: businessInfo.province,
         country: businessInfo.country,

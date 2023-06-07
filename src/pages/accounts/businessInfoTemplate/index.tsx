@@ -49,7 +49,7 @@ const BusinessInfoTemplate = (props: Props) => {
     defaultValues: {
       businessInfo: {
         businessName: template?.name,
-        addressLine1: template?.address,
+        address: template?.address,
         city: template?.city,
         province: template?.province,
         country: template?.country,

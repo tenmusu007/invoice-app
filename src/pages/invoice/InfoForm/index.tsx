@@ -6,7 +6,6 @@ import { useFormContext } from 'react-hook-form';
 
 import Input from '@src/components/atoms/Input';
 import InputLabel from 'src/components/atoms/label';
-import { InvoiceInfo as InvoiceInfoType } from 'types/invoiceInfo';
 
 type Props = {
   disabled?: boolean;

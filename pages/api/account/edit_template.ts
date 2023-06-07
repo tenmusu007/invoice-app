@@ -45,7 +45,7 @@ export default async function editTemplate(
         await editBillToTemplate.updateOne({
           $set: {
             companyName: billTo.companyName,
-            address: billTo.addressLine1,
+            address: billTo.address,
             city: billTo.city,
             province: billTo.province,
             country: billTo.country,

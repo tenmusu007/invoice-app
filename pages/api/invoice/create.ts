@@ -29,7 +29,7 @@ export default async function createInvoice(
     const newBillTo = await new Bills({
       userId: currentUserId,
       companyName: invoiceData.billTo.companyName,
-      address: invoiceData.billTo.addressLine1,
+      address: invoiceData.billTo.address,
       city: invoiceData.billTo.city,
       province: invoiceData.billTo.province,
       country: invoiceData.billTo.country,
@@ -43,7 +43,7 @@ export default async function createInvoice(
     const newBusinessInfo = await new BusinessInfo({
       userId: currentUserId,
       name: invoiceData.businessInfo.businessName,
-      address: invoiceData.businessInfo.addressLine1,
+      address: invoiceData.businessInfo.address,
       city: invoiceData.businessInfo.city,
       province: invoiceData.businessInfo.province,
       country: invoiceData.businessInfo.country,
@@ -86,10 +86,13 @@ export default async function createInvoice(
     await newInvoice.save();
     res
       .status(200)
-      .json({ res: 'You nailed it!!', data: newInvoice._id.toString() });
+      .json({
+        res: 'Your Invoice is successfully created.',
+        data: newInvoice._id.toString(),
+      });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     console.log(e.message);
-    res.status(400).json({ res: 'Hell no!!' });
+    res.status(400).json({ res: 'Something went wrong. Please try it again' });
   }
 }

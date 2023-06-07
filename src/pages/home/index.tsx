@@ -1,30 +1,24 @@
 import { Grid } from '@mui/material';
 
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
 
 import { useEffect } from 'react';
 
-import HomeText from './text.json';
-
 import Button from '@src/components/atoms/Button';
 import useHomeHooks from '@src/pages/home/useHomeHooks';
-import useLocale from 'helper/useLocale';
+
 import Illustrationsec from 'public/Illustrationsec.png';
 import Illustrationtop from 'public/Illustrationtop.jpg';
 
 import Text from 'src/components/atoms/Text';
 
 const HomePage = () => {
-  const handleGetStarted = () => {};
-  const { t } = useLocale(HomeText);
-  const { data } = useSession();
-  const user = { data };
-  const { action } = useHomeHooks(user);
+  const { action, t } = useHomeHooks();
 
   useEffect(() => {
     action.UserCheck();
-  }, [user.data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -39,8 +33,8 @@ const HomePage = () => {
       <Grid container alignItems="center" display="flex" marginY={3}>
         <Grid item sm={4} sx={{ textAlign: 'center' }}>
           <Button
-            text={t.getstarted}
-            onClick={handleGetStarted}
+            text={t.getStarted}
+            onClick={action.handleGetStarted}
             sx={{
               background: '#EEBBC3',
               color: 'black',

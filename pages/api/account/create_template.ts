@@ -44,7 +44,7 @@ export default async function createTemplate(
         newBillTo = await new Bills({
           userId,
           companyName: billTo.billTo.companyName,
-          address: billTo.billTo.addressLine1,
+          address: billTo.billTo.address,
           city: billTo.billTo.city,
           province: billTo.billTo.province,
           country: billTo.billTo.country,
@@ -57,7 +57,7 @@ export default async function createTemplate(
         newBusinessInfo = await new BusinessInfo({
           userId,
           name: businessInfo.businessInfo.businessName,
-          address: businessInfo.businessInfo.addressLine1,
+          address: businessInfo.businessInfo.address,
           city: businessInfo.businessInfo.city,
           province: businessInfo.businessInfo.province,
           country: businessInfo.businessInfo.country,

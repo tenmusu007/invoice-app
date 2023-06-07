@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 
-import  ApiInstance from 'helper/ApiInstance';
+import ApiInstance from 'helper/ApiInstance';
 import type { BillTo as BillToType } from 'types/billTo';
 
 type Props = {
@@ -30,7 +30,7 @@ const useBillToTemplateHooks = (props: Props) => {
     const formattedEditTemplate = {
       _id: editTemplate.billTo._id,
       companyName: editTemplate.billTo.companyName,
-      address: editTemplate.billTo.addressLine1,
+      address: editTemplate.billTo.address,
       city: editTemplate.billTo.city,
       province: editTemplate.billTo.province,
       country: editTemplate.billTo.country,

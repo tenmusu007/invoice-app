@@ -9,6 +9,7 @@ import Input from '@src/components/atoms/Input';
 import type { TemplateBillTo } from 'types/billTo';
 
 type Props = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defRegister?: any;
   disabled?: boolean;
   templateBIllToData?: TemplateBillTo;
@@ -41,12 +42,12 @@ const BillToForm = (props: Props) => {
           value={props.templateBIllToData?.companyName || ''}
         />
         <Input
-          name="billTo.addressLine1"
+          name="billTo.address"
           register={regs}
           placeholder="Address Line 1"
           type="text"
           disabled={disabled}
-          value={props.templateBIllToData?.addressLine1 || ''}
+          value={props.templateBIllToData?.address || ''}
         />
         <Input
           name="billTo.city"
