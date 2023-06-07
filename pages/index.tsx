@@ -1,6 +1,6 @@
 import HomePage from '@src/pages/home';
 
-export default function Home(props: any) {
+export default function Home() {
   return (
     <>
       <HomePage />
