@@ -35,7 +35,7 @@ export default async function createTemplate(
           branchNumber: bankInfo.bankInfo.branchNumber,
           accountNumber: bankInfo.bankInfo.accountNumber,
           accountType: bankInfo.bankInfo.accountType,
-          holderName: bankInfo.bankInfo.accountName,
+          holderName: bankInfo.bankInfo.holderName,
           template: true,
         });
         await newBankInfo.save();

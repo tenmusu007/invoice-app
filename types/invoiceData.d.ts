@@ -55,3 +55,16 @@ export type MyInvoiceCard = {
   billTo: { companyName: string };
   invoiceId: string;
 };
+
+export type FormattedInvoice = {
+  id: string;
+  invoiceNumber: number;
+  issuedDate: string;
+  dueDate: string;
+  billTo: Omit<BillTo, [key: string]> & { id: string };
+  businessInfo: Omit<BusinessInfo, [key: string]> & { id: string };
+  bankInfo: Omit<BankInfo, [key: string]> & { id: string };
+  items: Item[];
+  subTotal: number;
+  total: number;
+}

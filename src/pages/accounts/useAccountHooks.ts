@@ -133,7 +133,7 @@ const useAccountHooks = () => {
         branchNumber: template.branchNumber,
         accountNumber: template.accountNumber,
         accountType: template.accountType,
-        accountName: template.holderName,
+        holderName: template.holderName,
       };
       setBankInfoData(formattedTemplate);
     } else if (template.companyName) {

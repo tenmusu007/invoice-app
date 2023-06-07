@@ -70,7 +70,7 @@ const InvoiceCard = (props: Props) => {
         branchNumber: bankInfo?.branchNumber,
         accountNumber: bankInfo?.accountNumber,
         accountType: bankInfo?.accountType,
-        accountName: bankInfo?.holderName,
+        holderName: bankInfo?.holderName,
         transitNumber: bankInfo?.transitNumber,
       },
       description: items,

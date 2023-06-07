@@ -82,12 +82,12 @@ const BankInfoForm = (props: Props) => {
               </option>
             </select>
             <Input
-              name="bankInfo.accountName"
+              name="bankInfo.holderName"
               register={regs}
               placeholder="Holder name"
               type="text"
               disabled={disabled}
-              value={props.templateBankInfo?.accountName || ''}
+              value={props.templateBankInfo?.holderName || ''}
             />
             <Input
               name="bankInfo.transitNumber"

@@ -63,7 +63,7 @@ export default async function createInvoice(
       branchNumber: invoiceData.bankInfo.branchNumber,
       accountNumber: invoiceData.bankInfo.accountNumber,
       accountType: invoiceData.bankInfo.accountType,
-      holderName: invoiceData.bankInfo.accountName,
+      holderName: invoiceData.bankInfo.holderName,
       template: false,
     });
 
@@ -84,12 +84,10 @@ export default async function createInvoice(
     });
 
     await newInvoice.save();
-    res
-      .status(200)
-      .json({
-        res: 'Your Invoice is successfully created.',
-        data: newInvoice._id.toString(),
-      });
+    res.status(200).json({
+      res: 'Your Invoice is successfully created.',
+      data: newInvoice._id.toString(),
+    });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     console.log(e.message);

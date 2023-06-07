@@ -20,6 +20,7 @@ const AccountPage = (props: Props) => {
   useEffect(() => {
     action.handleFetchUserData();
     action.handleFetchUserTemplate();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
@@ -79,7 +80,7 @@ const AccountPage = (props: Props) => {
           {/* // TODO: Refactor this to separate component */}
           {state.templates.map((template, index) => (
             <>
-              <Grid item textAlign={'center'} md={4}>
+              <Grid item textAlign={'center'} md={4} key={index}>
                 <Grid item md={12}>
                   <SelectInput
                     template={template.data}
