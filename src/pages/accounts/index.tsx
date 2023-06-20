@@ -41,6 +41,7 @@ const AccountPage = (props: Props) => {
             />
           </Grid>
         </Grid>
+        
         <Grid item alignItems="center" display="flex" md={12} marginY={2}>
           <Grid item md={6}>
             <Text

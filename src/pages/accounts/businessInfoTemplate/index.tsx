@@ -37,6 +37,7 @@ const BusinessInfoTemplate = (props: Props) => {
     template,
     getValues,
   };
+
   const { action } = useBusinessTemplateHooks(templateSet);
   useEffect(() => {
     if (template) {
@@ -45,6 +46,7 @@ const BusinessInfoTemplate = (props: Props) => {
       });
     }
   }, [setValue, template]);
+
   const methods = useForm<BusinessInfoType>({
     defaultValues: {
       businessInfo: {

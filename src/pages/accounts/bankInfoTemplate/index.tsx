@@ -45,6 +45,7 @@ const BankInfoTemplate = (props: Props) => {
       });
     }
   }, [setValue, template]);
+  
   const methods = useForm<BankInfoType>({
     defaultValues: {
       bankInfo: {

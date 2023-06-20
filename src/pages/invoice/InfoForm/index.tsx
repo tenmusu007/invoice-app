@@ -31,7 +31,7 @@ const InfoForm = (props: Props) => {
         <InputLabel htmlFor="issueDate" labelName="Issue Date" />
         <Input
           name="info.issuedDate"
-          type="text"
+          type="date"
           placeholder="MM/DD/YY"
           register={register}
           id="issueDate"
@@ -40,7 +40,7 @@ const InfoForm = (props: Props) => {
         <InputLabel htmlFor="dueDate" labelName="Due date" />
         <Input
           name="info.dueDate"
-          type="text"
+          type="date"
           placeholder="MM/DD/YY"
           register={register}
           id="dueDate"

@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 
 import { Modal as ModalType } from 'types/modal';
 
-
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -15,7 +13,7 @@ const style = {
   border: '1px solid #000',
 } as const;
 
-// Background color needs to be changed but even if I changed the style, it never updated
+
 const Modal = (props: ModalType) => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { openModal, setOpenModal, contents } = props;

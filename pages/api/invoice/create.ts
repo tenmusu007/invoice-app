@@ -82,7 +82,7 @@ export default async function createInvoice(
       total: invoiceData.total,
       subTotal: invoiceData.subTotal,
     });
-
+    console.log(newInvoice);
     await newInvoice.save();
     res.status(200).json({
       res: 'Your Invoice is successfully created.',

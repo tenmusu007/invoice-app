@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
 
 import ApiInstance from 'helper/ApiInstance';
 
-import type { FormattedInvoice } from 'types/invoiceData';
+import type { FormattedInvoice, Item } from 'types/invoiceData';
 
 const styles = StyleSheet.create({
   page: { paddingTop: 200 },
@@ -117,7 +117,6 @@ const PDF = () => {
     getInvoice(id).then((data) => {
       if (data !== null) {
         setInvoiceData(data);
-        console.log('data', data);
       }
     });
   }, []);
@@ -182,7 +181,7 @@ const PDF = () => {
                     styles.flexColumn,
                   ]}
                 >
-                  {invoiceData.items.map((item: any, index: any) => (
+                  {invoiceData.items.map((item: Item, index) => (
                     <View key={index} style={styles.item}>
                       <Text style={styles.itemContent}>{item.name}</Text>
                       <Text style={styles.itemContent}>{item.quantity}</Text>

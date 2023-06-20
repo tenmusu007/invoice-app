@@ -10,8 +10,7 @@ export type Input = {
     | 'email'
     | 'date'
     | 'file'
-    | 'image'
-    | 'tel';
+    | 'image';
   placeholder: string;
   register: UseFormRegister<FieldValues>;
   onChange?: ChangeEventHandler<HTMLInputElement>;
