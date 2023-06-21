@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 
-import  ApiInstance  from 'helper/ApiInstance';
+import ApiInstance from 'helper/ApiInstance';
 import type { BankInfo as BankInfoType } from 'types/bankInfo';
 
 type Props = {
@@ -33,7 +33,7 @@ const useBankInfoTemplateHooks = (props: Props) => {
       branchNumber: editTemplate.bankInfo.branchNumber,
       accountNumber: editTemplate.bankInfo.accountNumber,
       accountType: editTemplate.bankInfo.accountType,
-      holderName: editTemplate.bankInfo.accountName,
+      holderName: editTemplate.bankInfo.holderName,
     };
     const res = await ApiInstance({
       method: 'post',

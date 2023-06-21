@@ -1,14 +1,14 @@
 import { GetServerSideProps } from 'next/types';
 
-import MylistPage from '@src/pages/mylits';
+import MyListPage from '@src/pages/mylist';
 
-const Mylist = () => (
+const MyList = () => (
   <>
-    <MylistPage />
+    <MyListPage />
   </>
 );
 
-export default Mylist;
+export default MyList;
 export const getServerSideProps: GetServerSideProps = async (context) => ({
   props: {
     data: context.locale,

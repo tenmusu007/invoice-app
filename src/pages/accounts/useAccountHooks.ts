@@ -6,18 +6,18 @@ import { useContext, useState } from 'react';
 import AccountText from './text.json';
 
 import { useModalContext } from 'Context/ModalContext';
-import ApiInstance  from 'helper/ApiInstance';
-import { useLocale } from 'helper/useLocale';
+import ApiInstance from 'helper/ApiInstance';
+import useLocale from 'helper/useLocale';
 import type { TemplateBankInfo } from 'types/bankInfo';
 import type { TemplateBillTo } from 'types/billTo';
 import type { TemplateBusinessInfo } from 'types/businessInfo';
-import type { Templates } from 'types/template';
+import type { Templates, BusinessInfo, BankInfo, BillTo } from 'types/template';
 import type { UserInfo } from 'types/user';
 
 type buttonArr = {
   text: string;
   clickEvent: () => void;
-  data: any;
+  data: BusinessInfo[] | BankInfo[] | BillTo[] | undefined;
   name: string;
 }[];
 
@@ -73,6 +73,7 @@ const useAccountHooks = () => {
       data: userTemplate?.bankInfo,
     },
   ];
+
   const handleChangeLanguage = async (event: SelectChangeEvent) => {
     const locale = event.target.value;
     const res = await ApiInstance({
@@ -84,6 +85,7 @@ const useAccountHooks = () => {
     // eslint-disable-next-line consistent-return
     return router.push(router.pathname, router.asPath, { locale });
   };
+
   const handleFetchUserData = async () => {
     const res = await ApiInstance({
       method: 'post',
@@ -93,6 +95,7 @@ const useAccountHooks = () => {
 
     setUserData(res.data);
   };
+
   const handleFetchUserTemplate = async () => {
     const res = await ApiInstance({
       method: 'post',
@@ -102,52 +105,76 @@ const useAccountHooks = () => {
 
     setUserTemplate(res.data);
   };
+
   const handleDisplayTemplate = async (event: SelectChangeEvent) => {
-    // Absolutely needs to be typed
-    const template: any = event.target.value;
-    console.log(template);
-    if (!template) return;
-    if (template === 'create') {
+    const selectedTemplate:
+      | string
+      | TemplateBankInfo
+      | TemplateBillTo
+      | TemplateBusinessInfo = event.target.value;
+
+    if (!selectedTemplate) return;
+
+    const formatBusinessInfoData = (template: TemplateBusinessInfo) => {
+      const { _id, ...rest } = template;
+
+      return {
+        _id,
+        businessName: rest.businessName,
+        address: rest.address,
+        city: rest.city,
+        province: rest.province,
+        country: rest.country,
+        postalCode: rest.postalCode,
+        phoneNumber: rest.phoneNumber,
+        email: rest.email,
+      };
+    };
+
+    const formatBillToData = (template: TemplateBillTo) => {
+      const { _id, ...rest } = template;
+
+      return {
+        _id,
+        companyName: rest.companyName,
+        address: rest.address,
+        city: rest.city,
+        province: rest.province,
+        country: rest.country,
+        postalCode: rest.postalCode,
+      };
+    };
+
+    const formatBankInfoData = (template: TemplateBankInfo) => {
+      const { _id, ...rest } = template;
+
+      return {
+        _id,
+        bankName: rest.bankName,
+        transitNumber: rest.transitNumber,
+        branchNumber: rest.branchNumber,
+        accountNumber: rest.accountNumber,
+        accountType: rest.accountType,
+        holderName: rest.holderName,
+      };
+    };
+
+    if (typeof selectedTemplate === 'string') {
       setBusinessInfoData(undefined);
       setBankInfoData(undefined);
       setBillToData(undefined);
-    }
-    if (template.name) {
-      const formattedTemplate = {
-        _id: template._id,
-        businessName: template.name,
-        addressLine1: template?.address,
-        city: template?.city,
-        province: template?.province,
-        country: template?.country,
-        postalCode: template?.postal,
-        phoneNumber: template?.phone,
-        email: template?.email,
-      };
-      setBusinessInfoData(formattedTemplate);
-    } else if (template.bankName) {
-      const formattedTemplate = {
-        _id: template._id,
-        bankName: template.bankName,
-        transitNumber: template.transitNumber,
-        branchNumber: template.branchNumber,
-        accountNumber: template.accountNumber,
-        accountType: template.accountType,
-        accountName: template.holderName,
-      };
-      setBankInfoData(formattedTemplate);
-    } else if (template.companyName) {
-      const formattedTemplate = {
-        _id: template._id,
-        companyName: template.companyName,
-        addressLine1: template.address,
-        city: template.city,
-        province: template.province,
-        country: template.country,
-        postalCode: template.postal,
-      };
+    } else if ('name' in selectedTemplate) {
+      const template = selectedTemplate as TemplateBusinessInfo;
 
-      setBillToData(formattedTemplate);
+      setBusinessInfoData(formatBusinessInfoData(template));
+    } else if ('bankName' in selectedTemplate) {
+      const template = selectedTemplate as TemplateBankInfo;
+
+      setBankInfoData(formatBankInfoData(template));
+    } else if ('companyName' in selectedTemplate) {
+      const template = selectedTemplate as TemplateBillTo;
+
+      setBillToData(formatBillToData(template));
     }
   };
   return {

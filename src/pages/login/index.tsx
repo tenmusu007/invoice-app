@@ -8,7 +8,7 @@ import GoogleButton from 'react-google-button';
 import LoginText from './text.json';
 import useLoginHooks from './useLoginHooks';
 
-import { useLocale } from 'helper/useLocale';
+import useLocale from 'helper/useLocale';
 import loginImage from 'public/login.png';
 import Text from 'src/components/atoms/Text';
 

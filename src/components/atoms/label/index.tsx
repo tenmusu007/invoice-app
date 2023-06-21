@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { inputLabel as inputLabelType } from 'types/inputLabel';
+import type { inputLabel as inputLabelType } from 'types/inputLabel';
 
 const InputLabel = ({ htmlFor, labelName }: inputLabelType) => <label htmlFor={htmlFor}>{labelName}</label>;
 

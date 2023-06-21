@@ -1,9 +1,11 @@
 import { Types } from 'mongoose';
 
-import { BillTo } from './billTo';
-import { BusinessInfo } from './businessInfo';
+import type { BillTo } from './billTo';
+import type { BusinessInfo } from './businessInfo';
 
-import { InvoiceInfo } from './invoiceInfo';
+import type { InvoiceInfo } from './invoiceInfo';
+
+import type { Unpacked } from './utility';
 
 export type Items = {
   name: string;
@@ -13,6 +15,8 @@ export type Items = {
   amount: number;
 }[];
 
+export type Item = Unpacked<Items>;
+
 export type InvoiceData = {
   _id: string;
   invoiceNumber: number;
@@ -21,7 +25,7 @@ export type InvoiceData = {
   billTo: BillTo;
   businessInfo: BusinessInfo;
   bankInfo: BusinessInfo | null;
-  item: items;
+  item: Items;
 };
 
 export type InvoiceDataDB =
@@ -51,3 +55,16 @@ export type MyInvoiceCard = {
   billTo: { companyName: string };
   invoiceId: string;
 };
+
+export type FormattedInvoice = {
+  id: string;
+  invoiceNumber: number;
+  issuedDate: string;
+  dueDate: string;
+  billTo: Omit<BillTo, [key: string]> & { id: string };
+  businessInfo: Omit<BusinessInfo, [key: string]> & { id: string };
+  bankInfo: Omit<BankInfo, [key: string]> & { id: string };
+  items: Item[];
+  subTotal: number;
+  total: number;
+}

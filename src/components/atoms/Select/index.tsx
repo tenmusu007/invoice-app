@@ -11,7 +11,6 @@ const SelectInput = (props: Partial<SelectType>) => {
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          // defaultValue={language}
           value={language}
           label="Language"
           onChange={onChange}

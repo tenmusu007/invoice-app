@@ -9,7 +9,9 @@ import {
 } from '@react-pdf/renderer';
 import React, { useState, useEffect } from 'react';
 
-import  ApiInstance  from 'helper/ApiInstance';
+import ApiInstance from 'helper/ApiInstance';
+
+import type { FormattedInvoice, Item } from 'types/invoiceData';
 
 const styles = StyleSheet.create({
   page: { paddingTop: 200 },
@@ -93,9 +95,7 @@ const styles = StyleSheet.create({
 });
 
 const PDF = () => {
-  // Put all of them in a custom hook
-  // Type them
-  const [invoiceData, setInvoiceData] = useState<any>();
+  const [invoiceData, setInvoiceData] = useState<FormattedInvoice>();
   // eslint-disable-next-line consistent-return
   const getInvoice = async (id: string) => {
     try {
@@ -117,7 +117,6 @@ const PDF = () => {
     getInvoice(id).then((data) => {
       if (data !== null) {
         setInvoiceData(data);
-        console.log('data', data.bankInfo);
       }
     });
   }, []);
@@ -182,7 +181,7 @@ const PDF = () => {
                     styles.flexColumn,
                   ]}
                 >
-                  {invoiceData.items.map((item: any, index: any) => (
+                  {invoiceData.items.map((item: Item, index) => (
                     <View key={index} style={styles.item}>
                       <Text style={styles.itemContent}>{item.name}</Text>
                       <Text style={styles.itemContent}>{item.quantity}</Text>

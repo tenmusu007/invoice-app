@@ -15,34 +15,30 @@ import ApiInstance from 'helper/ApiInstance';
 import type { Invoice as InvoiceType } from 'types/inputValue';
 import type {
   InvoiceData as InvoiceDataType,
-  Items as ItemsType,
+  Items,
+  Item,
 } from 'types/invoiceData';
 
 type Props = {
   data: InvoiceDataType;
 };
 
-// Needs a type
+const buttonStyle = {
+  background: '#EEBBC3',
+  color: '#232946',
+  borderRadius: 2,
+  fontWeight: 'bold',
+} as const;
+
 const InvoiceCard = (props: Props) => {
   const { bankInfo, businessInfo, billTo, item } = props.data;
-
-  // Type should be defined
-  const items: ItemsType = item.map(
-    // Type should be defined. invoice/invoiceData Items might be a good reference
-    (content: {
-      name: string;
-      quantity: string;
-      unitPrice: string;
-      tax: string;
-      amount: number;
-    }) => ({
-      name: content.name,
-      quantity: content.quantity,
-      unitPrice: content.unitPrice,
-      tax: content.tax,
-      amount: content.amount,
-    })
-  );
+  const items: Items = item.map((content: Item) => ({
+    name: content.name,
+    quantity: content.quantity,
+    unitPrice: content.unitPrice,
+    tax: content.tax,
+    amount: content.amount,
+  }));
   const methods = useForm<InvoiceType | any>({
     defaultValues: {
       info: {
@@ -52,7 +48,7 @@ const InvoiceCard = (props: Props) => {
       },
       billTo: {
         companyName: billTo.companyName,
-        addressLine1: billTo.address,
+        address: billTo.address,
         city: billTo.city,
         state: billTo.state,
         postalCode: billTo.postal,
@@ -61,7 +57,7 @@ const InvoiceCard = (props: Props) => {
       },
       businessInfo: {
         businessName: businessInfo.name,
-        addressLine1: businessInfo.address,
+        address: businessInfo.address,
         city: businessInfo.city,
         province: businessInfo.province,
         country: businessInfo.country,
@@ -74,7 +70,7 @@ const InvoiceCard = (props: Props) => {
         branchNumber: bankInfo?.branchNumber,
         accountNumber: bankInfo?.accountNumber,
         accountType: bankInfo?.accountType,
-        accountName: bankInfo?.holderName,
+        holderName: bankInfo?.holderName,
         transitNumber: bankInfo?.transitNumber,
       },
       description: items,
@@ -94,7 +90,6 @@ const InvoiceCard = (props: Props) => {
         <TermsAndConditionForm />
         {/* // Convert into re-generate a PDF */}
         <Box width={2}>
-          {/* // eslint-disable-next-line @typescript-eslint/no-use-before-define */}
           <Button text={'Submit'} type="submit" sx={buttonStyle} />
         </Box>
       </Stack>
@@ -118,9 +113,3 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
-const buttonStyle = {
-  background: '#EEBBC3',
-  color: '#232946',
-  borderRadius: 2,
-  fontWeight: 'bold',
-} as const;

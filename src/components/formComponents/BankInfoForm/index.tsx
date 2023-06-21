@@ -9,6 +9,7 @@ import Input from '@src/components/atoms/Input';
 import type { TemplateBankInfo } from 'types/bankInfo';
 
 type Props = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defRegister?: any;
   disabled?: boolean;
   templateBankInfo?: TemplateBankInfo;
@@ -81,12 +82,12 @@ const BankInfoForm = (props: Props) => {
               </option>
             </select>
             <Input
-              name="bankInfo.accountName"
+              name="bankInfo.holderName"
               register={regs}
               placeholder="Holder name"
               type="text"
               disabled={disabled}
-              value={props.templateBankInfo?.accountName || ''}
+              value={props.templateBankInfo?.holderName || ''}
             />
             <Input
               name="bankInfo.transitNumber"

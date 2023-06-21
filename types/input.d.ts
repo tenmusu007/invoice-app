@@ -1,4 +1,4 @@
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import type { FieldValues, UseFormRegister } from 'react-hook-form';
 
 export type Input = {
   name: string;
@@ -10,8 +10,7 @@ export type Input = {
     | 'email'
     | 'date'
     | 'file'
-    | 'image'
-    | 'tel';
+    | 'image';
   placeholder: string;
   register: UseFormRegister<FieldValues>;
   onChange?: ChangeEventHandler<HTMLInputElement>;

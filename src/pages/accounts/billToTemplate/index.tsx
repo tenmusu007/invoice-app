@@ -50,7 +50,7 @@ const BillToTemplate = (props: Props) => {
     defaultValues: {
       billTo: {
         companyName: template?.companyName,
-        addressLine1: template?.addressLine1,
+        address: template?.address,
         city: template?.city,
         province: template?.province,
         country: template?.country,

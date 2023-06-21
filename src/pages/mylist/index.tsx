@@ -1,17 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Grid } from '@mui/material';
 import { useEffect } from 'react';
 
 import useMyListHooks from './useMyListHooks';
 
 import PageTitle from '@src/components/atoms/Title';
-import InvoiceCard from '@src/pages/mylits/InvoiceCard';
+import InvoiceCard from '@src/pages/mylist/InvoiceCard';
 
 const style = {
   marginTop: 12,
   marginBottom: 12,
 } as const;
 
-const MylistPage = () => {
+const MyListPage = () => {
   const { action, state } = useMyListHooks();
   useEffect(() => {
     action.handleFetchMyList();
@@ -28,9 +29,9 @@ const MylistPage = () => {
           ))}
         </Grid>
       ) : (
-        <PageTitle content={'No Invoice'} variant={'h1'} component={'symbol'}/>
+        <PageTitle content={'No Invoice'} variant={'h1'} component={'symbol'} />
       )}
     </>
   );
 };
-export default MylistPage;
+export default MyListPage;

@@ -5,7 +5,7 @@ export type BankInfo = {
   branchNumber: number;
   accountNumber: number;
   accountType: string;
-  accountName: string;
+  holderName: string;
   transitNumber: number;
   [key: string]: string | any;
 };
@@ -19,4 +19,4 @@ export type BankInfoDB = BankInfo & {
 
 export type TemplateBankInfo = BankInfo & {
   _id: Types.ObjectId;
-}
+};

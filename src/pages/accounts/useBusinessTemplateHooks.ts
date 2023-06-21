@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 
-import  ApiInstance  from 'helper/ApiInstance';
+import ApiInstance from 'helper/ApiInstance';
 import type { BusinessInfo as BusinessInfoType } from 'types/businessInfo';
 
 type Props = {
@@ -31,7 +31,7 @@ const useBusinessTemplateHooks = (props: Props) => {
     const formattedEditTemplate = {
       _id: editTemplate.businessInfo._id,
       name: editTemplate.businessInfo.businessName,
-      address: editTemplate.businessInfo.addressLine1,
+      address: editTemplate.businessInfo.address,
       city: editTemplate.businessInfo.city,
       province: editTemplate.businessInfo.province,
       country: editTemplate.businessInfo.country,
